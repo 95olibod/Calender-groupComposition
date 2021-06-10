@@ -1,0 +1,19 @@
+header {
+  background-color: var(--darkGrey);
+  height: 4.5em;
+  color: var(--white);
+} 
+
+.h-title {
+  padding-left: 1em;
+}
+
+@media (max-width: 768px) {
+  header {
+    height: 3.5em;
+  }
+
+  .h-title {
+    font-size: 1em;
+  }
+}
