@@ -1,3 +1,87 @@
-@media (min-width: 1200px) {
-
+:root {
+    --lightGrey: #92898A;
+    --darkGrey: #3D3A4B;
+    --vanillaBeige: #F3FCF0;
+    --orange: #F2AF29;
+    --black: #000000;
+    --white: #ffffff;
 }
+
+.dis-none {
+    display: none;
+}
+
+.inline {
+    display: inline;
+}
+
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.row {
+flex-direction: row;
+}
+
+.jus-center {
+    justify-content: center;
+} 
+
+.jus-around {
+    justify-content: space-around;
+}
+
+.jus-between {
+    justify-content: space-between;
+}
+
+.jus-evenly {
+    justify-content: space-evenly;
+}
+
+.ali-center {
+    align-items: center;
+}
+ 
+.full-width {
+    width: 100%;
+}
+
+.width-fit {
+    width: fit-content;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.z-1 {
+        z-index: 1;
+    }
+    
+.absolute {
+    position: absolute;
+}
+        
+.fixed {
+    position: fixed;
+}
+    
+.o-fit-cover {
+    object-fit: cover;
+}
+
+    
+@media (min-width: 1200px) {}
