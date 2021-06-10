@@ -3,16 +3,6 @@
     margin: 0; 
     box-sizing: border-box; 
 } 
-
-.s-container { 
-    background-color: var(--darkGrey); 
-    margin-top: 2.5em; 
-    height: 100vh; 
-    width: 200px; 
-    color: var(--white);   
-} 
-
-
 .s-container-tab { 
     background-color: var(--darkGrey); 
     border-radius: 8px; 
