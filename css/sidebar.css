@@ -1,11 +1,59 @@
-.s-title {
+* { 
+    padding: 0; 
+    margin: 0; 
+    box-sizing: border-box; 
+} 
+.s-container-tab { 
+    background-color: var(--darkGrey); 
+    border-radius: 8px; 
+    margin-top: 3em; 
+    margin-left: -0.5em; 
+    height: 5em; 
+    width: 2em; 
+    align-items: flex-start;  
+    justify-content: flex-end; 
+} 
 
-}
+.s-tab-button { 
+    background-color: var(--white); 
+    padding: 0.5em 0.7em; 
+    margin: 0.8em; 
+    font-size: 9px; 
+    color: var(--black); 
+    border: none;   
+} 
+ 
+/* generella knappar */ 
 
-.s-todo-item {
+.s-btn-round { 
+    border-radius: 50%; 
+} 
 
-}
+#s-edit-btn { 
+    background-color: var(--white); 
+    padding: 0.5em 0.7em; 
+    /* margin: 0.8em; */ 
+    font-size: 9px; 
+    color: var(--black); 
+    border: 1px solid var(--lightGrey);  
+    max-height: 18px; 
+    max-width: 18px; 
+} 
 
-.suck-it {
-    
-}
+#s-remove-btn { 
+    background-color: var(--white); 
+    padding: 0.5em 0.7em; 
+    /* margin: 0.8em; */ 
+    border: 1px solid var(--lightGrey); 
+    font-size: 9px; 
+    color: var(--black); 
+} 
+
+/* generella textitems */ 
+
+.s-todo-item { 
+    background-color: var(--white); 
+    border-radius: 8px; 
+    width: 80%; 
+    margin: 0.5em 0; 
+} 
