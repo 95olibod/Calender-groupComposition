@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./css/footer.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/sidebar.css" />
+    <!-- Fontawesome logos imported -->
+    <script src="https://kit.fontawesome.com/309fc4c8bc.js" crossorigin="anonymous"></script>
     <title>Document</title>
   </head>
   <body>
@@ -19,27 +21,27 @@
     </header>
           
     <aside class="flex row">
-      <div class="flex col ali-center s-container">
-        <div>TODOS logga</div>
-
-       <aside>
-        <div class="flex s-todo-item" style="justify-content: flex-end">
-          <button
-            id="s-edit-btn"
-            class="flex jus-center ali-center s-btn-round"
-          >
-            <i class="fas fa-pencil-alt"></i>
-          </button>
-
-          <button id="s-remove-btn" class="flex jus-center s-btn-round">
-            X
-          </button>
+        <div class="flex col ali-center s-container">
+            <!-- <div>TO DO</div> -->
+            <div>
+                <button id="s-add-btn" class="s-btn-round">+</button>
+            </div>
+            <div class="flex s-todo-item">
+                <button id="s-edit-btn" class="flex jus-center ali-center s-btn-round s-btn-onLine">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button id="s-remove-btn" class="flex jus-center ali-center s-btn-round s-btn-onLine">
+                  X
+                </button>
+            </div>
         </div>
-      </div>
-      <div class="flex s-container-tab">
-        <button class="flex s-btn-round s-tab-button">X</button>
-      </div>
+        <div class="flex s-container-tab">
+            <button class="flex s-btn-round s-tab-button">
+                <i class="fas fa-chevron-left flex jus-center ali-center" style="color: white; "></i>
+            </button>
+        </div>
     </aside>
+
     <main></main>
 
     <footer></footer>

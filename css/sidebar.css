@@ -3,10 +3,42 @@
     margin: 0; 
     box-sizing: border-box; 
 } 
+
+/* generellt till knappar */ 
+
+.s-btn-round { 
+    border-radius: 50%; 
+} 
+
+.s-btn-onLine {
+    margin-top: -0.6em;
+}
+
+#s-add-btn {
+    color: var(--darkGrey);
+    background-color: var(--orange);
+    font-size: 25px;
+    border: none;
+    width: 2em;
+    height: 2em;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+}
+
+/* Sidebar */
+
+.s-container { 
+    background-color: var(--darkGrey); 
+    /* margin-top: 0.1em;  */
+    height: 100vh; 
+    width: 15em; 
+    color: var(--white);   
+} 
+
 .s-container-tab { 
     background-color: var(--darkGrey); 
     border-radius: 8px; 
-    margin-top: 3em; 
+    margin-top: 0.5em; 
     margin-left: -0.5em; 
     height: 5em; 
     width: 2em; 
@@ -15,24 +47,27 @@
 } 
 
 .s-tab-button { 
-    background-color: var(--white); 
-    padding: 0.5em 0.7em; 
-    margin: 0.8em; 
-    font-size: 9px; 
-    color: var(--black); 
-    border: none;   
-} 
- 
-/* generella knappar */ 
+    background-color: var(--darkGrey);
+    font-size: 18px;
+    border: none; 
+    margin: 0.5em;
+}
 
-.s-btn-round { 
-    border-radius: 50%; 
+/* generella textitems */ 
+
+.s-todo-item { 
+    justify-content: flex-end;
+    background-color: var(--white); 
+    border-radius: 8px; 
+    width: 13em; 
+    height: 2.5em;
+    margin: 0.5em 0; 
 } 
 
 #s-edit-btn { 
     background-color: var(--white); 
     padding: 0.5em 0.7em; 
-    /* margin: 0.8em; */ 
+    margin-right: 0.1em; 
     font-size: 9px; 
     color: var(--black); 
     border: 1px solid var(--lightGrey);  
@@ -43,17 +78,10 @@
 #s-remove-btn { 
     background-color: var(--white); 
     padding: 0.5em 0.7em; 
-    /* margin: 0.8em; */ 
+    margin-right: 0.1em; 
     border: 1px solid var(--lightGrey); 
     font-size: 9px; 
     color: var(--black); 
-} 
-
-/* generella textitems */ 
-
-.s-todo-item { 
-    background-color: var(--white); 
-    border-radius: 8px; 
-    width: 80%; 
-    margin: 0.5em 0; 
-} 
+    max-height: 18px; 
+    max-width: 18px; 
+}
