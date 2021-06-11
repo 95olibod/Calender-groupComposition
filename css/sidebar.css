@@ -27,11 +27,19 @@
 
 /* Sidebar */
 
+#sidebar-when-desktop {
+    display: flex;
+}
+
+
+
 .s-container { 
     background-color: var(--darkGrey); 
     /* margin-top: 0.1em;  */
     height: 100vh; 
-    width: 15em; 
+    width: 20%; 
+    min-width: 15em;
+    max-width: 22em;
     color: var(--white);   
 } 
 
@@ -84,4 +92,11 @@
     color: var(--black); 
     max-height: 18px; 
     max-width: 18px; 
+}
+
+@media (max-width: 768px) {
+    
+    #sidebar-when-desktop {
+        display: none;
+    }
 }
