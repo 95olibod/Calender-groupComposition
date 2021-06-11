@@ -5,45 +5,643 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
-    <link rel="stylesheet" href="./css/body.css" />
+    <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/footer.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/sidebar.css" />
     <!-- Fontawesome logos imported -->
-    <script src="https://kit.fontawesome.com/309fc4c8bc.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/309fc4c8bc.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./script.js"></script>
     <title>Document</title>
   </head>
-  <body>
-    <script src="./script.js"></script>
-
+  <body class="flex col">
+    
     <header class="flex ali-center">
-        <h2 class="h-title">FOLK<h2>
-    </header>
-          
-    <aside id="sidebar-when-desktop" class="row">
+      <h2 class="h-title">FOLK<h2>
+  </header>
+
+    <div class="flex row grow">
+      <aside id="sidebar-when-desktop" class="row">
         <div class="flex col ali-center s-container">
-            <!-- <div>TO DO</div> -->
-            <div>
-                <button id="s-add-btn" class="s-btn-round">+</button>
-            </div>
-            <div class="flex s-todo-item">
-                <button id="s-edit-btn" class="flex jus-center ali-center s-btn-round s-btn-onLine">
-                    <i class="fas fa-pencil-alt"></i>
-                </button>
-                <button id="s-remove-btn" class="flex jus-center ali-center s-btn-round s-btn-onLine">
-                  X
-                </button>
-            </div>
+          <!-- <div>TO DO</div> -->
+          <div>
+            <button id="s-add-btn" class="s-btn-round">+</button>
+          </div>
+          <div class="flex s-todo-item">
+            <button
+              id="s-edit-btn"
+              class="flex jus-center ali-center s-btn-round s-btn-onLine"
+            >
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button
+              id="s-remove-btn"
+              class="flex jus-center ali-center s-btn-round s-btn-onLine"
+            >
+              X
+            </button>
+          </div>
         </div>
         <div class="flex s-container-tab">
-            <button class="flex s-btn-round s-tab-button">
-                <i class="fas fa-chevron-left flex jus-center ali-center" style="color: white; "></i>
-            </button>
+          <button class="flex s-btn-round s-tab-button">
+            <i
+              class="fas fa-chevron-left flex jus-center ali-center"
+              style="color: white"
+            ></i>
+          </button>
         </div>
-    </aside>
+      </aside>
 
-    <main></main>
+      <main class="flex col full-height grow">
+        <div class="m-date-container"></div>
+        <div class="m-calender-container flex col full-width grow">
+          <div class="m-calender-box flex col full-width">
+            <div class="m-week-day-container flex"></div>
 
+            <div class="m-week-row-container flex col grow">
+              <div class="m-week-row-box flex jus-center">
+                <div
+                  style="background-color: var(--CalMediumGrey)"
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p></p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>12</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+              </div>
+
+              <div class="m-week-row-box flex jus-center">
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+              </div>
+
+              <div class="m-week-row-box flex jus-center">
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+              </div>
+
+              <div class="m-week-row-box flex jus-center">
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-b
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+              </div>
+
+              <div class="m-week-row-box flex jus-center">
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div
+                  class="
+                    m-day-container
+                    flex
+                    col
+                    jus-center
+                    ali-center
+                    m-todo-margin-r
+                  "
+                >
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+
+                <div class="m-day-container flex col jus-center ali-center">
+                  <div class="m-day-date-box flex jus-f-start ali-center">
+                    <p>datum</p>
+                  </div>
+                  <div class="m-todo-box flex jus-center ali-center"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="m-week-day-box">
+            
+            </div>
+            <div class="m-day-box flex col jus-center ali-center">
+              <div class="m-day-of-month">
+
+              </div>
+              <div class="m-todo">
+
+              </div>
+            </div> -->
+
+          <div class="m-week-container flex col"></div>
+        </div>
+      </main>
+    </div>
     <footer></footer>
   </body>
 </html>
