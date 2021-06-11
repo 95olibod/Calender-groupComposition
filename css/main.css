@@ -1,3 +1,102 @@
 .m-title {
-    
+}
+
+.m-title {
+}
+
+html,
+body {
+  height: 100%;
+}
+
+main {
+  background-color: rosybrown;
+}
+
+.m-date-container {
+  background-color: aquamarine;
+}
+
+.m-calender-container {
+  background-color: blueviolet;
+}
+
+.m-calender-box {
+  background-color: cornflowerblue;
+  /* max-width: 80em; */
+  width: 100%;
+  flex-grow: 1;
+}
+
+.m-week-day-container {
+  background-color: darkgoldenrod;
+  width: 100%;
+}
+
+.m-week-row-container {
+  background-color: rgb(25, 85, 25);
+  background-color: white;
+  padding: 0.5em;
+
+  width: 100%;
+}
+
+.m-week-row-box {
+  background-color: deeppink;
+
+  width: 100%;
+  flex-grow: 1;
+}
+
+.m-day-container {
+  /* background-color: rgb(255, 255, 255); */
+  /* background-color: var(--CalLightGrey); */
+  /* background-color: rgba(146, 137, 138, 0.2); */
+  background-color: var(--CalLightGrey);
+  width: 100%;
+
+  flex-grow: 1;
+
+  /* width: 8em;
+    height: 9em; */
+
+  border-radius: 1.5em;
+}
+
+.m-day-date-box {
+  /* background-color: darkolivegreen;
+    background-color: var(--CalLightGrey); */
+
+  width: 100%;
+  height: 2.5em;
+  /* border-top-left-radius: 1em;
+    border-top-right-radius: 1em; */
+  padding-left: 0.8em;
+}
+
+.m-todo-box {
+  background-color: darkslateblue;
+  /* background-color: var(--CalLightGrey); */
+  opacity: 0.2;
+
+  width: 100%;
+
+  /* border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em; */
+}
+
+.m-todo-margin-r {
+  margin-right: 0.5em;
+}
+
+.m-todo-margin-b {
+  margin-bottom: 0.5em;
+}
+
+.m-week-number-container {
+  background-color: crimson;
+}
+
+p {
+  /* background-color: honeydew; */
 }
