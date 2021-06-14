@@ -22,12 +22,28 @@
     <h2 class="h-title">FOLK<h2>
   </header>
 
-  <div class="flex row grow">
-    <aside id="sidebar-when-desktop" class="row">
-      <div class="flex col ali-center s-container">
-        <!-- <div>TO DO</div> -->
-        <div>
-          <button id="s-add-btn" class="s-btn-round">+</button>
+    <div class="flex row grow outer-container">
+      <aside id="sidebar-when-desktop" class="row">
+        <div class="flex col ali-center s-container">
+          <!-- <div>TO DO</div> -->
+          <div>
+            <button id="s-add-btn" class="s-btn-round">+</button>
+          </div>
+          <div class="flex s-todo-item">
+            <button
+              id="s-edit-btn"
+              class="flex jus-center ali-center s-btn-round s-btn-onLine"
+            >
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button
+              id="s-remove-btn"
+              class="flex jus-center ali-center s-btn-round s-btn-onLine"
+            >
+              X
+            </button>
+          </div>
+
         </div>
         <div class="flex s-todo-item">
           <button id="s-edit-btn" class="flex jus-center ali-center s-btn-round s-btn-onLine">
@@ -520,21 +536,22 @@
       <div class="m-week-container flex col"></div>
   </div>
   </main>
-  </div>
-  <footer>
-    <div class="f-container">
-      <div>
-        <img src="./images/footer/footer-desktop-opac.png" />
-      </div>
-      <div class="f-middle absolute">
-        <img src="./images/footer/footer-desktop-yellow.png" />
-      </div>
-      <div class="f-front absolute">
-        <img src="./images/footer/footer-desktop-black.png" />
-      </div>
-      <div class="f-info-block dis-none"></div>
+    
     </div>
-  </footer>
+        <footer>
+      <div class="f-container outer-container">
+        <div>
+          <img src="./images/footer/footer-desktop-opac.png"/>
+        </div>
+        <div class="f-middle absolute">
+          <img src="./images/footer/footer-desktop-yellow.png"/>
+        </div>
+        <div class="f-front absolute">
+          <img src="./images/footer/footer-desktop-black.png"/>
+        </div>
+        <div class="f-info-block dis-none"></div>
+      </div>
+    </footer>
 </body>
 
 </html>
