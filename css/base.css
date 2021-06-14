@@ -12,6 +12,12 @@
   --CalMediumGrey: #cccccc;  
 }
 
+* { 
+  padding: 0; 
+  margin: 0; 
+  box-sizing: border-box; 
+}
+
 .dis-none {
   display: none;
 }
@@ -95,6 +101,12 @@
 .grow {
     flex-grow: 1;
 }
+
+.outer-container {
+  background-color: var(--vanillaBeige);
+}
+
+style="background-color: black;
 
 @media (min-width: 1200px) {
 }

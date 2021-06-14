@@ -10,13 +10,13 @@ body {
 }
 
 main {
-  background-color: var(--white);
+  background-color: var(--vanillaBeige);
   padding-right: 2em;
   padding-left: 0.5em;
 }
 
 .m-date-container {
-  background-color: var(--white);
+  background-color: var(--vanillaBeige);
 }
 
 .m-current-month {
@@ -34,12 +34,12 @@ main {
 }
 
 .m-calender-container {
-  background-color: var(--white);
+  background-color: var(--vanillaBeige);
   padding: 1em;
 }
 
 .m-week-row-box {
-  background-color: var(--white);
+  background-color: var(--vanillaBeige);
   width: 100%;
 }
 
@@ -74,7 +74,7 @@ main {
 }
 
 .m-week-number-box {
-  background-color: var(--white);
+  background-color: var(--vanillaBeige);
   /* width: 5em; */
   width: 20%;
   height: 100%;
@@ -100,13 +100,13 @@ main {
 }
 
 .m-week-empty-box {
-  background-color: var(--white);
+  background-color: var(--vanillaBeige);
   /* display: none; */
   width: 1.8em;
 }
 
 .m-week-day-box {
-  background-color: var(--white);
+  background-color: var(--vanillaBeige);
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
