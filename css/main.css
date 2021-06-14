@@ -10,79 +10,59 @@ body {
 }
 
 main {
-  background-color: rosybrown;
+  background-color: rgb(0, 162, 255);
+  padding-right: 2em;
+  padding-left: 0.5em;
 }
 
 .m-date-container {
-  background-color: aquamarine;
+  background-color: rgb(0, 255, 242);
+}
+
+.m-current-month {
+  padding: 1em;
+}
+
+.m-month-arrow-left {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.m-month-arrow-right {
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .m-calender-container {
-  background-color: blueviolet;
-}
-
-.m-calender-box {
-  background-color: cornflowerblue;
-  /* max-width: 80em; */
-  width: 100%;
-  flex-grow: 1;
-}
-
-.m-week-day-container {
-  background-color: darkgoldenrod;
-  width: 100%;
-}
-
-.m-week-row-container {
-  background-color: rgb(25, 85, 25);
-  background-color: white;
-  padding: 0.5em;
-
-  width: 100%;
+  background-color: rgb(238, 255, 0);
+  padding: 1em;
 }
 
 .m-week-row-box {
-  background-color: deeppink;
-
+  background-color: rgb(0, 116, 0);
   width: 100%;
-  flex-grow: 1;
 }
 
 .m-day-container {
-  /* background-color: rgb(255, 255, 255); */
-  /* background-color: var(--CalLightGrey); */
-  /* background-color: rgba(146, 137, 138, 0.2); */
   background-color: var(--CalLightGrey);
+  background-color: blueviolet;
   width: 100%;
-
   flex-grow: 1;
-
-  /* width: 8em;
-    height: 9em; */
-
   border-radius: 1.5em;
+  /* width: 7.5em;
+  height: 9em; */
+  /* max-width: 8em; */
 }
 
 .m-day-date-box {
-  /* background-color: darkolivegreen;
-    background-color: var(--CalLightGrey); */
-
   width: 100%;
   height: 2.5em;
-  /* border-top-left-radius: 1em;
-    border-top-right-radius: 1em; */
+
   padding-left: 0.8em;
 }
 
 .m-todo-box {
-  background-color: darkslateblue;
-  /* background-color: var(--CalLightGrey); */
-  opacity: 0.2;
-
   width: 100%;
-
-  /* border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em; */
 }
 
 .m-todo-margin-r {
@@ -93,10 +73,40 @@ main {
   margin-bottom: 0.5em;
 }
 
-.m-week-number-container {
-  background-color: crimson;
+.m-week-number-box {
+  background-color: rgb(126, 126, 126);
+  /* width: 5em; */
+  width: 20%;
+  height: 100%;
+  padding: left 2em;
+  justify-content: center;
 }
 
-p {
-  /* background-color: honeydew; */
+.p-month {
+  /* font-size: 23px;   */
+  font-weight: bold;
+}
+
+.p-week-day {
+}
+
+.p-date {
+}
+
+.p-week {
+}
+
+.p-todos {
+}
+
+.m-week-empty-box {
+  background-color: red;
+  /* display: none; */
+  width: 1.8em;
+}
+
+.m-week-day-box {
+  background-color: rgb(255, 166, 0);
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
