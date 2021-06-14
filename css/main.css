@@ -1,9 +1,6 @@
 .m-title {
 }
 
-.m-title {
-}
-
 html,
 body {
   height: 100%;
@@ -34,10 +31,9 @@ main {
 }
 
 .m-calender-container {
+  padding-bottom: 1em;
+  padding-right: 0.5em;
   background-color: var(--vanillaBeige);
-  padding-bottom: 4em;
-  padding-top: 1em;
-
 }
 
 .m-week-row-box {
@@ -47,7 +43,7 @@ main {
 
 .m-day-container {
   background-color: var(--CalLightGrey);
-  
+
   width: 100%;
   flex-grow: 1;
   border-radius: 1.5em;
@@ -90,25 +86,44 @@ main {
 }
 
 .p-week-day {
+  font-weight: bold;
 }
 
 .p-date {
+  color: rgb(250, 1, 250);
 }
 
 .p-week {
+  font-weight: bold;
 }
 
 .p-todos {
 }
 
+.p-red-day {
+  color: red;
+}
+
 .m-week-empty-box {
+  width: 1em;
   background-color: var(--vanillaBeige);
-  /* display: none; */
-  width: 1.8em;
 }
 
 .m-week-day-box {
   background-color: var(--vanillaBeige);
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+}
+
+.week-day-padding {
+  padding-right: 0.5em;
+}
+
+@media (max-width: 1260px) {
+  main {
+    padding-left: 1em;
+  }
+  .m-calender-container {
+    padding-bottom: 1em;
+  }
 }
