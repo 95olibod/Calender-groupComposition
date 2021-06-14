@@ -1,550 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/base.css" />
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/footer.css" />
-    <link rel="stylesheet" href="./css/header.css" />
-    <link rel="stylesheet" href="./css/sidebar.css" />
-    <!-- Fontawesome logos imported -->
-    <script
-      src="https://kit.fontawesome.com/309fc4c8bc.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="./script.js"></script>
-    <title>Document</title>
-  </head>
-  <body class="flex col">
-    
-    <header class="flex ali-center">
-      <h2 class="h-title">FOLK<h2>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/footer.css" />
+  <link rel="stylesheet" href="./css/header.css" />
+  <link rel="stylesheet" href="./css/sidebar.css" />
+  <!-- Fontawesome logos imported -->
+  <script src="https://kit.fontawesome.com/309fc4c8bc.js" crossorigin="anonymous"></script>
+  <script src="./script.js"></script>
+  <title>Document</title>
+</head>
+
+<body class="flex col">
+
+  <header class="flex ali-center">
+    <h2 class="h-title">FOLK<h2>
   </header>
 
-    <div class="flex row grow">
-      <aside id="sidebar-when-desktop" class="row">
-        <div class="flex col ali-center s-container">
-          <!-- <div>TO DO</div> -->
-          <div>
-            <button id="s-add-btn" class="s-btn-round">+</button>
-          </div>
-          <div class="flex s-todo-item">
-            <button
-              id="s-edit-btn"
-              class="flex jus-center ali-center s-btn-round s-btn-onLine"
-            >
-              <i class="fas fa-pencil-alt"></i>
-            </button>
-            <button
-              id="s-remove-btn"
-              class="flex jus-center ali-center s-btn-round s-btn-onLine"
-            >
-              X
-            </button>
-          </div>
+  <div class="flex row grow">
+    <aside id="sidebar-when-desktop" class="row">
+      <div class="flex col ali-center s-container">
+        <!-- <div>TO DO</div> -->
+        <div>
+          <button id="s-add-btn" class="s-btn-round">+</button>
         </div>
-        <div class="flex s-container-tab">
-          <button class="flex s-btn-round s-tab-button">
-            <i
-              class="fas fa-chevron-left flex jus-center ali-center"
-              style="color: white"
-            ></i>
+        <div class="flex s-todo-item">
+          <button id="s-edit-btn" class="flex jus-center ali-center s-btn-round s-btn-onLine">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+          <button id="s-remove-btn" class="flex jus-center ali-center s-btn-round s-btn-onLine">
+            X
           </button>
         </div>
-      </aside>
-
-      <main class="flex col full-height grow">
-        <div class="m-date-container flex jus-center ali-center">
-          <div class="m-month-arrow-left">
-            <i class="fas fa-chevron-left"></i>
-          </div>
-  
-          <div class="m-current-month">
-            <h1>Juni 2021</h1>
-          </div>
-  
-          <div class="m-month-arrow-right">
-            <i class="fas fa-chevron-right"></i>
-          </div>
-        </div>
-  
-        <div class="m-calender-container flex col full-width grow">
-  
-          <div class="m-week-row-box flex row ali-center jus-center ">
-            <div class=" flex row jus-around grow">
-  
-              <div class="m-week-day-box ">
-                <p>måndag</p>
-              </div>
-              <div class="m-week-day-box">
-                <p>tisdag</p>
-              </div>
-              <div class="m-week-day-box">
-                <p>onsdag</p>
-              </div>
-              <div class="m-week-day-box">
-                <p>torsdag</p>
-              </div>
-              <div class="m-week-day-box">
-                <p>fredag</p>
-              </div>
-              <div class="m-week-day-box">
-                <p>lördag</p>
-              </div>
-              <div class="m-week-day-box">
-                <p>söndag</p>
-              </div>
-            </div>
-            <div class="m-week-empty-box">
-              <p></p hidden>
-            </div>
-          </div>
-  
-          <div class="m-week-row-box flex row jus-center grow">
-  
-            <div class="m-day-container flex col ali-center m-todo-margin-r m-todo-margin-b">
-              <div class="m-day-date-box flex  jus-f-start ali-center">
-                <p>31</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p> blabla
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                       m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-week-number-box flex ali-center">
-              <!-- lägg till veckonummer -->
-              <p>24</p>
-            </div>
-          </div>
-  
-          <div class="m-week-row-box flex row jus-center grow">
-  
-            <div class="m-day-container flex col ali-center m-todo-margin-r m-todo-margin-b">
-              <div class="m-day-date-box flex  jus-f-start ali-center">
-                <p>31</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p> blabla
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                       m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-week-number-box flex grow ali-center">
-              <!-- lägg till veckonummer -->
-              <p>24</p>
-            </div>
-          </div>
-  
-          <div class="m-week-row-box flex row jus-center grow">
-  
-            <div class="m-day-container flex col ali-center m-todo-margin-r m-todo-margin-b">
-              <div class="m-day-date-box flex  jus-f-start ali-center">
-                <p>31</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p> blabla
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                       m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-week-number-box flex grow ali-center">
-              <!-- lägg till veckonummer -->
-              <p>1</p>
-            </div>
-          </div>
-  
-          <div class="m-week-row-box flex row jus-center grow">
-  
-            <div class="m-day-container flex col ali-center m-todo-margin-r m-todo-margin-b">
-              <div class="m-day-date-box flex  jus-f-start ali-center">
-                <p>31</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p> blabla
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                       m-todo-margin-r m-todo-margin-b
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-week-number-box flex grow ali-center">
-              <!-- lägg till veckonummer -->
-              <p>24</p>
-            </div>
-          </div>
-  
-          <div class="m-week-row-box flex row jus-center grow">
-  
-            <div class="m-day-container flex col ali-center m-todo-margin-r ">
-              <div class="m-day-date-box flex  jus-f-start ali-center">
-                <p>31</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p> blabla
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r 
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r 
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r 
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r 
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center
-                      m-todo-margin-r 
-                    ">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-            <div class="m-day-container flex col ali-center m-todo-margin-r">
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p>12</p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p>2
-                <p>
-              </div>
-            </div>
-  
-            <div class="m-week-number-box flex grow ali-center">
-              <!-- lägg till veckonummer -->
-              <p>24</p>
-            </div>
-          </div>
-  
-        </div>
-  
-  
-        <div class="m-week-container flex col"></div>
-    </div>
-    </main>
-    </div>
-        <footer>
-      <div class="f-container">
-        <div>
-          <img src="./images/footer/footer-desktop-opac.png"/>
-        </div>
-        <div class="f-middle absolute">
-          <img src="./images/footer/footer-desktop-yellow.png"/>
-        </div>
-        <div class="f-front absolute">
-          <img src="./images/footer/footer-desktop-black.png"/>
-        </div>
-        <div class="f-info-block dis-none"></div>
       </div>
-    </footer>
-  </body>
+      <div class="flex s-container-tab">
+        <button class="flex s-btn-round s-tab-button">
+          <i class="fas fa-chevron-left flex jus-center ali-center" style="color: white"></i>
+        </button>
+      </div>
+    </aside>
+
+    <main class="flex col full-height grow">
+      <div class="m-date-container flex jus-center ali-center">
+        <div class="m-month-arrow-left">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+
+        <div class="m-current-month">
+          <h1 class="m-title">Juni 2021</h1>
+        </div>
+
+        <div class="m-month-arrow-right">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+
+      <div class="m-calender-container flex col full-width grow">
+
+        <div class="m-week-row-box flex row ali-center jus-center">
+          <div class=" flex row jus-around grow">
+
+            <div class="m-week-day-box flex grow week-day-padding jus-center">
+              <p class="p-week-day">Måndag</p>
+            </div>
+            <div class="m-week-day-box flex grow week-day-padding jus-center">
+              <p class="p-week-day">Tisdag</p>
+            </div>
+            <div class="m-week-day-box flex grow week-day-padding jus-center">
+              <p class="p-week-day">Onsdag</p>
+            </div>
+            <div class="m-week-day-box flex grow week-day-padding jus-center">
+              <p class="p-week-day">Torsdag</p>
+            </div>
+            <div class="m-week-day-box flex grow week-day-padding jus-center">
+              <p class="p-week-day">Fredag</p>
+            </div>
+            <div class="m-week-day-box flex grow week-day-padding jus-center">
+              <p class="p-week-day">Lördag</p>
+            </div>
+            <div class="m-week-day-box flex grow week-day-padding jus-center">
+              <p class="p-week-day p-red-day">Söndag</p>
+            </div>
+          </div>
+          <div class="m-week-empty-box">
+            <p></p hidden>
+          </div>
+        </div>
+
+        <div class="m-week-row-box flex row jus-center grow">
+
+          <div class="m-day-container flex col ali-center m-todo-margin-r m-todo-margin-b">
+            <div class="m-day-date-box flex  jus-f-start ali-center">
+              <p class="p-date"> 31</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p> 1
+              <p>
+            </div>
+          </div>
+
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date ">1</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >2</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >3</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >4</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >5</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                       m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-red-day">6</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+
+          <div class="m-week-number-box flex ali-center">
+            <!-- lägg till veckonummer -->
+            <p class="p-week">22</p>
+          </div>
+        </div>
+
+        <div class="m-week-row-box flex row jus-center grow">
+
+          <div class="m-day-container flex col ali-center m-todo-margin-r m-todo-margin-b">
+            <div class="m-day-date-box flex  jus-f-start ali-center">
+              <p class="p-date" >7</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p> blabla
+              <p>
+            </div>
+          </div>
+
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p  class="p-date" >8</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >9</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >10</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >11</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >12</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                       m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-red-day">13</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+
+          <div class="m-week-number-box flex grow ali-center">
+            <!-- lägg till veckonummer -->
+            <p class="p-week">23</p>
+          </div>
+        </div>
+
+        <div class="m-week-row-box flex row jus-center grow">
+
+          <div class="m-day-container flex col ali-center m-todo-margin-r m-todo-margin-b">
+            <div class="m-day-date-box flex  jus-f-start ali-center">
+              <p class="p-date" >14</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p> blabla
+              <p>
+            </div>
+          </div>
+
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >15</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >16</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >17</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >18</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >19</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                       m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-red-day">20</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+
+          <div class="m-week-number-box flex grow ali-center">
+            <!-- lägg till veckonummer -->
+            <p class="p-week">24</p>
+          </div>
+        </div>
+
+        <div class="m-week-row-box flex row jus-center grow">
+
+          <div class="m-day-container flex col ali-center m-todo-margin-r m-todo-margin-b">
+            <div class="m-day-date-box flex  jus-f-start ali-center">
+              <p class="p-date" >21</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p> blabla
+              <p>
+            </div>
+          </div>
+
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >22</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date" >23</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date">24</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date">25</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date">26</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                       m-todo-margin-r m-todo-margin-b
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-red-day">27</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+
+          <div class="m-week-number-box flex grow ali-center">
+            <!-- lägg till veckonummer -->
+            <p class="p-week">25</p>
+          </div>
+        </div>
+
+        <div class="m-week-row-box flex row jus-center grow">
+
+          <div class="m-day-container flex col ali-center m-todo-margin-r ">
+            <div class="m-day-date-box flex  jus-f-start ali-center">
+              <p class="p-date">28</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>
+              <p>
+            </div>
+          </div>
+
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r 
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date">29</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r 
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date">30</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r 
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date">31</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r 
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date">1</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center
+                      m-todo-margin-r 
+                    ">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date">2</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+          <div class="m-day-container flex col ali-center m-todo-margin-r">
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-red-day">3</p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p>2
+              <p>
+            </div>
+          </div>
+
+          <div class="m-week-number-box flex grow ali-center">
+            <!-- lägg till veckonummer -->
+            <p class="p-week">26</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="m-week-container flex col"></div>
+  </div>
+  </main>
+  </div>
+  <footer>
+    <div class="f-container">
+      <div>
+        <img src="./images/footer/footer-desktop-opac.png" />
+      </div>
+      <div class="f-middle absolute">
+        <img src="./images/footer/footer-desktop-yellow.png" />
+      </div>
+      <div class="f-front absolute">
+        <img src="./images/footer/footer-desktop-black.png" />
+      </div>
+      <div class="f-info-block dis-none"></div>
+    </div>
+  </footer>
+</body>
+
 </html>
