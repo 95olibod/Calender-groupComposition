@@ -37,6 +37,9 @@ main {
 }
 
 .m-calender-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto;
+  grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr;
   padding-bottom: 4em;  
 }
 
