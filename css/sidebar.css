@@ -33,15 +33,15 @@ aside {
 
 .s-container { 
     background-color: var(--darkGrey); 
-    /* margin-top: 0.1em;  */
+    margin-top: -0.1em; 
     height: calc((100vh - 3.5em) + 25em); 
     width: 20%; 
     min-width: 15em;
-    max-width: 22em;
     color: var(--white);  
 } 
 
 .s-container-tab { 
+    display: flex;
     background-color: var(--darkGrey); 
     border-radius: 8px; 
     margin-top: 0.5em; 
@@ -92,9 +92,24 @@ aside {
     max-width: 18px; 
 }
 
-@media (max-width: 768px) {
-    
+
+@media (max-width: 1024px) {    
     #sidebar-when-desktop {
         display: none;
     }
+}
+
+@media (max-width: 480px) {
+    
+    #sidebar-when-desktop {
+        display: flex;
+    }
+
+    .s-container-tab { 
+        display: none;
+    }
+
+    .s-container { 
+        width: 100vw;   
+    } 
 }

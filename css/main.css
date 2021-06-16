@@ -1,22 +1,25 @@
 .m-title {
-}
-
-.m-title {
+  font-weight: 700;
+  font-size: 30px;
 }
 
 html,
 body {
   height: 100%;
+  background-color: var(--vanillaBeige);
 }
 
 main {
-  background-color: var(--vanillaBeige);
-  padding-left: 2.5em;
-  padding-left: 0.5em;
+  display: flex;
+  width: 100vw;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-top: 2em;
+  height: calc(100vh - 3.5em);
 }
 
 .m-date-container {
-  background-color: var(--vanillaBeige);
+  /* Java-Script */
 }
 
 .m-current-month {
@@ -34,26 +37,22 @@ main {
 }
 
 .m-calender-container {
-  background-color: var(--vanillaBeige);
-  padding-bottom: 4em;
-  padding-top: 1em;
-
+  padding-bottom: 4em;  
 }
 
 .m-week-row-box {
-  background-color: var(--vanillaBeige);
   width: 100%;
+}
+
+.m-week-row-box-height {
+  max-height: 12vh;
 }
 
 .m-day-container {
   background-color: var(--CalLightGrey);
-  
   width: 100%;
   flex-grow: 1;
   border-radius: 1.5em;
-  /* width: 7.5em;
-  height: 9em; */
-  /* max-width: 8em; */
 }
 
 .m-day-date-box {
@@ -76,8 +75,6 @@ main {
 }
 
 .m-week-number-box {
-  background-color: var(--vanillaBeige);
-  /* width: 5em; */
   width: 12%;
   height: 100%;
   padding: left 2em;
@@ -85,30 +82,91 @@ main {
 }
 
 .p-month {
-  /* font-size: 23px;   */
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .p-week-day {
+  font-weight: 700;
 }
 
 .p-date {
 }
 
 .p-week {
+  font-weight: 700;
 }
 
 .p-todos {
 }
 
+.p-red-day {
+  color: red;
+}
+
 .m-week-empty-box {
-  background-color: var(--vanillaBeige);
-  /* display: none; */
-  width: 1.8em;
+  width: 1em;
 }
 
 .m-week-day-box {
-  background-color: var(--vanillaBeige);
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+}
+
+.week-day-padding {
+  padding-right: 0.5em;
+}
+
+@media (max-width: 1024px) {
+  .m-calender-container {
+    padding-bottom: 1em;
+  }
+
+  main {
+    padding-left: 1em;
+    padding-right: 1em;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .p-week-day {
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .p-date {
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .p-red-day {
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .p-week {
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .m-title {
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .m-month-arrow-left {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .m-month-arrow-right {
+    font-size: 15px;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    display: none;
+  }
 }
