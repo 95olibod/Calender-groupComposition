@@ -1,22 +1,19 @@
-/* HTML-TAGS STYLING*/
-
-footer {
-  position: relative;
-  margin-top: 42.8em;
-}
-
-footer img {
-  width: 100%;
-  height: auto;
-}
-
 /* CLASS STYLING (Desktop-size) */
 
 /* Container of footer image blocks */
 
 .f-container {
+  position: absolute;
+  top: 40em;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
+}
+
+.f-container img {
+  width: 100%;
+  height: auto;
 }
 
 /* Black image block showing on front position */
@@ -33,23 +30,13 @@ footer img {
   z-index: 1;
 }
 
+/* Grey image block showing in back position*/
+
 .f-back {
   z-index: -1;
 }
 
 /* MEDIA-QUERIES FOR THE FOOTER*/
-
-/* Tablet-size landscape mode*/
-
-/* @media (max-width: 920px) {
-  .f-front {
-    top: 5.3em;
-  }
-
-  .f-middle {
-    top: 5em;
-  }
-} */
 
 /* Tablet-size portrait mode*/
 
