@@ -1,7 +1,9 @@
 header {
   background-color: var(--darkGrey);
-  min-height: 4.5em;
+  min-height: 3.5em;
   color: var(--white);
+  /* width: 100vw; */
+
 } 
 
 .h-title {
@@ -9,10 +11,6 @@ header {
 }
 
 @media (max-width: 768px) {
-  header {
-    min-height: 3.5em;
-  }
-
   .h-title {
     font-size: 1em;
   }
