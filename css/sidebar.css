@@ -23,6 +23,10 @@
 
 /* Sidebar */
 
+aside {
+    z-index: 1;
+}
+
 #sidebar-when-desktop {
     display: flex;
 }
@@ -30,10 +34,10 @@
 .s-container { 
     background-color: var(--darkGrey); 
     margin-top: -0.1em; 
-    height: calc(100vh - 3.5em); 
+    height: calc((100vh - 3.5em) + 25em); 
     width: 20%; 
     min-width: 15em;
-    color: var(--white);   
+    color: var(--white);  
 } 
 
 .s-container-tab { 

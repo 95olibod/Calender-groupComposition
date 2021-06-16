@@ -106,5 +106,12 @@
   background-color: var(--vanillaBeige);
 }
 
+.main-content-container {
+  top: 4.5em; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+}
+
 @media (min-width: 1200px) {
 }
