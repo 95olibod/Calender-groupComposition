@@ -12,10 +12,11 @@ body {
 main {
   display: flex;
   width: 100vw;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-  padding-top: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 1em;
   height: calc(100vh - 3.5em);
+
 }
 
 .m-date-container {
@@ -23,7 +24,10 @@ main {
 }
 
 .m-current-month {
-  padding: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
 }
 
 .m-month-arrow-left {
@@ -41,6 +45,8 @@ main {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto;
   grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr;
   padding-bottom: 4em;  
+  column-gap: 8px; 
+  max-height: 40em;  
 }
 
 .m-week-row-box {
@@ -80,7 +86,7 @@ main {
 .m-week-number-box {
   width: 12%;
   height: 100%;
-  padding: left 2em;
+  padding-left: 0.5em;
   justify-content: center;
 }
 
@@ -122,11 +128,13 @@ main {
 @media (max-width: 1024px) {
   .m-calender-container {
     padding-bottom: 1em;
+    max-height: 45em;
   }
 
   main {
     padding-left: 1em;
-    padding-right: 1em;
+    padding-right: 0;
+    padding-top: 0.5em;
     height: auto;
   }
 }
@@ -135,6 +143,10 @@ main {
   .p-week-day {
     font-weight: 400;
     font-size: 12px;
+  }
+  .m-calender-container {
+    padding-bottom: 1em;
+    max-height: 35em;
   }
 
   .p-date {
