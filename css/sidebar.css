@@ -1,17 +1,42 @@
-/** todo list */ 
+/** todo list */
 
-.listItems > li {
+.listItems>li {
     padding: 0.5rem;
     background-color: aquamarine;
 }
 
+.todo-form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 8px;
+    /* width: 13em; */
+    min-height: 2.5em;
+    /* margin: 0.5em 0; */
+    z-index: 30; 
+    /* position: absolute; */
+    left: 0;
+    right: 0;
+}
+
+.todo-input {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 8px;
+    min-width: 13em;
+}
+
+#aside-content-wrapper {
+
+}
 
 
-/* generellt till knappar */ 
+/* generellt till knappar */
 
-.s-btn-round { 
-    border-radius: 50%; 
-} 
+.s-btn-round {
+    border-radius: 50%;
+}
 
 .s-btn-onLine {
     margin-top: -0.6em;
@@ -32,91 +57,86 @@
 
 aside {
     z-index: 1;
+    background-color: var(--darkGrey);
+    margin-top: -0.1em;
+    width: 20%;
+    min-width: 15em;
+    height: calc(100vh - 3.5em);
+    color: var(--white);
 }
 
 #sidebar-when-desktop {
     display: flex;
 }
 
-.s-container { 
-    background-color: var(--darkGrey); 
-    margin-top: -0.1em; 
-    height: calc(100vh - 3.5em); 
-    width: 20%; 
-    min-width: 15em;
-    color: var(--white);  
-} 
+.s-container {
+    overflow: auto;
+    height: 25em;
+}
 
-.s-container-tab { 
+.s-container-tab {
     display: flex;
-    background-color: var(--darkGrey); 
-    border-radius: 8px; 
-    margin-top: 0.5em; 
-    margin-left: -0.5em; 
-    height: 5em; 
-    width: 2em; 
-    align-items: flex-start;  
-    justify-content: flex-end; 
-} 
+    background-color: var(--darkGrey);
+    border-radius: 8px;
+    margin-top: 0.5em;
+    margin-left: -0.5em;
+    height: 5em;
+    width: 2em;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
 
-.s-tab-button { 
+.s-tab-button {
     background-color: var(--darkGrey);
     font-size: 18px;
-    border: none; 
+    border: none;
     margin: 0.5em;
 }
 
-/* generella textitems */ 
+/* generella textitems */
 
-.s-todo-item { 
+.s-todo-item {
     justify-content: flex-end;
-    background-color: var(--white); 
-    border-radius: 8px; 
-    width: 13em; 
-    height: 2.5em;
-    margin: 0.5em 0; 
-} 
-
-#s-edit-btn { 
-    background-color: var(--white); 
-    padding: 0.5em 0.7em; 
-    margin-right: 0.1em; 
-    font-size: 9px; 
-    color: var(--black); 
-    border: 1px solid var(--lightGrey);  
-    max-height: 18px; 
-    max-width: 18px; 
-} 
-
-#s-remove-btn { 
-    background-color: var(--white); 
-    padding: 0.5em 0.7em; 
-    margin-right: 0.1em; 
-    border: 1px solid var(--lightGrey); 
-    font-size: 9px; 
-    color: var(--black); 
-    max-height: 18px; 
-    max-width: 18px; 
+    background-color: var(--white);
+    border-radius: 8px;
+    width: 13em;
+    min-height: 2.5em;
+    margin: 0.5em 0;
 }
 
+.s-todo-form {
+    justify-content: center;
+    width: 4.5em;
+    height: 4em;
+    margin: 0.5em 0;
+    border-radius: 8px;
+}
 
-@media (max-width: 1024px) {    
+.s-small-btn {
+    background-color: var(--white);
+    padding: 0.5em 0.7em;
+    margin-right: 0.1em;
+    border: 1px solid var(--lightGrey);
+    font-size: 9px;
+    color: var(--black);
+    max-height: 18px;
+    max-width: 18px;
+}
+
+@media (max-width: 1024px) {
     #sidebar-when-desktop {
         display: none;
     }
 }
 
 @media (max-width: 480px) {
-    
     #sidebar-when-desktop {
         display: flex;
     }
-
-    .s-container-tab { 
+    .s-container-tab {
         display: none;
     }
-
-    .s-container { 
-        width: 100vw;   
-    } 
+    .s-container {
+        width: 100vw;
+    }
 }

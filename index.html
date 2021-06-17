@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<base lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/footer.css" />
@@ -17,36 +17,48 @@
       crossorigin="anonymous"
     ></script>
     <script src="./main.js"></script>
+    <script src="./todo.js"></script>
+    
     <title>FOLK Calender</title>
   </head>
-
-<body class="flex col">
+  
+  <body class="flex col">
 
   <header class="flex ali-center">
       <h2 class="h-title">FOLK<h2>
   </header>
 
     <div class="flex row grow outer-container absolute main-content-container">
-      <aside id="sidebar-when-desktop" class="row">
-        <div class="flex col ali-center s-container">
+      
+      <div>
+        <!-- <form class="flex s-todo-form">
+          <label for="todoitem"></label>
+          <input type="text" name="todoitem" id="todoitem" class="flex s-todo-form">
+      </form> -->
+    </div>
+      <aside id="sidebar-when-desktop" class="flex col ">
+        <div id="aside-content-wrapper" class="flex col ali-center s-container">
           <!-- <div>TO DO</div> -->
           <div>
             <button id="s-add-btn" class="s-btn-round">+</button>
           </div>
           <div class="flex s-todo-item">
             <button
-              id="s-edit-btn"
-              class="flex jus-center ali-center s-btn-round s-btn-onLine"
+              class="flex jus-center ali-center s-btn-round s-btn-onLine s-small-btn"
             >
               <i class="fas fa-pencil-alt"></i>
             </button>
             <button
-              id="s-remove-btn"
-              class="flex jus-center ali-center s-btn-round s-btn-onLine"
+              
+              class="flex jus-center ali-center s-btn-round s-btn-onLine s-small-btn"
             >
               X
             </button>
           </div>
+            
+
+        <ul class="listItems"></ul>
+
         </div>
         <div class="s-container-tab">
           <button class="flex s-btn-round s-tab-button">
@@ -57,7 +69,7 @@
           </button>
         </div>
 
-        <ul class="listItems"></ul>
+       
         
       </aside>
 
