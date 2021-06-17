@@ -16,5 +16,6 @@ const state = {
 }
 
 function main () {
-    createTodo();
+    //createTodo();
+    initCalender();
 }

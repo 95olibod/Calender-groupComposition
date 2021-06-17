@@ -9,6 +9,12 @@ body {
   background-color: var(--vanillaBeige);
 }
 
+
+.test{
+  
+}
+
+
 main {
   display: flex;
   width: 100vw;
