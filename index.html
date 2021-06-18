@@ -24,14 +24,14 @@
   
   <body class="flex col">
       <div id="todo-form" class="dis-none todo-form-container">
-        <form method="POST">
+        <form id="todo-form">
           <label for="todo-text">
             <h3>Lägg till todo:</h3>
           </label>
           <input type="date" id="date" name="date"
        value=""><br>
           <textarea class="input-text" type="text" id="todo-text" name="todo-text"></textarea><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" id="submit-button">
             <input type="button" value="Close" id="close-button">
         </form>
       </div>
@@ -55,6 +55,7 @@
           </div>
           <template id="todo-item-template">
           <div class="flex s-todo-item">
+            <span class="flex col"></span>
             <button
               class="flex jus-center ali-center s-btn-round s-btn-onLine s-small-btn"
             >
@@ -70,17 +71,19 @@
           </template>
             
 
-        <ul class="listItems"></ul>
+        <ul class="listItems" id="todoList">
+          
+        </ul>
 
         </div>
-        <div class="s-container-tab">
+        <!-- <div class="s-container-tab">
           <button class="flex s-btn-round s-tab-button">
             <i
               class="fas fa-chevron-left flex jus-center ali-center"
               style="color: white"
             ></i>
           </button>
-        </div>
+        </div> -->
 
        
         
