@@ -28,7 +28,6 @@
 /* Sidebar */
 
 aside {
-    z-index: 1;
     background-color: var(--darkGrey);
     margin-top: -0.1em;
     width: 20%;
