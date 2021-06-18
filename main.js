@@ -7,5 +7,5 @@ const state = {
 
 function main () {
     initTodos();
-    
+    initClock();
 }
