@@ -1,20 +1,11 @@
 window.addEventListener('load', main);
 
 const state = {
-    todos: [{
-        text: "stääääääääda",
-        date: new Date("2021-06-17")
-    }, {
-        text: "stääääääääda",
-        date: new Date("2021-06-17")
-        
-    }, {
-        text: "stääääääääda",
-        date: new Date("2021-06-17")
-    }],
+    todos: [],
     selectedDate: undefined
 }
 
 function main () {
-    initTodo();
+    initTodos();
+    
 }
