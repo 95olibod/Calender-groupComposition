@@ -102,6 +102,10 @@
     flex-grow: 1;
 }
 
+.blur {
+  filter: blur(8px);
+}
+
 .outer-container {
   background-color: var(--vanillaBeige);
 }
@@ -111,6 +115,27 @@
   left: 0; 
   right: 0; 
   bottom: 0;
+}
+
+.todo-form-container {
+  align-items: center;
+  justify-content: center;
+  height: 15em;
+  padding: 1em;
+  background-color: var(--vanillaBeige);
+  border: 1px solid #000;
+  position: fixed;
+  align-self: center;
+  justify-self: center;
+  z-index: 30;
+  top: calc(50% - 7.5em);
+}
+
+.input-text {
+  min-height: 5em;
+  max-height: 10em;
+  min-width: 30em;
+  max-width: 30em;
 }
 
 @media (min-width: 1200px) {

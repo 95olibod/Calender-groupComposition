@@ -23,12 +23,23 @@
   </head>
   
   <body class="flex col">
-
+      <div id="todo-form" class="dis-none todo-form-container">
+        <form method="POST">
+          <label for="todo-text">
+            <h3>Lägg till todo:</h3>
+          </label>
+          <input type="date" id="date" name="date"
+       value=""><br>
+          <textarea class="input-text" type="text" id="todo-text" name="todo-text"></textarea><br>
+            <input type="submit" value="Submit">
+            <input type="button" value="Close" id="close-button">
+        </form>
+      </div>
   <header class="flex ali-center">
       <h2 class="h-title">FOLK<h2>
   </header>
 
-    <div class="flex row grow outer-container absolute main-content-container">
+    <div id="main-container" class="flex row grow outer-container absolute main-content-container">
       
       <div>
         <!-- <form class="flex s-todo-form">
@@ -42,6 +53,7 @@
           <div>
             <button id="s-add-btn" class="s-btn-round">+</button>
           </div>
+          <template id="todo-item-template">
           <div class="flex s-todo-item">
             <button
               class="flex jus-center ali-center s-btn-round s-btn-onLine s-small-btn"
@@ -55,6 +67,7 @@
               X
             </button>
           </div>
+          </template>
             
 
         <ul class="listItems"></ul>
@@ -72,7 +85,6 @@
        
         
       </aside>
-
       <main class=" col grow">
         <div class="m-date-container flex jus-center ali-center">
           <div class="m-month-arrow-left">

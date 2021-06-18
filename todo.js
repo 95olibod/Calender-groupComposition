@@ -1,78 +1,125 @@
-function createTodo() {
+function initTodo() {
   // renderTodoList();
   // addFormFromClickEvent();
-  createInputEventOnButton();
+  addClickEventOnButton();
 }
 
-function createInputEventOnButton() {
+function addClickEventOnButton() {
   const button = document.getElementById("s-add-btn");
-
-  //   if (document.getElementById("test"))
-  //   console.log(form);
-  // {
-  //   button.setAttribute("disable", true);
-  // }
-  document.getElementById("s-add-btn").disabled = false;
-  button.addEventListener("click", openForm);
+  button.disabled = false;
+  button.addEventListener("click", displayTodoForm);
 }
 
-function renderInputForm() {}
+function displayTodoForm() {
+  const todoForm = document.getElementById("todo-form");
+  todoForm.classList.remove("dis-none");
+  todoForm.classList.add("flex");
 
-function openForm() {
-  console.log("du har tryckt på knappen");
-  document.getElementById("s-add-btn").disabled = true;
-  form = document.createElement("form");
-  form.setAttribute("id", "test")
-  form.setAttribute("method", "post");
-  form.setAttribute("placeholder", "Todo...")
-  form.setAttribute("action", "submit.php");
-  form.classList.add("todo-form");
+  var currentDate = document.querySelector('input[type="date"]');
+  currentDate.value = new Date().toISOString().slice(0, 10);
 
+  blurBackground();
 
-  const input = document.createElement("input"); //input element, text
-  input.setAttribute("type", "text");
-  input.setAttribute("date", "undefined");
-  input.classList.add("todo-input");
-
-  const submit = document.createElement("input"); //input element, Submit button
-  submit.setAttribute("type", "submit");
-  submit.setAttribute("value", "O");
-  submit.classList.add("s-btn-round", "s-btn-onLine", "s-small-btn");
-  
-  //   const close = document.createElement("input");
-  //   close.setAttribute("type", "submit");
-  //   close.setAttribute("value", "X");
-  //   close.classList.add("s-btn-round", "s-btn-onLine", "s-small-btn");
-  
-  form.appendChild(input);
-  form.appendChild(submit);
-  //   form.appendChild(close);
-  
-  document.getElementById("aside-content-wrapper").appendChild(form); 
-
-  form.addEventListener("submit", addTodoToArray);
+  const close = document.getElementById("close-button");
+  close.addEventListener("click", closeTodoForm);
 }
 
-/**
- * 
- * @param {Event} event 
- */
-function addTodoToArray(event){
-    const todo = event.target.querySelector("input");
+function blurBackground() {
+  //Get all elements to be blured
+  const body = document.getElementById("main-container");
+  const footer = document.querySelectorAll("footer");
+  const header = document.querySelector("header");
 
-    
+  //Add blurr-class to elements
+
+  body.classList.add("blur");
+  footer[0].classList.add("blur");
+  footer[1].classList.add("blur");
+  header.classList.add("blur");
 }
 
+function closeTodoForm() {
+  const todoForm = document.getElementById("todo-form");
+  todoForm.classList.remove("flex");
+  todoForm.classList.add("dis-none");
+  unblurBackground();
+}
 
+function unblurBackground() {
+  //Get all elements to be blured
+  const body = document.getElementById("main-container");
+  const footer = document.querySelectorAll("footer");
+  const header = document.querySelector("header");
 
+  //Add blurr-class to elements
+  body.classList.remove("blur");
+  footer[0].classList.remove("blur");
+  footer[1].classList.remove("blur");
+  header.classList.remove("blur");
+}
+// function renderInputForm() {}
 
+// function openForm() {
 
+//   //Disable button so it can't be clicked more than once.
 
+//   document.getElementById("s-add-btn").disabled = true;
 
+//   //create form
 
+//   form = document.createElement("form");
+//   form.setAttribute("name", "myForm")
+//   form.setAttribute("method", "post");
+//   form.setAttribute("placeholder", "Todo...")
+//   form.setAttribute("action", "submit.php");
+//   form.classList.add("todo-form");
 
+//   //create input for form
+//   const input = document.createElement("input"); //input element, text
+//   input.setAttribute("type", "text");
+//   input.setAttribute("value", "Lägg till todo..")
+//   input.classList.add("todo-input");
 
+//   //Remove welcometext when input clicked
+//   input.addEventListener("click", () =>{
+//     input.value ="";
+//   });
 
+//   //create submit button for form
+//   const submit = document.createElement("input"); //input element, Submit button
+//   submit.setAttribute("type", "submit");
+//   submit.setAttribute("value", "O");
+//   submit.classList.add("s-btn-round", "s-btn-onLine", "s-small-btn");
+
+//   //   const close = document.createElement("input");
+//   //   close.setAttribute("type", "submit");
+//   //   close.setAttribute("value", "X");
+//   //   close.classList.add("s-btn-round", "s-btn-onLine", "s-small-btn");
+
+//   //add elements to form
+//   form.appendChild(input);
+//   form.appendChild(submit);
+//   //   form.appendChild(close);
+
+//   //add elements to aside
+//   document.getElementById("aside-content-wrapper").appendChild(form);
+//   form.addEventListener("submit", createTodo);
+// }
+
+// /**
+//  *
+//  * @param {Event} event
+//  */
+// function createTodo(){
+//     const todo = {
+//       text: input.value,
+//       date: new Date().getDay()
+//     };
+
+//     console.log(todo);
+
+//     // state.push(todo);
+// }
 
 // function renderTodoList() {
 //     const ul = document.querySelector("ul");
