@@ -12,7 +12,9 @@ const state = {
         text: "stääääääääda",
         date: new Date("2021-06-17")
     }],
-    selectedDate: undefined
+    selectedDate: undefined,
+    currentMonth: undefined,
+    currentYear: undefined
 }
 
 function main () {

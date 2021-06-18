@@ -50,8 +50,10 @@ main {
 
 .m-calender-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto;
-  grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(7, 1fr);
+  /* grid-auto-rows: repeat(6, 1fr); */
+  grid-auto-rows: auto;
+
   padding-bottom: 4em;  
   column-gap: 8px; 
   max-height: 40em;  

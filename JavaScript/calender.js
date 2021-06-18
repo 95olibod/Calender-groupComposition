@@ -1,52 +1,54 @@
 function initCalender() {
-  startView();
+  setCurrentMonthAndYear()
+  renderCalendar();
 }
 
-async function startView() {
-  // JUSTERA!!! kräver input LET? CONST? BYT NAMN FÖR FAN!!!
-  let currentYear = new Date().getFullYear();
-  
-  let currentMonthByNumber = new Date().getMonth() + 1;
-  let currentDay = new Date().getDate();
+function setCurrentMonthAndYear() {  
+  state.selectedDate = new Date();
+  state.currentMonth = new Date().getMonth();
+  state.currentYear = new Date().getFullYear();
+}
 
-  let monthCount = 0;
-  
-  //   använda istället?
-  let activeMonth
-  
-  
-  
-  //   changeMounth(innevarande månad)
-  
-  //   let bla (number)
-  
-  let selectedMonthData = await getSelectedMonthData(currentYear, currentMonthByNumber);
-  
-  let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonthData);
-  let firstDayOfweek = await getDayOfWeekForFirstOfMonth(selectedMonthData);
-  let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
-  
-  
-  
-  
-  
-  anotherName(selectedMonthData);
-  getCurrentMonthByName(currentMonthByNumber, currentYear);
+async function renderCalendar() {
+  renderTitle(state.currentMonth, state.currentYear);
+  let selectedMonthData = await getSelectedMonthData(state.currentYear, state.currentMonth);
+  let firstDayOfweek = getDayOfWeekForFirstOfMonth(selectedMonthData);
+  // let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonthData);
+  // let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
+
+  const container = document.querySelector('.m-calender-container');
+  // Skippa de först dagarna
+  for (let i = 0; i < firstDayOfweek - 1; i++) {
+    const emptyDiv = document.createElement("div");
+    container.append(emptyDiv);
+  }
+
+
+  // Ritar alla boxar
+  for (const day of selectedMonthData) {
+    const div = createDayBox(day);  
+    container.append(div)
+  }
+}
+
+function createDayBox(day) {
+  const template = document.getElementById('calendar-day-box');
+  const box = template.content.cloneNode(true);
+  const dayParagraph = box.querySelector('.p-date');
+  dayParagraph.innerText = new Date(day.datum).getDate();
+  // box.addEventListener('click', () => selectDate(day);
+  return box;
 }
 
 
-function getCurrentMonthByName(currentMonthByNumber,currentYear) {
-  
-const monthsByName = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "November","December"]
-
-const activeMonthByName = monthsByName[currentMonthByNumber - 1];
-
-createMonthTitle(activeMonthByName, currentYear);
+function renderTitle(currentMonthByNumber, currentYear) {
+  const monthsByName = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "November","December"]
+  const activeMonthByName = monthsByName[currentMonthByNumber];
+  createMonthTitle(activeMonthByName, currentYear);
 }
 
 function createMonthTitle(activeMonthByName, currentYear) {
   const h1 = document.createElement("h1"); // Create a <li> node
-  
   const text = h1.innerText = `${activeMonthByName} ${currentYear}`; 
   h1.className = "m-title";
   document.getElementById("currentMonth").append(h1);
@@ -117,9 +119,8 @@ async function getNumberOfDaysInSelectedMonth(selectedMonthData) {
 
 //ger oss veckodag för månadens första dag
 // indata behövs
-async function getDayOfWeekForFirstOfMonth(selectedMonth) {
+function getDayOfWeekForFirstOfMonth(selectedMonth) {
   const firstDayOfweek = selectedMonth[0]["dag i vecka"];
-
   return firstDayOfweek;
 }
 
@@ -153,29 +154,10 @@ async function anotherName(selectedMonth) {
   for(let days of selectedMonth)
   {
     let date = await getCorrectDateFormat(days);
-    await create(date);
+    await testCreate(date); //ÄNDRAD FRÅN CREATE**************************************
   }
 
 }
-
-async function create(day) {
-const type = document.createElement("li"); // Create a <li> node
-var textnode = document.createTextNode(day); // Create a text node
-type.append(textnode); // Append the text to <li>
-document.getElementById("myList").append(type); // Append <li> to <ul> with id="myList"
-}
-
-
-async function testCreate(day) {
-  const h1 = document.createElement("h1"); // Create a <li> node
-  
-  const text = h1.innerText = `${activeMonthByName} ${currentYear}`; 
-  h1.className = "m-title";
-  document.getElementById("currentMonth").append(h1);
-}
-
-
-
 
 
 
