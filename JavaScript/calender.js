@@ -5,37 +5,100 @@ function initCalender() {
 async function startView() {
   // JUSTERA!!! kräver input LET? CONST? BYT NAMN FÖR FAN!!!
   let currentYear = new Date().getFullYear();
-  let currentMonth = new Date().getMonth();
+  console.log(currentYear);
+  let currentMonthByNumber = new Date().getMonth() + 1;
   let currentDay = new Date().getDate();
 
-//   changeMounth(innevarande månad)
-
-//   let bla (number)
-
-  let selectedMonth = await getCurrentMonth(currentYear, currentMonth);
-  let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonth);
-  let firstDayOfweek = await getDayOfWeekForFirstOfMonth(selectedMonth);
-  let previousMonthDays = await previousMonthNumberOfDays(selectedMonth);
-
+  console.log(currentMonthByNumber)
   
-
-
-
-  anotherName(selectedMonth);
+  let monthCount = 0;
+  
+  //   använda istället?
+  let activeMonth
+  
+  
+  
+  //   changeMounth(innevarande månad)
+  
+  //   let bla (number)
+  
+  let selectedMonthData = await getSelectedMonthData(currentYear, currentMonthByNumber);
+  
+  let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonthData);
+  let firstDayOfweek = await getDayOfWeekForFirstOfMonth(selectedMonthData);
+  let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
+  
+  
+  
+  
+  
+  anotherName(selectedMonthData);
+  getCurrentMonthByName(currentMonthByNumber, currentYear);
 }
 
-// async function changeMounth(selectedMonth) {
-//     numberOfDaysInMonth
-//     firstDayOfweek
-//     previousMonthDays
-// }
 
+function getCurrentMonthByName(currentMonthByNumber,currentYear) {
+  
+const monthsByName = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "November","December"]
+
+const activeMonthByName = monthsByName[currentMonthByNumber - 1];
+
+createTitle(activeMonthByName, currentYear);
+}
+
+function createTitle(activeMonthByName, currentYear) {
+  const type = document.createElement("h1"); // Create a <li> node
+  var textnode = document.createTextNode(`${activeMonthByName} ${currentYear}`); // Create a text node
+  type.append(textnode); // Append the text to <li>
+  document.getElementById("currentMonth").append(type); // Append <li> to <ul> with id="myList"
+  
+}
+
+async function changeMonthForwards(monthCount, currentYear, currentMonth) {
+    monthCount++;
+    calculateTimeShift(monthCount, currentYear, currentMonth);
+    return monthCount;
+}
+
+async function changeMonthBackwards(monthCount, currentYear, currentMonth) {
+    monthCount--;
+    calculateTimeShift(monthCount, currentYear, currentMonth);
+}
+
+async function calculateTimeShift(monthCount, currentYear, currentMonth) {
+    const numberOfMonths = calculateMonths(monthCount);
+    
+    const numberOfYears = calculateYears(monthCount, numberOfMonths);
+    
+    const chosenYear = currentYear - numberOfYears;
+    const chosenMonth = currentMonth - numberOfMonths;
+    
+    getSelectedMonthData(chosenYear, chosenMonth);
+
+}
+
+async function calculateMonths(monthCount) {
+    const numberOfMonths = monthCount % 12;
+    return numberOfMonths;
+}
+
+async function calculateYears(monthCount, numberOfMonths) {
+    if (monthCount < 12)
+    {
+        const numberOfYears = 0;
+    }
+    else
+    {
+        const numberOfYears = (monthCount - numberOfMonths) / 12;
+        return numberOfYears;
+    }
+}
 
 
 
 // Hämtar vald månads data
 // se över variabelnamn!!
-async function getCurrentMonth(chosenYear, chosenMonth) {
+async function getSelectedMonthData(chosenYear, chosenMonth) {
   const response = await fetch(
     `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth}`
   );
@@ -75,7 +138,6 @@ async function previousMonthNumberOfDays(selectedMonth) {
 
 // returnerar inskickat datum till korrekt format
 async function getCorrectDateFormat(date) {
-  console.log(date)
   const fullDateFormat = date.datum;
   let correctDateFormat;
   const partDateFormat = fullDateFormat.substr(fullDateFormat.length - 2, 2);
