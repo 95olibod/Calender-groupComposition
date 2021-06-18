@@ -11,11 +11,13 @@ header {
 
 .h-title {
   padding-left: 1em;
+  font-weight: 400;
 }
 
 .h-date {
   padding-right: 1em;
   font-size: 0.7em;
+  font-weight: 400;
 }
 
 /*MEDIA-QUERIES*/

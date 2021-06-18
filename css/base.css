@@ -12,10 +12,16 @@
   --CalMediumGrey: #cccccc;  
 }
 
+@font-face {
+  font-family: openSans-regular;
+  src: url(../fonts/OpenSans-Regular.ttf);
+}
+
 * { 
   padding: 0; 
   margin: 0; 
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  font-family: openSans-regular; 
 }
 
 .dis-none {
