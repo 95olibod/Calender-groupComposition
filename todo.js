@@ -1,3 +1,5 @@
+let todosList = [];
+
 function initTodo() {
   // renderTodoList();
   // addFormFromClickEvent();
@@ -22,6 +24,44 @@ function displayTodoForm() {
 
   const close = document.getElementById("close-button");
   close.addEventListener("click", closeTodoForm);
+
+  const submit = document.getElementById("todo-form");
+  submit.addEventListener("submit", saveFromSubmit)
+
+}
+
+/**
+ * 
+ * @param {Event} event 
+ */
+function saveFromSubmit(event) {
+    event.preventDefault();
+    console.log(event.target);
+    const inputText = event.target.querySelector("#todo-text");
+    
+    const inputDate = event.target.querySelector("#date");
+    const todoItem = {
+       text : inputText.value,
+       date : inputDate.value   
+    }
+    
+    todosList.push(todoItem);
+    closeTodoForm();
+    renderTodos();
+}
+
+function renderTodos() {
+    const ul = document.getElementById("todoList");
+    const template = document.getElementById("todo-item-template");
+    ul.innerText = "";
+    
+    for (const todo of todosList) {
+        const listItem = template.content.cloneNode(true);
+        const span = listItem.querySelector("span");
+        span.innerText = todo.text;
+        ul.append(listItem);
+        JSON.parse
+    }
 }
 
 function blurBackground() {
@@ -51,7 +91,7 @@ function unblurBackground() {
   const footer = document.querySelectorAll("footer");
   const header = document.querySelector("header");
 
-  //Add blurr-class to elements
+  //Remove blurr-class to elements
   body.classList.remove("blur");
   footer[0].classList.remove("blur");
   footer[1].classList.remove("blur");
