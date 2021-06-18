@@ -5,12 +5,10 @@ function initCalender() {
 async function startView() {
   // JUSTERA!!! kräver input LET? CONST? BYT NAMN FÖR FAN!!!
   let currentYear = new Date().getFullYear();
-  console.log(currentYear);
+  
   let currentMonthByNumber = new Date().getMonth() + 1;
   let currentDay = new Date().getDate();
 
-  console.log(currentMonthByNumber)
-  
   let monthCount = 0;
   
   //   använda istället?
@@ -43,15 +41,15 @@ const monthsByName = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Ju
 
 const activeMonthByName = monthsByName[currentMonthByNumber - 1];
 
-createTitle(activeMonthByName, currentYear);
+createMonthTitle(activeMonthByName, currentYear);
 }
 
-function createTitle(activeMonthByName, currentYear) {
-  const type = document.createElement("h1"); // Create a <li> node
-  var textnode = document.createTextNode(`${activeMonthByName} ${currentYear}`); // Create a text node
-  type.append(textnode); // Append the text to <li>
-  document.getElementById("currentMonth").append(type); // Append <li> to <ul> with id="myList"
+function createMonthTitle(activeMonthByName, currentYear) {
+  const h1 = document.createElement("h1"); // Create a <li> node
   
+  const text = h1.innerText = `${activeMonthByName} ${currentYear}`; 
+  h1.className = "m-title";
+  document.getElementById("currentMonth").append(h1);
 }
 
 async function changeMonthForwards(monthCount, currentYear, currentMonth) {
@@ -109,8 +107,8 @@ async function getSelectedMonthData(chosenYear, chosenMonth) {
 }
 
 // ger oss antal dagar i innevarande månad
-async function getNumberOfDaysInSelectedMonth(currentMonth) {
-  const lastDateInMonth = currentMonth[currentMonth.length - 1];
+async function getNumberOfDaysInSelectedMonth(selectedMonthData) {
+  const lastDateInMonth = selectedMonthData[selectedMonthData.length - 1];
   const numberOfDaysInMonth = parseInt(
     lastDateInMonth.datum.substr(lastDateInMonth.datum.length - 2, 2)
   );
@@ -167,6 +165,14 @@ type.append(textnode); // Append the text to <li>
 document.getElementById("myList").append(type); // Append <li> to <ul> with id="myList"
 }
 
+
+async function testCreate(day) {
+  const h1 = document.createElement("h1"); // Create a <li> node
+  
+  const text = h1.innerText = `${activeMonthByName} ${currentYear}`; 
+  h1.className = "m-title";
+  document.getElementById("currentMonth").append(h1);
+}
 
 
 
