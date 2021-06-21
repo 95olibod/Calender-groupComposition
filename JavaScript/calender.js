@@ -64,7 +64,16 @@ function createDayBox(day) {
 }
 
 function selectDate(day) {
+  let filteredTodoList = [];
+  const todoList = state.todos;
+  
+  for (const todo of todoList) {
+    if (todo.date == day.datum) {
+      filteredTodoList.push(todo);
+    }
   //console.log(day.datum);
+}
+console.log(filteredTodoList);
 }
 
 function getNumberOfTodos(day) {
@@ -103,10 +112,8 @@ function renderTitle(currentMonthByNumber, currentYear) {
 function createMonthTitle(activeMonthByName, currentYear) {
 
   console.log(activeMonthByName, currentYear);
-  let h1 = document.querySelector(".h1-test").innerText = activeMonthByName + " " + currentYear;
-  console.log(h1);
-  h1.className = "m-title";
-  
+  let h1 = document.querySelector(".m-title").innerText = activeMonthByName + " " + currentYear;
+  console.log(h1);  
 }
 
 async function changeMonthForwards(monthCount, currentYear, currentMonth) {
@@ -204,6 +211,7 @@ async function anotherName(selectedMonth) {
     await testCreate(date); //ÄNDRAD FRÅN CREATE**************************************
   }
 }
+
 
 // const type = document.createElement("p"); // Create a <li> node
 // var textnode = document.createTextNode(secondCut);

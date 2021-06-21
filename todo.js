@@ -13,18 +13,18 @@ function renderTodos() {
   const ul = document.getElementById("todoList");
   const template = document.getElementById("todo-item-template");
   ul.innerText = "";
-
-  for (const todo of state.todos) {
-    const listItem = template.content.cloneNode(true);
-    const removeButton = template.content.getElementById("remove-btn").cloneNode(true);
-    const span = listItem.querySelector("span");
-    span.innerText = todo.text;
-
-    removeButton.addEventListener("click", () => removeTodoItem(todo));
-
-    ul.append(removeButton);
-    ul.append(listItem);
-  }
+    
+    for (const todo of state.todos) {
+      const listItem = template.content.cloneNode(true);
+      const removeButton = template.content.getElementById("remove-btn").cloneNode(true);
+      const span = listItem.querySelector("span");
+      span.innerText = todo.text;
+      
+      removeButton.addEventListener("click", () => removeTodoItem(todo));
+      
+      ul.append(removeButton);
+      ul.append(listItem);
+    }
 }
 
 
