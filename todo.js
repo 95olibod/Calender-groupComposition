@@ -1,28 +1,32 @@
-
 function initTodos() {
-    fetchTodosFromLocalStorage();
-    addClickEventOnAddButton();
+  fetchTodosFromLocalStorage();
+  addClickEventOnAddButton();
 }
 
 function fetchTodosFromLocalStorage() {
-    const todosString = localStorage.getItem("todos");
-    state.todos = JSON.parse(todosString || "[]");
-    renderTodos();
+  const todosString = localStorage.getItem("todos");
+  state.todos = JSON.parse(todosString || "[]");
+  renderTodos();
 }
 
 function renderTodos() {
-    const ul = document.getElementById("todoList");
-    const template = document.getElementById("todo-item-template");
-    ul.innerText = "";
+  const ul = document.getElementById("todoList");
+  const template = document.getElementById("todo-item-template");
+  ul.innerText = "";
 
-    for (const todo of state.todos) {
+  for (const todo of state.todos) {
+    const listItem = template.content.cloneNode(true);
+    const removeButton = template.content.getElementById("remove-btn").cloneNode(true);
+    const span = listItem.querySelector("span");
+    span.innerText = todo.text;
 
-        const listItem = template.content.cloneNode(true);
-        const span = listItem.querySelector("span");
-        span.innerText = todo.text;
-        ul.append(listItem);
-    }
+    removeButton.addEventListener("click", () => removeTodoItem(todo));
+
+    ul.append(removeButton);
+    ul.append(listItem);
+  }
 }
+
 
 function addClickEventOnAddButton() {
   const button = document.getElementById("s-add-btn");
@@ -44,33 +48,32 @@ function displayTodoForm() {
   close.addEventListener("click", closeTodoForm);
 
   const submit = document.getElementById("todo-form");
-  submit.addEventListener("submit", saveFromSubmit)
-
+  submit.addEventListener("submit", saveFromSubmit);
 }
 
 /**
- * 
- * @param {Event} event 
+ *
+ * @param {Event} event
  */
 function saveFromSubmit(event) {
-    event.preventDefault();
-    const inputText = event.target.querySelector("#todo-text");
-    
-    const inputDate = event.target.querySelector("#date");
-    const todoItem = {
-       text : inputText.value,
-       date : inputDate.value   
-    }
-    
-    state.todos.push(todoItem);
-    inputText.value = ""; // clear input text field
-    saveTodosListToLocalStorage();
-    closeTodoForm();
-    renderTodos();
+  event.preventDefault();
+  const inputText = event.target.querySelector("#todo-text");
+
+  const inputDate = event.target.querySelector("#date");
+  const todoItem = {
+    text: inputText.value,
+    date: inputDate.value,
+  };
+
+  state.todos.push(todoItem);
+  inputText.value = ""; // clear input text field
+  closeTodoForm();
+  renderTodos();
+  saveTodosListToLocalStorage();
 }
 
 function saveTodosListToLocalStorage() {
-    localStorage.setItem('todos', JSON.stringify(state.todos));
+  localStorage.setItem("todos", JSON.stringify(state.todos));
 }
 
 function closeTodoForm() {
@@ -94,7 +97,6 @@ function blurBackground() {
   header.classList.add("blur");
 }
 
-
 function unblurBackground() {
   //Get all elements to be blured
   const body = document.getElementById("main-container");
@@ -106,4 +108,11 @@ function unblurBackground() {
   footer[0].classList.remove("blur");
   footer[1].classList.remove("blur");
   header.classList.remove("blur");
+}
+
+function removeTodoItem(todo) {
+  const index = state.todos.indexOf(todo);
+  state.todos.splice(index, 1);
+  saveTodosListToLocalStorage();
+  renderTodos();
 }

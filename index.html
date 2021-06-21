@@ -51,26 +51,28 @@
           <div>
             <button id="s-add-btn" class="s-btn-round">+</button>
           </div>
+
           <template id="todo-item-template">
-          <div class="flex s-todo-item">
-            <span class="flex col"></span>
+          <div id="dendiven" class="s-todo-item flex">
+            <span id="spannet" class="flex col"></span>
             <button
               class="flex jus-center ali-center s-btn-round s-btn-onLine s-small-btn"
             >
               <i class="fas fa-pencil-alt"></i>
             </button>
-            <button
-              
+
+            <div class="test">
+              <button id="remove-btn"
               class="flex jus-center ali-center s-btn-round s-btn-onLine s-small-btn"
-            >
+              >
               X
-            </button>
+            </button>   
+          </div>
           </div>
           </template>
             
 
-        <ul class="listItems" id="todoList">
-          
+        <ul class="listItems" id="todoList">     
         </ul>
 
         </div>
