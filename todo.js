@@ -74,6 +74,9 @@ function saveFromSubmit(event) {
 
 function saveTodosListToLocalStorage() {
   localStorage.setItem("todos", JSON.stringify(state.todos));
+  location.reload();
+  // clearCalender();
+  // renderCalender();
 }
 
 function closeTodoForm() {

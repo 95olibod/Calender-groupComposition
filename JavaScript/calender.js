@@ -1,6 +1,6 @@
 function initCalender() {
   setCurrentMonthAndYear();
-  renderCalendar();
+  renderCalender();
 }
 
 function setCurrentMonthAndYear() {
@@ -8,8 +8,21 @@ function setCurrentMonthAndYear() {
   state.currentMonth = new Date().getMonth();
   state.currentYear = new Date().getFullYear();
 }
+// olibods ninjafunction...
+function clearCalender() {
 
-async function renderCalendar() {
+  //GÖR OM
+
+
+// const clear = document.getElementById("calendar-day-box");
+// console.log(clear);
+// clear.innerText = "";
+
+  // const mainDiv = document.getElementById("main");
+  // mainDiv.innerText = "";
+}
+
+async function renderCalender() {
   renderTitle(state.currentMonth, state.currentYear);
   let selectedMonthData = await getSelectedMonthData(
     state.currentYear,
@@ -19,15 +32,19 @@ async function renderCalendar() {
   // let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonthData);
   // let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
 
-  const container = document.querySelector(".m-calender-container");
+ //let container = clearCalender();  
+ let container = document.querySelector(".m-calender-container");
+
+  
   // Skippa de först dagarna
   for (let i = 0; i < firstDayOfweek - 1; i++) {
     const emptyDiv = document.createElement("div");
     container.append(emptyDiv);
   }
-
+ 
   // Ritar alla boxar
   for (const day of selectedMonthData) {
+    
     const div = createDayBox(day);
     container.append(div);
   }
@@ -38,6 +55,8 @@ function createDayBox(day) {
   const box = template.content.firstElementChild.cloneNode(true);
   const dayParagraph = box.querySelector(".p-date");
   dayParagraph.innerText = new Date(day.datum).getDate();
+  const numberOfTodos = box.querySelector(".todos");
+  numberOfTodos.innerText = getNumberOfTodos(day);
 
   box.addEventListener("click", () => selectDate(day));
 
@@ -45,7 +64,22 @@ function createDayBox(day) {
 }
 
 function selectDate(day) {
-  console.log(day.datum);
+  //console.log(day.datum);
+}
+
+function getNumberOfTodos(day) {
+  let newTodoList = [];
+
+  const todoList = state.todos;
+  for (const todo of todoList) {
+    if (todo.date == day.datum) {
+      newTodoList.push(todo);
+    }
+   // console.log(todo.date + day.datum);
+  }
+
+  //Returnerar antal
+  return newTodoList.length;
 }
 
 function renderTitle(currentMonthByNumber, currentYear) {
@@ -67,10 +101,12 @@ function renderTitle(currentMonthByNumber, currentYear) {
 }
 
 function createMonthTitle(activeMonthByName, currentYear) {
-  const h1 = document.createElement("h1"); 
-  const text = (h1.innerText = `${activeMonthByName} ${currentYear}`);
+
+  console.log(activeMonthByName, currentYear);
+  let h1 = document.querySelector(".h1-test").innerText = activeMonthByName + " " + currentYear;
+  console.log(h1);
   h1.className = "m-title";
-  document.getElementById("currentMonth").append(h1);
+  
 }
 
 async function changeMonthForwards(monthCount, currentYear, currentMonth) {
@@ -113,7 +149,7 @@ async function calculateYears(monthCount, numberOfMonths) {
 // se över variabelnamn!!
 async function getSelectedMonthData(chosenYear, chosenMonth) {
   const response = await fetch(
-    `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth}`
+    `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth + 1}`
   );
   const data = await response.json();
   const allDays = data.dagar;
