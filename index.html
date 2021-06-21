@@ -1,134 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/todo.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/base.css" />
-  <link rel="stylesheet" href="./css/main.css" />
-  <link rel="stylesheet" href="./css/footer.css" />
-  <link rel="stylesheet" href="./css/header.css" />
-  <link rel="stylesheet" href="./css/sidebar.css" />
-  <link rel="icon" href="./images/logo/cal-logo.png">
+    <link rel="icon" href="./images/logo/cal-logo.png" />
 
-  <!-- Fontawesome logos imported -->
-  <script src="https://kit.fontawesome.com/309fc4c8bc.js" crossorigin="anonymous"></script>
-  <script src="./main.js"></script>
-  <script src="./javascript/calender.js"></script>
-  <title>FOLK Calender</title>
-</head>
+    <!-- Fontawesome logos imported -->
+    <script
+      src="https://kit.fontawesome.com/309fc4c8bc.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./main.js"></script>
+    <script src="./todo.js"></script>
+    <script src="./clock.js"></script>
 
-<body class="flex col">
+    <title>FOLK Calender</title>
+  </head>
 
-  <header class="flex ali-center">
-    <h2 class="h-title">FOLK<h2>
+  <body class="flex col">
+    <div id="todo-form-div" class="dis-none todo-form-container">
+      <form id="todo-form">
+        <label for="todo-text">
+          <h3>Lägg till todo:</h3>
+        </label>
+        <input type="date" id="date" name="date" value="" /><br />
+        <textarea
+          class="input-text"
+          type="text"
+          id="todo-text"
+          name="todo-text"
+        ></textarea
+        ><br />
+        <input type="submit" value="Submit" id="submit-button" />
+        <input type="button" value="Close" id="close-button" />
+      </form>
+    </div>
+
+    <header class="flex ali-center">
+      <h2 class="h-title">FOLK<h2>
+      <p class="h-date"></p>
   </header>
-
-  <div class="flex row grow outer-container absolute main-content-container">
-    <aside id="sidebar-when-desktop" class="row">
-      <div class="flex col ali-center s-container">
-        <!-- <div>TO DO</div> -->
-        <div>
-          <button id="s-add-btn" class="s-btn-round">+</button>
-        </div>
-        <div class="flex s-todo-item">
-          <button id="s-edit-btn" class="flex jus-center ali-center s-btn-round s-btn-onLine">
-            <i class="fas fa-pencil-alt"></i>
-          </button>
-          <button id="s-remove-btn" class="flex jus-center ali-center s-btn-round s-btn-onLine">
-            X
-          </button>
-        </div>
-      </div>
-      <div class="s-container-tab">
-        <button class="flex s-btn-round s-tab-button">
-          <i class="fas fa-chevron-left flex jus-center ali-center" style="color: white"></i>
-        </button>
-      </div>
-
-      <ul class="listItems"></ul>
-
-    </aside>
-
-    <main class=" col grow">
-      <div class="m-date-container flex jus-center ali-center">
-        <div class="m-month-arrow-left">
-          <i class="fas fa-chevron-left"></i>
-        </div>
-
-        <div class="m-current-month">
-          <div id="currentMonth">
-
+  
+    <div id="main-container" class="flex row grow outer-container">
+      <aside id="sidebar-when-desktop" class="flex col z-10">
+        <div id="aside-content-wrapper" class="flex col ali-center s-container">
+          <!-- <div>TO DO</div> -->
+          <div>
+            <button id="s-add-btn" class="s-btn-round">+</button>
           </div>
-        </div>
 
-        <div class="m-month-arrow-right">
-          <i class="fas fa-chevron-right"></i>
-        </div>
-      </div>
-
-      <div class="flex">
-        <div class="m-week-day-box flex grow week-day-padding jus-center">
-          <p class="p-week-day">Måndag</p>
-        </div>
-        <div class="m-week-day-box flex grow week-day-padding jus-center">
-          <p class="p-week-day">Tisdag</p>
-        </div>
-        <div class="m-week-day-box flex grow week-day-padding jus-center">
-          <p class="p-week-day">Onsdag</p>
-        </div>
-        <div class="m-week-day-box flex grow week-day-padding jus-center">
-          <p class="p-week-day">Torsdag</p>
-        </div>
-        <div class="m-week-day-box flex grow week-day-padding jus-center">
-          <p class="p-week-day">Fredag</p>
-        </div>
-        <div class="m-week-day-box flex grow week-day-padding jus-center">
-          <p class="p-week-day">Lördag</p>
-        </div>
-        <div class="m-week-day-box flex grow week-day-padding jus-center">
-          <p class="p-week-day p-red-day">Söndag</p>
-        </div>
-      </div>
-
-      <div class="m-calender-container full-width grow">
-
-        <template id="calendar-day-box">
-          <div class="
-                  m-day-container
+          <template id="todo-item-template">
+            <div id="dendiven" class="s-todo-item flex">
+              <span id="spannet" class="flex col"></span>
+              <button
+                class="
                   flex
-                  col
+                  jus-center
                   ali-center
-                  m-todo-margin-r m-todo-margin-b
-                ">
-            <div class="m-day-date-box flex jus-f-start ali-center">
-              <p class="p-date"></p>
+                  s-btn-round s-btn-onLine s-small-btn
+                "
+              >
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+
+              <div class="test">
+                <button
+                  id="remove-btn"
+                  class="
+                    flex
+                    jus-center
+                    ali-center
+                    s-btn-round s-btn-onLine s-small-btn
+                  "
+                >
+                  X
+                </button>
+              </div>
             </div>
-            <div class="m-todo-box flex grow jus-center ali-center">
-              <p></p>
-            </div>
+          </template>
+
+          <ul class="listItems" id="todoList"></ul>
+        </div>
+        <!-- <div class="s-container-tab">
+          <button class="flex s-btn-round s-tab-button">
+            <i
+              class="fas fa-chevron-left flex jus-center ali-center"
+              style="color: white"
+            ></i>
+          </button>
+        </div> -->
+      </aside>
+      <main class="col grow">
+        <div class="m-date-container flex jus-center ali-center">
+          <div class="m-month-arrow-left">
+            <i class="fas fa-chevron-left"></i>
           </div>
-        </template>
 
+          <div class="m-current-month">
+            <div id="currentMonth"></div>
+          </div>
+
+          <div class="m-month-arrow-right">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+
+        <div class="flex">
+          <div class="m-week-day-box flex grow week-day-padding jus-center">
+            <p class="p-week-day">Måndag</p>
+          </div>
+          <div class="m-week-day-box flex grow week-day-padding jus-center">
+            <p class="p-week-day">Tisdag</p>
+          </div>
+          <div class="m-week-day-box flex grow week-day-padding jus-center">
+            <p class="p-week-day">Onsdag</p>
+          </div>
+          <div class="m-week-day-box flex grow week-day-padding jus-center">
+            <p class="p-week-day">Torsdag</p>
+          </div>
+          <div class="m-week-day-box flex grow week-day-padding jus-center">
+            <p class="p-week-day">Fredag</p>
+          </div>
+          <div class="m-week-day-box flex grow week-day-padding jus-center">
+            <p class="p-week-day">Lördag</p>
+          </div>
+          <div class="m-week-day-box flex grow week-day-padding jus-center">
+            <p class="p-week-day p-red-day">Söndag</p>
+          </div>
+        </div>
+
+        <div class="m-calender-container full-width grow">
+          <template id="calendar-day-box">
+            <div
+              class="
+                m-day-container
+                flex
+                col
+                ali-center
+                m-todo-margin-r m-todo-margin-b
+              "
+            >
+              <div class="m-day-date-box flex jus-f-start ali-center">
+                <p class="p-date"></p>
+              </div>
+              <div class="m-todo-box flex grow jus-center ali-center">
+                <p></p>
+              </div>
+            </div>
+          </template>
+        </div>
+      </main>
+    </div>
+    <footer class="f-container">
+      <div>
+        <img src="./images/footer/footer-desktop-opac.png" />
       </div>
-
-    </main>
-  </div>
-  <footer class="f-container">
-    <div class="f-back">
-      <img src="./images/footer/footer-desktop-opac.png" />
-    </div>
-  </footer>
-  <footer class="f-container z-10">
-    <div class="f-middle absolute">
-      <img src="./images/footer/footer-desktop-yellow.png" />
-    </div>
-    <div class="f-front absolute">
-      <img src="./images/footer/footer-desktop-black.png" />
-    </div>
-    <div class="f-info-block dis-none"></div>
-  </footer>
-</body>
-
+    </footer>
+    <footer class="f-container z-10">
+      <div class="f-middle absolute">
+        <img src="./images/footer/footer-desktop-yellow.png" />
+      </div>
+      <div class="f-front absolute">
+        <img src="./images/footer/footer-desktop-black.png" />
+      </div>
+      <div class="flex absolute copyright">
+        <p>© FOLK 2021</p>
+      </div>
+    </footer>
+  </body>
 </html>

@@ -1,17 +1,35 @@
+/*ELEMENT TAG STYLING (Desktop-size)*/
+
 header {
+  justify-content: space-between;
   background-color: var(--darkGrey);
   min-height: 3.5em;
   color: var(--white);
-  /* width: 100vw; */
+}
 
-} 
+/* CLASS STYLING (Desktop-size) */
 
 .h-title {
   padding-left: 1em;
+  font-weight: 400;
 }
+
+.h-date {
+  padding-right: 1em;
+  font-size: 0.7em;
+  font-weight: 400;
+}
+
+/*MEDIA-QUERIES*/
+
+/*Tablet size portrait mode*/
 
 @media (max-width: 768px) {
   .h-title {
     font-size: 1em;
+  }
+
+  .h-date {
+    font-size: 0.6em;
   }
 }

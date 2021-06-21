@@ -12,10 +12,16 @@
   --CalMediumGrey: #cccccc;  
 }
 
+@font-face {
+  font-family: openSans-regular;
+  src: url(../fonts/OpenSans-Regular.ttf);
+}
+
 * { 
   padding: 0; 
   margin: 0; 
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  font-family: openSans-regular; 
 }
 
 .dis-none {
@@ -86,6 +92,10 @@
   z-index: 1;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .absolute {
   position: absolute;
 }
@@ -102,15 +112,12 @@
     flex-grow: 1;
 }
 
-.outer-container {
-  background-color: var(--vanillaBeige);
+.blur {
+  filter: blur(8px);
 }
 
-.main-content-container {
-  top: 3.5em;
-  left: 0; 
-  right: 0; 
-  bottom: 0;
+.outer-container {
+  background-color: var(--vanillaBeige);
 }
 
 @media (min-width: 1200px) {
