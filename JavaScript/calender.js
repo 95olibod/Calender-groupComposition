@@ -1,9 +1,9 @@
 function initCalender() {
-  setCurrentMonthAndYear()
+  setCurrentMonthAndYear();
   renderCalendar();
 }
 
-function setCurrentMonthAndYear() {  
+function setCurrentMonthAndYear() {
   state.selectedDate = new Date();
   state.currentMonth = new Date().getMonth();
   state.currentYear = new Date().getFullYear();
@@ -11,90 +11,103 @@ function setCurrentMonthAndYear() {
 
 async function renderCalendar() {
   renderTitle(state.currentMonth, state.currentYear);
-  let selectedMonthData = await getSelectedMonthData(state.currentYear, state.currentMonth);
+  let selectedMonthData = await getSelectedMonthData(
+    state.currentYear,
+    state.currentMonth
+  );
   let firstDayOfweek = getDayOfWeekForFirstOfMonth(selectedMonthData);
   // let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonthData);
   // let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
 
-  const container = document.querySelector('.m-calender-container');
+  const container = document.querySelector(".m-calender-container");
   // Skippa de först dagarna
   for (let i = 0; i < firstDayOfweek - 1; i++) {
     const emptyDiv = document.createElement("div");
     container.append(emptyDiv);
   }
 
-
   // Ritar alla boxar
   for (const day of selectedMonthData) {
-    const div = createDayBox(day);  
-    container.append(div)
+    const div = createDayBox(day);
+    container.append(div);
   }
 }
 
 function createDayBox(day) {
-  const template = document.getElementById('calendar-day-box');
-  const box = template.content.cloneNode(true);
-  const dayParagraph = box.querySelector('.p-date');
+  const template = document.getElementById("calendar-day-box");
+  const box = template.content.firstElementChild.cloneNode(true);
+  const dayParagraph = box.querySelector(".p-date");
   dayParagraph.innerText = new Date(day.datum).getDate();
-  // box.addEventListener('click', () => selectDate(day);
+
+  box.addEventListener("click", () => selectDate(day));
+
   return box;
 }
 
+function selectDate(day) {
+  console.log(day.datum);
+}
 
 function renderTitle(currentMonthByNumber, currentYear) {
-  const monthsByName = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "November","December"]
+  const monthsByName = [
+    "Januari",
+    "Februari",
+    "Mars",
+    "April",
+    "Maj",
+    "Juni",
+    "Juli",
+    "Augusti",
+    "September",
+    "November",
+    "December",
+  ];
   const activeMonthByName = monthsByName[currentMonthByNumber];
   createMonthTitle(activeMonthByName, currentYear);
 }
 
 function createMonthTitle(activeMonthByName, currentYear) {
-  const h1 = document.createElement("h1"); // Create a <li> node
-  const text = h1.innerText = `${activeMonthByName} ${currentYear}`; 
+  const h1 = document.createElement("h1"); 
+  const text = (h1.innerText = `${activeMonthByName} ${currentYear}`);
   h1.className = "m-title";
   document.getElementById("currentMonth").append(h1);
 }
 
 async function changeMonthForwards(monthCount, currentYear, currentMonth) {
-    monthCount++;
-    calculateTimeShift(monthCount, currentYear, currentMonth);
-    return monthCount;
+  monthCount++;
+  calculateTimeShift(monthCount, currentYear, currentMonth);
+  return monthCount;
 }
 
 async function changeMonthBackwards(monthCount, currentYear, currentMonth) {
-    monthCount--;
-    calculateTimeShift(monthCount, currentYear, currentMonth);
+  monthCount--;
+  calculateTimeShift(monthCount, currentYear, currentMonth);
 }
 
 async function calculateTimeShift(monthCount, currentYear, currentMonth) {
-    const numberOfMonths = calculateMonths(monthCount);
-    
-    const numberOfYears = calculateYears(monthCount, numberOfMonths);
-    
-    const chosenYear = currentYear - numberOfYears;
-    const chosenMonth = currentMonth - numberOfMonths;
-    
-    getSelectedMonthData(chosenYear, chosenMonth);
+  const numberOfMonths = calculateMonths(monthCount);
 
+  const numberOfYears = calculateYears(monthCount, numberOfMonths);
+
+  const chosenYear = currentYear - numberOfYears;
+  const chosenMonth = currentMonth - numberOfMonths;
+
+  getSelectedMonthData(chosenYear, chosenMonth);
 }
 
 async function calculateMonths(monthCount) {
-    const numberOfMonths = monthCount % 12;
-    return numberOfMonths;
+  const numberOfMonths = monthCount % 12;
+  return numberOfMonths;
 }
 
 async function calculateYears(monthCount, numberOfMonths) {
-    if (monthCount < 12)
-    {
-        const numberOfYears = 0;
-    }
-    else
-    {
-        const numberOfYears = (monthCount - numberOfMonths) / 12;
-        return numberOfYears;
-    }
+  if (monthCount < 12) {
+    const numberOfYears = 0;
+  } else {
+    const numberOfYears = (monthCount - numberOfMonths) / 12;
+    return numberOfYears;
+  }
 }
-
-
 
 // Hämtar vald månads data
 // se över variabelnamn!!
@@ -150,24 +163,11 @@ async function getCorrectDateFormat(date) {
 }
 
 async function anotherName(selectedMonth) {
-  
-  for(let days of selectedMonth)
-  {
+  for (let days of selectedMonth) {
     let date = await getCorrectDateFormat(days);
     await testCreate(date); //ÄNDRAD FRÅN CREATE**************************************
   }
-
 }
-
-
-
-
-
-
-
-
-
-
 
 // const type = document.createElement("p"); // Create a <li> node
 // var textnode = document.createTextNode(secondCut);
@@ -177,38 +177,6 @@ async function anotherName(selectedMonth) {
 
 //  const firstDayOfMonth = data.dagar.find((day) => day.veckodag[0]);
 //  const firstDayOfMonth2 = data.dagar[0].veckodag;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Massa skit bara...
 //getDateNumber()
