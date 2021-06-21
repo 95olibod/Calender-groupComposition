@@ -71,7 +71,7 @@ main {
   background-color: var(--CalLightGrey);
   width: 100%;
   flex-grow: 1;
-  border-radius: 1.5em;
+  border-radius: 0.8em;
 }
 
 .m-day-date-box {
