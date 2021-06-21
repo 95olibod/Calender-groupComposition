@@ -53,14 +53,40 @@ async function renderCalender() {
 function createDayBox(day) {
   const template = document.getElementById("calendar-day-box");
   const box = template.content.firstElementChild.cloneNode(true);
+  
+  const redDayText = getRedDayText(day);
+  const redDayBox = box.querySelector(".p-red-day-box");
+  redDayBox.innerText = redDayText;  
+  
   const dayParagraph = box.querySelector(".p-date");
   dayParagraph.innerText = new Date(day.datum).getDate();
   const numberOfTodos = box.querySelector(".todos");
   numberOfTodos.innerText = getNumberOfTodos(day);
 
+
   box.addEventListener("click", () => selectDate(day));
 
   return box;
+}
+
+// Kontrollerar om dagen i fråga innehåller propertyn helgdag eller 
+function getRedDayText(day) {
+    const test = day.hasOwnProperty('helgdag');
+    const test2 = day.hasOwnProperty('helgdagsafton');
+    if (test == true) {
+        const redDayText = day.helgdag;
+        return redDayText;
+    }
+    else if (test2 == true) {
+        const redDayText = day.helgdagsafton
+        return redDayText;
+    }
+    else {
+
+        return "";
+    }
+   
+
 }
 
 function selectDate(day) {
