@@ -59,8 +59,8 @@
           </div>
 
           <template id="todo-item-template">
-            <div id="dendiven" class="s-todo-item flex">
-              <span id="spannet" class="flex col"></span>
+            <div class="s-todo-item flex">
+              <span class="flex col"></span>
               <button
                 class="
                   flex
@@ -141,25 +141,25 @@
         </div>
 
         <div class="m-calender-container full-width grow">
-          <template id="calendar-day-box">
-            <div
-              class="
-                m-day-container
-                flex
-                col
-                ali-center
-                m-todo-margin-r m-todo-margin-b
-              "
-            >
-              <div class="m-day-date-box flex jus-f-start ali-center">
-                <p class="p-date"></p>
-              </div>
-              <div class="m-todo-box flex grow jus-center ali-center">
-                <p class="todos"></p>
-              </div>
-            </div>
-          </template>
         </div>
+        <template id="calendar-day-box">
+          <div
+            class="
+              m-day-container
+              flex
+              col
+              ali-center
+              m-todo-margin-r m-todo-margin-b
+            "
+          >
+            <div class="m-day-date-box flex jus-f-start ali-center">
+              <p class="p-date"></p>
+            </div>
+            <div class="m-todo-box flex grow jus-center ali-center">
+              <p class="todos"></p>
+            </div>
+          </div>
+        </template>
       </main>
     </div>
     <footer class="f-container">

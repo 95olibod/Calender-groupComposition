@@ -12,21 +12,29 @@ function fetchTodosFromLocalStorage() {
 function renderTodos() {
   const ul = document.getElementById("todoList");
   const template = document.getElementById("todo-item-template");
-  ul.innerText = "";
-    
-    for (const todo of state.todos) {
-      const listItem = template.content.cloneNode(true);
-      const removeButton = template.content.getElementById("remove-btn").cloneNode(true);
-      const span = listItem.querySelector("span");
-      span.innerText = todo.text;
-      
-      removeButton.addEventListener("click", () => removeTodoItem(todo));
-      
-      ul.append(removeButton);
-      ul.append(listItem);
-    }
-}
+  ul.innerHTML = "";
+  let listToRender = [];
 
+  if(filteredTodoList = null) {
+    listToRender = state.todos;
+  }
+
+  else listToRender = state.filteredTodoList;
+
+  for (const todo of listToRender) {
+    const listItem = template.content.cloneNode(true);
+    const removeButton = template.content
+      .getElementById("remove-btn")
+      .cloneNode(true);
+    const span = listItem.querySelector("span");
+    span.innerText = todo.text;
+
+    removeButton.addEventListener("click", () => removeTodoItem(todo));
+
+    ul.append(removeButton);
+    ul.append(listItem);
+  }
+}
 
 function addClickEventOnAddButton() {
   const button = document.getElementById("s-add-btn");
@@ -68,15 +76,13 @@ function saveFromSubmit(event) {
   state.todos.push(todoItem);
   inputText.value = ""; // clear input text field
   closeTodoForm();
-  renderTodos();
   saveTodosListToLocalStorage();
+  renderTodos();
+  renderCalender();
 }
 
 function saveTodosListToLocalStorage() {
   localStorage.setItem("todos", JSON.stringify(state.todos));
-  location.reload();
-  // clearCalender();
-  // renderCalender();
 }
 
 function closeTodoForm() {
@@ -118,4 +124,5 @@ function removeTodoItem(todo) {
   state.todos.splice(index, 1);
   saveTodosListToLocalStorage();
   renderTodos();
+  renderCalender();
 }

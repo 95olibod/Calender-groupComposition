@@ -10,14 +10,10 @@ function setCurrentMonthAndYear() {
 }
 // olibods ninjafunction...
 function clearCalender() {
-
   //GÖR OM
-
-
-// const clear = document.getElementById("calendar-day-box");
-// console.log(clear);
-// clear.innerText = "";
-
+  // const clear = document.getElementById("calendar-day-box");
+  // console.log(clear);
+  // clear.innerText = "";
   // const mainDiv = document.getElementById("main");
   // mainDiv.innerText = "";
 }
@@ -32,19 +28,18 @@ async function renderCalender() {
   // let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonthData);
   // let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
 
- //let container = clearCalender();  
- let container = document.querySelector(".m-calender-container");
+  //let container = clearCalender();
+  let container = document.querySelector(".m-calender-container");
+  container.innerHTML = "";
 
-  
   // Skippa de först dagarna
   for (let i = 0; i < firstDayOfweek - 1; i++) {
     const emptyDiv = document.createElement("div");
     container.append(emptyDiv);
   }
- 
+
   // Ritar alla boxar
   for (const day of selectedMonthData) {
-    
     const div = createDayBox(day);
     container.append(div);
   }
@@ -64,16 +59,17 @@ function createDayBox(day) {
 }
 
 function selectDate(day) {
-  let filteredTodoList = [];
   const todoList = state.todos;
-  
+  state.filteredTodoList.length = 0;
+
   for (const todo of todoList) {
     if (todo.date == day.datum) {
-      filteredTodoList.push(todo);
+      state.filteredTodoList.push(todo);
     }
-  //console.log(day.datum);
-}
-console.log(filteredTodoList);
+    //console.log(day.datum);
+  }
+  renderTodos();
+  console.log(state.filteredTodoList);
 }
 
 function getNumberOfTodos(day) {
@@ -84,7 +80,7 @@ function getNumberOfTodos(day) {
     if (todo.date == day.datum) {
       newTodoList.push(todo);
     }
-   // console.log(todo.date + day.datum);
+    // console.log(todo.date + day.datum);
   }
 
   //Returnerar antal
@@ -110,10 +106,10 @@ function renderTitle(currentMonthByNumber, currentYear) {
 }
 
 function createMonthTitle(activeMonthByName, currentYear) {
-
   console.log(activeMonthByName, currentYear);
-  let h1 = document.querySelector(".m-title").innerText = activeMonthByName + " " + currentYear;
-  console.log(h1);  
+  let h1 = (document.querySelector(".m-title").innerText =
+    activeMonthByName + " " + currentYear);
+  console.log(h1);
 }
 
 async function changeMonthForwards(monthCount, currentYear, currentMonth) {
@@ -211,7 +207,6 @@ async function anotherName(selectedMonth) {
     await testCreate(date); //ÄNDRAD FRÅN CREATE**************************************
   }
 }
-
 
 // const type = document.createElement("p"); // Create a <li> node
 // var textnode = document.createTextNode(secondCut);
