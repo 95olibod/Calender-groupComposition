@@ -8,7 +8,9 @@ function setCurrentMonthAndYear() {
   state.currentMonth = new Date().getMonth();
   state.currentYear = new Date().getFullYear();
 }
-// olibods ninjafunction...
+
+
+
 function clearCalender() {
 
   //GÖR OM
@@ -29,7 +31,7 @@ async function renderCalender() {
     state.currentMonth
   );
   let firstDayOfweek = getDayOfWeekForFirstOfMonth(selectedMonthData);
-  // let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonthData);
+  // let numberOfDaysInMonth = getNumberOfDaysInSelectedMonth(selectedMonthData);
   // let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
 
   //let container = clearCalender();
@@ -53,6 +55,7 @@ async function renderCalender() {
 
   for (let i = numberPrevious - (firstDayOfweek - 1); i < numberPrevious; i++) {
     const emptyDiv = createLastDaysOfPreviousMonthBox(i);
+    emptyDiv.className = "empty-box flex col ali-center m-todo-margin-r m-todo-margin-b"
     container.append(emptyDiv);
   }
 
@@ -60,6 +63,24 @@ async function renderCalender() {
   for (const day of selectedMonthData) {
     const div = createDayBox(day);
     container.append(div);
+  }
+
+  // Ritar ut första dagarna i kommande månad
+  const numberNext = await getNumberOfDaysIncommingMonth(
+    state.currentYear,
+    state.currentMonth
+  );
+  const totalDays = numberNext + getNumberOfDaysInSelectedMonth(selectedMonthData);
+  console.log(totalDays);
+  const lastWeekDay = getLastWeekDayInMonth(selectedMonthData);
+    const numbersInNextMonth = 7 - lastWeekDay;
+    console.log(numbersInNextMonth);
+  for (let i = 0; i < numbersInNextMonth; i++) {
+      const emptyDiv = createLastDaysOfPreviousMonthBox(i + 1); /*fel funktion? alt. byt namn*/
+emptyDiv.className = "empty-box flex col ali-center m-todo-margin-r m-todo-margin-b"
+
+      container.append(emptyDiv);
+      
   }
 }
 
@@ -83,7 +104,7 @@ function createDayBox(day) {
   const numberOfTodos = box.querySelector(".todos");
     
   const todos = getNumberOfTodos(day);
-  if (todos > 0) {
+  if (todos > 0) {    
     numberOfTodos.innerText = todos;
   } 
 
@@ -188,7 +209,7 @@ async function getSelectedMonthData(chosenYear, chosenMonth) {
 }
 
 // ger oss antal dagar i innevarande månad
-async function getNumberOfDaysInSelectedMonth(selectedMonthData) {
+function getNumberOfDaysInSelectedMonth(selectedMonthData) {
   const lastDateInMonth = selectedMonthData[selectedMonthData.length - 1];
   const numberOfDaysInMonth = parseInt(
     lastDateInMonth.datum.substr(lastDateInMonth.datum.length - 2, 2)
@@ -204,7 +225,7 @@ function getDayOfWeekForFirstOfMonth(selectedMonth) {
 }
 
 // Ger oss antal dagar i föregående månad
-async function getNumberOfDaysInPreviousMonth(chosenYear, chosenMonth) {
+async function getNumberOfDaysInPreviousMonth(chosenYear, chosenMonth) { //korrigera för årsskifte
     const response = await fetch(
       `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth}`
     );
@@ -219,6 +240,28 @@ async function getNumberOfDaysInPreviousMonth(chosenYear, chosenMonth) {
   return numberOfDaysInPreviousMonth;
 }
 
+async function getNumberOfDaysIncommingMonth(chosenYear, chosenMonth) {
+  //korrigera för årsskifte
+  const response = await fetch(
+    `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth +2}`
+  );
+  const selectedMonth = await response.json();
+
+//   const numberOfDaysInMonth = selectedMonth.dagar[selectedMonth.dagar.length - 1];
+//   console.log(numberOfDaysInMonth);
+    const firstDayOfMonth = selectedMonth.dagar[0]["dag i vecka"];
+    console.log(firstDayOfMonth);
+    
+    
+    
+    
+    const numberOfDayscommingMonth = parseInt(firstDayOfMonth);
+    console.log(numberOfDayscommingMonth);
+
+  return numberOfDayscommingMonth;
+}
+
+
 // returnerar inskickat datum till korrekt format
 async function getCorrectDateFormat(date) {
   const fullDateFormat = date.datum;
@@ -232,6 +275,16 @@ async function getCorrectDateFormat(date) {
   }
   return correctDateFormat;
 }
+
+function getLastWeekDayInMonth(selectedMonthData) {
+
+    const lastDayInMonth = selectedMonthData.length -1;
+    const lastWeekDayInMonth = selectedMonthData[lastDayInMonth]["dag i vecka"];
+  
+    return lastWeekDayInMonth;
+}
+
+
 
 
 // const type = document.createElement("p"); // Create a <li> node
