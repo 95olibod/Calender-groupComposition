@@ -9,14 +9,7 @@ function setCurrentMonthAndYear() {
   state.currentYear = new Date().getFullYear();
 }
 
-function clearCalender() {
-  //GÖR OM
-  // const clear = document.getElementById("calendar-day-box");
-  // console.log(clear);
-  // clear.innerText = "";
-  // const mainDiv = document.getElementById("main");
-  // mainDiv.innerText = "";
-}
+
 
 async function renderCalender() {
   renderTitle(state.currentMonth, state.currentYear);
@@ -27,9 +20,8 @@ async function renderCalender() {
   let firstDayOfweek = getDayOfWeekForFirstOfMonth(selectedMonthData);
   // let numberOfDaysInMonth = getNumberOfDaysInSelectedMonth(selectedMonthData);
   // let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
-
-  //let container = clearCalender();
   let container = document.querySelector(".m-calender-container");
+  container.innerHTML = "";
 
   // ********************************************
   // bryt ut fler functioner nedan!!
@@ -114,18 +106,19 @@ function createDayBox(day) {
 }
 
 function selectDate(day) {
-  //console.log(day.datum);
+  state.selectedDate = day.datum;
+  
+  renderTodos();
 }
 
 function getNumberOfTodos(day) {
   let newTodoList = [];
-
   const todoList = state.todos;
+  
   for (const todo of todoList) {
     if (todo.date == day.datum) {
       newTodoList.push(todo);
     }
-    // console.log(todo.date + day.datum);
   }
 
   //Returnerar antal
@@ -151,9 +144,10 @@ function renderTitle(currentMonthByNumber, currentYear) {
 }
 
 function createMonthTitle(activeMonthByName, currentYear) {
-  let h1 = (document.querySelector(".h1-test").innerText =
+  console.log(activeMonthByName, currentYear);
+  let h1 = (document.querySelector(".m-title").innerText =
     activeMonthByName + " " + currentYear);
-  h1.className = "m-title";
+  console.log(h1);
 }
 
 async function changeMonthForwards(monthCount, currentYear, currentMonth) {

@@ -12,11 +12,26 @@ function fetchTodosFromLocalStorage() {
 function renderTodos() {
   const ul = document.getElementById("todoList");
   const template = document.getElementById("todo-item-template");
-  ul.innerText = "";
+  ul.innerHTML = "";
 
-  for (const todo of state.todos) {
+  const todoList = state.todos;
+  state.filteredTodoList.length = 0;
+
+  if (!state.selectedDate)  {
+      state.selectedDate =  new Date().toLocaleDateString();
+  }
+
+  for (const todo of todoList) {
+    if (todo.date == state.selectedDate) {
+      state.filteredTodoList.push(todo);
+    }
+  }
+  
+  for (const todo of state.filteredTodoList) {
     const listItem = template.content.cloneNode(true);
-    const removeButton = template.content.getElementById("remove-btn").cloneNode(true);
+    const removeButton = template.content
+      .getElementById("remove-btn")
+      .cloneNode(true);
     const span = listItem.querySelector("span");
     span.innerText = todo.text;
 
@@ -26,7 +41,6 @@ function renderTodos() {
     ul.append(listItem);
   }
 }
-
 
 function addClickEventOnAddButton() {
   const button = document.getElementById("s-add-btn");
@@ -66,17 +80,19 @@ function saveFromSubmit(event) {
   };
 
   state.todos.push(todoItem);
+  if (todoItem.date == state.selectedDate) {
+      state.filteredTodoList.push(todoItem);
+  }
+  
   inputText.value = ""; // clear input text field
   closeTodoForm();
-  renderTodos();
   saveTodosListToLocalStorage();
+  renderTodos();
+  renderCalender();
 }
 
 function saveTodosListToLocalStorage() {
   localStorage.setItem("todos", JSON.stringify(state.todos));
-  location.reload();
-  // clearCalender();
-  // renderCalender();
 }
 
 function closeTodoForm() {
@@ -116,6 +132,13 @@ function unblurBackground() {
 function removeTodoItem(todo) {
   const index = state.todos.indexOf(todo);
   state.todos.splice(index, 1);
+  
+  if (todo.date == state.selectedDate)
+  {
+      const index = state.filteredTodoList.indexOf(todo);
+  state.filteredTodoList.splice(index, 1);
+  }
   saveTodosListToLocalStorage();
   renderTodos();
+  renderCalender();
 }
