@@ -1,11 +1,10 @@
 .round-badge {
   background-color: var(--orange);
   border-radius: 100em;
-  height: 0.8em;
-  width: 0.8em;
+  height: 2em;
+  width: 2em;
   margin-bottom: 1em;
   position: absolute;
-  
 }
 
 .m-title {
@@ -164,6 +163,9 @@ border-radius: 0.8em;
 .todo-markup{
   background-color: var(--orange);
   font-size: 0.5em;
+  /* width: 0.9em;
+  height: 1.5em;
+  border-radius: 100em; */
 }
 
 @media (max-width: 1024px) {

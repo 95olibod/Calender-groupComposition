@@ -57,6 +57,12 @@
   height: 100%;
 }
 
+#remove-btn {
+  align-self: flex-end;
+  /* margin-top: -5em; */
+  
+}
+
 @media (max-width: 768px) {
   .todo-form-container {
     height: 14em;
