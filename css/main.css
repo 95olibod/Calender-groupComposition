@@ -71,7 +71,7 @@ main {
   background-color: var(--CalLightGrey);
   width: 100%;
   flex-grow: 1;
-  border-radius: 1.5em;
+  border-radius: 0.8em;
 }
 
 .m-day-date-box {
@@ -120,6 +120,7 @@ main {
 
 .p-red-day {
   color: red;
+  
 }
 .p-red-day-box {
   color: red;
@@ -139,6 +140,17 @@ main {
 
 .week-day-padding {
   padding-right: 0.5em;
+}
+
+.empty-box{
+background-color: red;
+width: 100%;
+flex-grow: 1;
+border-radius: 1.5em;
+}
+
+.color{
+  background-color: blue;
 }
 
 @media (max-width: 1024px) {
