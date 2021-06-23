@@ -8,15 +8,7 @@ function setCurrentMonthAndYear() {
   state.currentMonth = new Date().getMonth();
   state.currentYear = new Date().getFullYear();
 }
-// olibods ninjafunction...
-function clearCalender() {
-  //GÖR OM
-  // const clear = document.getElementById("calendar-day-box");
-  // console.log(clear);
-  // clear.innerText = "";
-  // const mainDiv = document.getElementById("main");
-  // mainDiv.innerText = "";
-}
+
 
 async function renderCalender() {
   renderTitle(state.currentMonth, state.currentYear);
@@ -27,8 +19,6 @@ async function renderCalender() {
   let firstDayOfweek = getDayOfWeekForFirstOfMonth(selectedMonthData);
   // let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonthData);
   // let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
-
-  //let container = clearCalender();
   let container = document.querySelector(".m-calender-container");
   container.innerHTML = "";
 
@@ -72,7 +62,6 @@ function getNumberOfTodos(day) {
     if (todo.date == day.datum) {
       newTodoList.push(todo);
     }
-    console.log(todo.date + day.datum);
   }
 
   //Returnerar antal

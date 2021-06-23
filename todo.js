@@ -13,15 +13,17 @@ function renderTodos() {
   const ul = document.getElementById("todoList");
   const template = document.getElementById("todo-item-template");
   ul.innerHTML = "";
-  let listToRender = [];
 
-  if(filteredTodoList = null) {
-    listToRender = state.todos;
+  const todoList = state.todos;
+  state.filteredTodoList.length = 0;
+
+  for (const todo of todoList) {
+    if (todo.date == state.selectedDate) {
+      state.filteredTodoList.push(todo);
+    }
   }
-
-  else listToRender = state.filteredTodoList;
-
-  for (const todo of listToRender) {
+  
+  for (const todo of state.filteredTodoList) {
     const listItem = template.content.cloneNode(true);
     const removeButton = template.content
       .getElementById("remove-btn")
@@ -74,6 +76,10 @@ function saveFromSubmit(event) {
   };
 
   state.todos.push(todoItem);
+  if (todoItem.date == state.selectedDate) {
+      state.filteredTodoList.push(todoItem);
+  }
+  
   inputText.value = ""; // clear input text field
   closeTodoForm();
   saveTodosListToLocalStorage();
@@ -122,6 +128,12 @@ function unblurBackground() {
 function removeTodoItem(todo) {
   const index = state.todos.indexOf(todo);
   state.todos.splice(index, 1);
+  
+  if (todo.date == state.selectedDate)
+  {
+      const index = state.filteredTodoList.indexOf(todo);
+  state.filteredTodoList.splice(index, 1);
+  }
   saveTodosListToLocalStorage();
   renderTodos();
   renderCalender();
