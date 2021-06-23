@@ -85,7 +85,7 @@ function saveFromSubmit(event) {
   state.todos.push(todoItem);
   const todoDateString = todoItem.date.toLocaleDateString();
   const todoSelectedDateString = state.selectedDate.toLocaleDateString();
-  console.log(todoDateString, todoSelectedDateString);
+  
   if (todoDateString == todoSelectedDateString) {
       state.filteredTodoList.push(todoItem);
   }

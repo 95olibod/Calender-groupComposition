@@ -164,8 +164,7 @@ function renderCurrentDate(day) {
   const correctCurrentDateFormat =
     day["veckodag"] + " " + date + " " + monthByName;
 
-  console.log("correctCurrentDateFormat = " + correctCurrentDateFormat);
-
+ 
   asideWeekday.innerText = correctCurrentDateFormat;
   const asideDate = document.getElementById("aside-date");
 }
@@ -173,8 +172,7 @@ function renderCurrentDate(day) {
 function getDayText(day) {
   let substringDate = day["datum"].substr(8, 2);
   const date = checkdateLength(substringDate);
-  console.log(date);
-
+ 
   return date;
 }
 
@@ -186,12 +184,11 @@ function getMonthText(day) {
 }
 
 function checkdateLength(subStringDate) {
-  console.log("subStringDate = " + subStringDate);
+
   let correctSubStringDate = subStringDate;
 
   if (subStringDate.charAt(0) == 0) {
     correctSubStringDate = subStringDate.substr(1, 1);
-    console.log(correctSubStringDate);
   }
   return correctSubStringDate;
 }
@@ -235,7 +232,6 @@ function renderTitle(currentMonthByNumber, currentYear) {
 }
 
 function createMonthTitle(activeMonthByName, currentYear) {
-  console.log(activeMonthByName, currentYear);
   let h1 = (document.querySelector(".m-title").innerText =
     activeMonthByName + " " + currentYear);
 }
@@ -274,12 +270,11 @@ async function getNumberOfDaysInPreviousMonth() {
   const selectedMonth = await response.json();
 
   const lastDateInMonth = selectedMonth.dagar[selectedMonth.dagar.length - 1];
-  console.log("lastdateinmonth " + lastDateInMonth);
 
   const numberOfDaysInPreviousMonth = parseInt(
     lastDateInMonth.datum.substr(lastDateInMonth.datum.length - 2, 2)
   );
-  console.log("numberOfPrev" + numberOfDaysInPreviousMonth);
+  
   return numberOfDaysInPreviousMonth;
 }
 
