@@ -49,9 +49,45 @@ function createDayBox(day) {
 }
 
 function selectDate(day) {
-  state.selectedDate = day.datum;
+  state.selectedDate = new Date(day.datum);
+  renderCurrentDate(day);
   
   renderTodos();
+}
+
+function renderCurrentDate(day) {
+  //console.log(day["veckodag"]);
+
+  const asideWeekday = document.getElementById("aside-weekday");
+  //console.log("asideWeekday = " + asideWeekday);
+  
+  asideWeekday.innerText = day["veckodag"];
+  const asideDate = document.getElementById("aside-date");
+
+  const dayText = getDayText(day);
+  asideDate.innerText = day["datum"];
+  
+}
+
+function getDayText(day) {
+  const fullDayName = day["datum"];
+//console.log("day2 = " + day["datum"]);
+  const substringMonth = day["datum"].substr(6, 1); 
+ // console.log("substringMonth = " + substringMonth);
+
+  const monthString = parseInt(substringMonth);
+
+  let substringDate = day["datum"].substr(9, 2);
+
+  
+
+  const monthByName = getMonthsByName(monthString - 1);
+  console.log(monthByName)
+  return ;
+}
+
+function checkdateLength(substringDate) {
+  if (substringDate)
 }
 
 function getNumberOfTodos(day) {
@@ -59,7 +95,7 @@ function getNumberOfTodos(day) {
   const todoList = state.todos;
   
   for (const todo of todoList) {
-    if (todo.date == day.datum) {
+    if (todo.date.toLocaleDateString() == day.datum) {
       newTodoList.push(todo);
     }
   }
@@ -68,6 +104,25 @@ function getNumberOfTodos(day) {
   return newTodoList.length;
 }
 
+function getMonthsByName(currentMonthByNumber) {
+   const monthsByName = [
+    "Januari",
+    "Februari",
+    "Mars",
+    "April",
+    "Maj",
+    "Juni",
+    "Juli",
+    "Augusti",
+    "September",
+    "November",
+    "December",
+  ];
+
+  const activeMonthByName = monthsByName[currentMonthByNumber];
+  return activeMonthByName;
+
+}
 function renderTitle(currentMonthByNumber, currentYear) {
   const monthsByName = [
     "Januari",

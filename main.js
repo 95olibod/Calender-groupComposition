@@ -3,7 +3,7 @@ window.addEventListener('load', main);
 const state = {
     todos: [],
     filteredTodoList: [],
-    selectedDate: null,
+    selectedDate: new Date(),
     currentMonth: undefined,
     currentYear: undefined
 }

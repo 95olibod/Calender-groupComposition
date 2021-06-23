@@ -5,11 +5,15 @@ function initTodos() {
 
 function fetchTodosFromLocalStorage() {
   const todosString = localStorage.getItem("todos");
-  state.todos = JSON.parse(todosString || "[]");
+  state.todos = JSON.parse(todosString || "[]", dateReviver);
   renderTodos();
 }
 
 function renderTodos() {
+
+  //Om state.filteredTodos.length = 0: Något i stil med "Finns inga todos på det här datumet"
+
+
   const ul = document.getElementById("todoList");
   const template = document.getElementById("todo-item-template");
   ul.innerHTML = "";
@@ -17,14 +21,15 @@ function renderTodos() {
   const todoList = state.todos;
   state.filteredTodoList.length = 0;
 
-  if (!state.selectedDate)  {
-      state.selectedDate =  new Date().toLocaleDateString();
-  }
 
   for (const todo of todoList) {
-    if (todo.date == state.selectedDate) {
-      state.filteredTodoList.push(todo);
-    }
+      const todoDateString = todo.date.toLocaleDateString();
+
+      const todoSelectedDateString = state.selectedDate.toLocaleDateString();
+
+      if (todoDateString == todoSelectedDateString) {
+          state.filteredTodoList.push(todo);
+      }
   }
   
   for (const todo of state.filteredTodoList) {
@@ -54,7 +59,7 @@ function displayTodoForm() {
   todoForm.classList.add("flex");
 
   var currentDate = document.querySelector('input[type="date"]');
-  currentDate.value = new Date().toISOString().slice(0, 10);
+  currentDate.value = new Date().toLocaleDateString();
 
   blurBackground();
 
@@ -76,11 +81,14 @@ function saveFromSubmit(event) {
   const inputDate = event.target.querySelector("#date");
   const todoItem = {
     text: inputText.value,
-    date: inputDate.value,
+    date: new Date(inputDate.value),
   };
 
   state.todos.push(todoItem);
-  if (todoItem.date == state.selectedDate) {
+  const todoDateString = todoItem.date.toLocaleDateString();
+  const todoSelectedDateString = state.selectedDate.toLocaleDateString();
+  console.log(todoDateString, todoSelectedDateString);
+  if (todoDateString == todoSelectedDateString) {
       state.filteredTodoList.push(todoItem);
   }
   
@@ -93,6 +101,14 @@ function saveFromSubmit(event) {
 
 function saveTodosListToLocalStorage() {
   localStorage.setItem("todos", JSON.stringify(state.todos));
+}
+
+function dateReviver(key, value) {
+  if (key === 'date') {
+    return new Date(value);
+  }
+
+  return value;
 }
 
 function closeTodoForm() {
