@@ -1,8 +1,4 @@
-
-#aside-content-wrapper {
-
-}
-
+#aside-content-wrapper {}
 
 /* generellt till knappar */
 
@@ -64,8 +60,22 @@ aside {
     margin: 0.5em;
 }
 
-/* generella textitems */
+#aside-day-container {
+    margin: 1em;
+}
 
+#aside-weekday, #aside-date {
+    padding: 0.2em;
+}
+
+.aside-message-text {
+    text-align: center;
+    margin-top: 4em;
+    padding: 1em;
+    font-size: 12px;
+}
+
+/* generella textitems */
 
 .s-small-btn {
     background-color: var(--white);

@@ -53,11 +53,15 @@
     <div id="main-container" class="flex row grow outer-container">
       <aside id="sidebar-when-desktop" class="flex col z-10">
         <div id="aside-content-wrapper" class="flex col ali-center s-container">
-          <!-- <div>TO DO</div> -->
           <div>
             <button id="s-add-btn" class="s-btn-round">+</button>
           </div>
-
+          
+          <div id="aside-day-container" class="flex row">
+            <p id="aside-weekday"></p>
+            <p id="aside-date"></p>
+          </div>
+          <div id="aside-message"></div>
           <template id="todo-item-template">
             <div class="s-todo-item flex">
               <span class="flex col"></span>

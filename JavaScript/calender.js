@@ -1,6 +1,8 @@
 function initCalender() {
   setCurrentMonthAndYear();
   renderCalender();
+  //renderCurrentDate(); TITTA PÅ DETTA ****************************
+  
   previousMonth();
   nextMonth();
 }
@@ -18,6 +20,7 @@ async function renderCalender() {
     state.currentMonth
   );
   let firstDayOfweek = getDayOfWeekForFirstOfMonth(selectedMonthData);
+
   let container = document.querySelector(".m-calender-container");
   container.innerHTML = "";
 
@@ -148,9 +151,48 @@ function getRedDayText(day) {
 }
 
 function selectDate(day) {
-  state.selectedDate = day.datum;
-
+  state.selectedDate = new Date(day.datum);
+  renderCurrentDate(day);
   renderTodos();
+}
+
+function renderCurrentDate(day) {
+  const asideWeekday = document.getElementById("aside-weekday");
+  const monthByName = getMonthText(day);
+  const date = getDayText(day);
+  const correctCurrentDateFormat =
+    day["veckodag"] + " " + date + " " + monthByName;
+
+  console.log("correctCurrentDateFormat = " + correctCurrentDateFormat);
+
+  asideWeekday.innerText = correctCurrentDateFormat;
+  const asideDate = document.getElementById("aside-date");
+}
+
+function getDayText(day) {
+  let substringDate = day["datum"].substr(8, 2);
+  const date = checkdateLength(substringDate);
+  console.log(date);
+
+  return date;
+}
+
+function getMonthText(day) {
+  const substringMonth = day["datum"].substr(6, 1);
+  const monthNumber = parseInt(substringMonth);
+  const monthByName = getMonthsByName(monthNumber - 1);
+  return monthByName;
+}
+
+function checkdateLength(subStringDate) {
+  console.log("subStringDate = " + subStringDate);
+  let correctSubStringDate = subStringDate;
+
+  if (subStringDate.charAt(0) == 0) {
+    correctSubStringDate = subStringDate.substr(1, 1);
+    console.log(correctSubStringDate);
+  }
+  return correctSubStringDate;
 }
 
 function getNumberOfTodos(day) {
@@ -158,7 +200,7 @@ function getNumberOfTodos(day) {
   const todoList = state.todos;
 
   for (const todo of todoList) {
-    if (todo.date == day.datum) {
+    if (todo.date.toLocaleDateString() == day.datum) {
       newTodoList.push(todo);
     }
   }
@@ -167,7 +209,7 @@ function getNumberOfTodos(day) {
   return newTodoList.length;
 }
 
-function renderTitle(currentMonthByNumber, currentYear) {
+function getMonthsByName(currentMonthByNumber) {
   const monthsByName = [
     "Januari",
     "Februari",
@@ -182,8 +224,13 @@ function renderTitle(currentMonthByNumber, currentYear) {
     "November",
     "December",
   ];
+
   const activeMonthByName = monthsByName[currentMonthByNumber];
-  createMonthTitle(activeMonthByName, currentYear);
+  return activeMonthByName;
+}
+function renderTitle(currentMonthByNumber, currentYear) {
+  const monthsByName = getMonthsByName(currentMonthByNumber);
+  createMonthTitle(monthsByName, currentYear);
 }
 
 function createMonthTitle(activeMonthByName, currentYear) {
