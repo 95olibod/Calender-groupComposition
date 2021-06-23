@@ -17,6 +17,10 @@ function renderTodos() {
   const todoList = state.todos;
   state.filteredTodoList.length = 0;
 
+  if (!state.selectedDate)  {
+      state.selectedDate =  new Date().toLocaleDateString();
+  }
+
   for (const todo of todoList) {
     if (todo.date == state.selectedDate) {
       state.filteredTodoList.push(todo);
