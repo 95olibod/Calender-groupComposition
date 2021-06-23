@@ -1,8 +1,7 @@
 function initCalender() {
   setCurrentMonthAndYear();
   renderCalender();
-  //renderCurrentDate(); TITTA PÅ DETTA ****************************
-  
+
   previousMonth();
   nextMonth();
 }
@@ -115,28 +114,35 @@ function createDayBox(day) {
   const template = document.getElementById("calendar-day-box");
   const box = template.content.firstElementChild.cloneNode(true);
   const redDayText = getRedDayText(day);
-  const redDayBox = box.querySelector(".p-red-day-box");
-  
-  redDayBox.innerText = redDayText;
-  
+
+  // const redDayBox = box.querySelector(".p-red-day-box");
+  // redDayBox.innerText = redDayText;
+
   const dayParagraph = box.querySelector(".p-date");
+
+  if (redDayText != "") {
+    dayParagraph.className = "p-red-day";
+    dayParagraph.innerText = new Date(day.datum).getDate();
+  }
+
   dayParagraph.innerText = new Date(day.datum).getDate();
   const numberOfTodos = box.querySelector(".todos");
 
   const todos = getNumberOfTodos(day);
+
  if (todos > 0) { 
     numberOfTodos.className = "todo-markup round-badge flex jus-center ali-center";
     numberOfTodos.innerText = todos;
   }
 
 
-  box.addEventListener("click", () => selectDate(day));
+  box.addEventListener("click", () => selectDate(day, box));
 
   return box;
 }
 
 // Kontrollerar om dagen i fråga innehåller propertyn helgdag eller
-function getRedDayText(day) {  
+function getRedDayText(day) {
   const holiday = day.hasOwnProperty("helgdag");
   const holidayevening = day.hasOwnProperty("helgdagsafton");
 
@@ -151,10 +157,21 @@ function getRedDayText(day) {
   }
 }
 
-function selectDate(day) {
+function selectDate(day, box) {
   state.selectedDate = new Date(day.datum);
+  const dayParagraph = box.querySelector(".p-date"); //ÖVERFLÖDIG JUST NU: HÖR TILL RAM RUNT VALD DAG
+  //const test = (document.getElementById("testClass").className = "border");
+  // const test = document.getElementById("testClass");
+
+  //dayParagraph.className = "border"; SÄTTER EN RAM RUNT VALD DAG******************************
   renderCurrentDate(day);
   renderTodos();
+}
+
+function showHoliday(day) {
+  const holiday = document.getElementById("holiday");
+  holidayText = getRedDayText(day);
+  holiday.innerText = holidayText;
 }
 
 function renderCurrentDate(day) {
@@ -164,15 +181,16 @@ function renderCurrentDate(day) {
   const correctCurrentDateFormat =
     day["veckodag"] + " " + date + " " + monthByName;
 
- 
+
   asideWeekday.innerText = correctCurrentDateFormat;
   const asideDate = document.getElementById("aside-date");
+  showHoliday(day);
 }
 
 function getDayText(day) {
   let substringDate = day["datum"].substr(8, 2);
   const date = checkdateLength(substringDate);
- 
+
   return date;
 }
 
@@ -274,7 +292,7 @@ async function getNumberOfDaysInPreviousMonth() {
   const numberOfDaysInPreviousMonth = parseInt(
     lastDateInMonth.datum.substr(lastDateInMonth.datum.length - 2, 2)
   );
-  
+
   return numberOfDaysInPreviousMonth;
 }
 
