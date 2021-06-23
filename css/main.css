@@ -1,8 +1,8 @@
 .m-title {
   font-weight: 700;
   font-size: 30px;
-  color: blue;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: var(--black);
+  font-weight: 600;
 }
 
 html,
@@ -10,12 +10,6 @@ body {
   height: 100%;
   background-color: var(--vanillaBeige);
 }
-
-
-.test{
-  
-}
-
 
 main {
   display: flex;
@@ -85,6 +79,14 @@ main {
   width: 100%;
 }
 
+/* .m-todo-markup {
+  background-color: var(--orange);
+  width: 1em;
+  border-radius: 50%;
+} */
+
+
+
 .m-todo-margin-r {
   margin-right: 0.5em;
 }
@@ -126,7 +128,7 @@ main {
   color: red;
   padding-left: 0.8rem;
   padding-right: 0.8rem;
-  font-size: 10px;
+  font-size: 4px;
 }
 
 .m-week-empty-box {
@@ -143,14 +145,15 @@ main {
 }
 
 .empty-box{
-background-color: red;
+background-color:var(--CalMediumGrey);
 width: 100%;
 flex-grow: 1;
-border-radius: 1.5em;
+border-radius: 0.8em;
 }
 
-.color{
-  background-color: blue;
+.todo-markup{
+  background-color: var(--orange);
+  font-size: 0.8em;
 }
 
 @media (max-width: 1024px) {

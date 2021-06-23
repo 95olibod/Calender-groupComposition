@@ -122,7 +122,7 @@ function createDayBox(day) {
 
   const todos = getNumberOfTodos(day);
  if (todos > 0) {    
-    numberOfTodos.className = "color";
+    numberOfTodos.className = "todo-markup";
     numberOfTodos.innerText = todos;
   }
 
