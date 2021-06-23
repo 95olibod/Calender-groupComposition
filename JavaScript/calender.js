@@ -1,7 +1,10 @@
 function initCalender() {
   setCurrentMonthAndYear();
   renderCalender();
-  //renderCurrentDate();
+  //renderCurrentDate(); TITTA PÅ DETTA ****************************
+  
+  previousMonth();
+  nextMonth();
 }
 
 function setCurrentMonthAndYear() {
@@ -17,13 +20,21 @@ async function renderCalender() {
     state.currentMonth
   );
   let firstDayOfweek = getDayOfWeekForFirstOfMonth(selectedMonthData);
-  
+
   let container = document.querySelector(".m-calender-container");
   container.innerHTML = "";
 
-  // Skippa de först dagarna
-  for (let i = 0; i < firstDayOfweek - 1; i++) {
-    const emptyDiv = document.createElement("div");
+  // ********************************************
+  // bryt ut fler functioner nedan!!
+  // ********************************************
+
+  // Skippar första dagarna
+  const numberPrevious = await getNumberOfDaysInPreviousMonth();
+  // 31                2
+  for (let i = numberPrevious - (firstDayOfweek - 1); i < numberPrevious; i++) {
+    const emptyDiv = createEmptyDays(i);
+    emptyDiv.className =
+      "empty-box flex col ali-center m-todo-margin-r m-todo-margin-b";
     container.append(emptyDiv);
   }
 
@@ -32,25 +43,116 @@ async function renderCalender() {
     const div = createDayBox(day);
     container.append(div);
   }
+
+  // Skippar sista dagarna
+  const lastWeekDay = getLastWeekDayInMonth(selectedMonthData);
+  const numbersInNextMonth = 7 - lastWeekDay;
+  for (let i = 0; i < numbersInNextMonth; i++) {
+    const emptyDiv = createEmptyDays(i + 1);
+    emptyDiv.className =
+      "empty-box flex col ali-center m-todo-margin-r m-todo-margin-b";
+    container.append(emptyDiv);
+  }
+}
+
+function previousMonth() {
+  const button = document.getElementById("left-arrow");
+  button.addEventListener("click", () => getPreviousMonth());
+}
+
+async function getPreviousMonth() {
+  if (state.currentMonth == 0) {
+    state.currentYear--;
+    state.currentMonth = 11;
+  } else {
+    state.currentMonth--;
+  }
+
+  await fetch(
+    `https://api.dryg.net/dagar/v2.1/${state.currentYear}/${
+      state.currentMonth + 1
+    }`
+  );
+
+  renderCalender();
+}
+
+function nextMonth() {
+  const button = document.getElementById("right-arrow");
+  button.addEventListener("click", () => getNextMonth());
+}
+
+async function getNextMonth() {
+  if (state.currentMonth == 11) {
+    state.currentYear++;
+    state.currentMonth = 0;
+  } else {
+    state.currentMonth++;
+  }
+
+  await fetch(
+    `https://api.dryg.net/dagar/v2.1/${state.currentYear}/${
+      state.currentMonth + 1
+    }`
+  );
+
+  renderCalender();
+}
+
+function createEmptyDays(day) {
+  const emptyDiv = document.getElementById("calendar-day-box");
+  const box = emptyDiv.content.firstElementChild.cloneNode(true);
+  let emptyDayDate = box.querySelector(".p-date");
+  if (day < 15) {
+    emptyDayDate.innerText = day;
+  } else {
+    emptyDayDate.innerText = day + 1;
+  }
+  return box;
 }
 
 function createDayBox(day) {
   const template = document.getElementById("calendar-day-box");
   const box = template.content.firstElementChild.cloneNode(true);
+  const redDayText = getRedDayText(day);
+  const redDayBox = box.querySelector(".p-red-day-box");
+  
+  redDayBox.innerText = redDayText;
+  
   const dayParagraph = box.querySelector(".p-date");
   dayParagraph.innerText = new Date(day.datum).getDate();
   const numberOfTodos = box.querySelector(".todos");
-  numberOfTodos.innerText = getNumberOfTodos(day);
+
+  const todos = getNumberOfTodos(day);
+ if (todos > 0) {    
+    numberOfTodos.className = "color";
+    numberOfTodos.innerText = todos;
+  }
 
   box.addEventListener("click", () => selectDate(day));
 
   return box;
 }
 
+// Kontrollerar om dagen i fråga innehåller propertyn helgdag eller
+function getRedDayText(day) {  
+  const holiday = day.hasOwnProperty("helgdag");
+  const holidayevening = day.hasOwnProperty("helgdagsafton");
+
+  if (holiday == true) {
+    const redDayText = day.helgdag;
+    return redDayText;
+  } else if (holidayevening == true) {
+    const redDayText = day.helgdagsafton;
+    return redDayText;
+  } else {
+    return "";
+  }
+}
+
 function selectDate(day) {
   state.selectedDate = new Date(day.datum);
   renderCurrentDate(day);
-
   renderTodos();
 }
 
@@ -118,6 +220,7 @@ function getMonthsByName(currentMonthByNumber) {
     "Juli",
     "Augusti",
     "September",
+    "Oktober",
     "November",
     "December",
   ];
@@ -134,43 +237,6 @@ function createMonthTitle(activeMonthByName, currentYear) {
   console.log(activeMonthByName, currentYear);
   let h1 = (document.querySelector(".m-title").innerText =
     activeMonthByName + " " + currentYear);
-  console.log(h1);
-}
-
-async function changeMonthForwards(monthCount, currentYear, currentMonth) {
-  monthCount++;
-  calculateTimeShift(monthCount, currentYear, currentMonth);
-  return monthCount;
-}
-
-async function changeMonthBackwards(monthCount, currentYear, currentMonth) {
-  monthCount--;
-  calculateTimeShift(monthCount, currentYear, currentMonth);
-}
-
-async function calculateTimeShift(monthCount, currentYear, currentMonth) {
-  const numberOfMonths = calculateMonths(monthCount);
-
-  const numberOfYears = calculateYears(monthCount, numberOfMonths);
-
-  const chosenYear = currentYear - numberOfYears;
-  const chosenMonth = currentMonth - numberOfMonths;
-
-  getSelectedMonthData(chosenYear, chosenMonth);
-}
-
-async function calculateMonths(monthCount) {
-  const numberOfMonths = monthCount % 12;
-  return numberOfMonths;
-}
-
-async function calculateYears(monthCount, numberOfMonths) {
-  if (monthCount < 12) {
-    const numberOfYears = 0;
-  } else {
-    const numberOfYears = (monthCount - numberOfMonths) / 12;
-    return numberOfYears;
-  }
 }
 
 // Hämtar vald månads data
@@ -185,15 +251,6 @@ async function getSelectedMonthData(chosenYear, chosenMonth) {
   return allDays;
 }
 
-// ger oss antal dagar i innevarande månad
-async function getNumberOfDaysInSelectedMonth(selectedMonthData) {
-  const lastDateInMonth = selectedMonthData[selectedMonthData.length - 1];
-  const numberOfDaysInMonth = parseInt(
-    lastDateInMonth.datum.substr(lastDateInMonth.datum.length - 2, 2)
-  );
-  return numberOfDaysInMonth;
-}
-
 //ger oss veckodag för månadens första dag
 // indata behövs
 function getDayOfWeekForFirstOfMonth(selectedMonth) {
@@ -202,64 +259,32 @@ function getDayOfWeekForFirstOfMonth(selectedMonth) {
 }
 
 // Ger oss antal dagar i föregående månad
-async function previousMonthNumberOfDays(selectedMonth) {
-  const lastDateInMonth = selectedMonth[selectedMonth.length - 1];
+async function getNumberOfDaysInPreviousMonth() {
+  let chosenMonth = state.currentMonth;
+  let chosenYear = state.currentYear;
+  if (state.currentMonth == 0) {
+    chosenYear--;
+    chosenMonth = 11;
+  }
+
+  const response = await fetch(
+    `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth}`
+  );
+  const selectedMonth = await response.json();
+
+  const lastDateInMonth = selectedMonth.dagar[selectedMonth.dagar.length - 1];
+  console.log("lastdateinmonth " + lastDateInMonth);
 
   const numberOfDaysInPreviousMonth = parseInt(
     lastDateInMonth.datum.substr(lastDateInMonth.datum.length - 2, 2)
   );
-
+  console.log("numberOfPrev" + numberOfDaysInPreviousMonth);
   return numberOfDaysInPreviousMonth;
 }
 
-// returnerar inskickat datum till korrekt format
-async function getCorrectDateFormat(date) {
-  const fullDateFormat = date.datum;
-  let correctDateFormat;
-  const partDateFormat = fullDateFormat.substr(fullDateFormat.length - 2, 2);
+function getLastWeekDayInMonth(selectedMonthData) {
+  const lastDayInMonth = selectedMonthData.length - 1;
+  const lastWeekDayInMonth = selectedMonthData[lastDayInMonth]["dag i vecka"];
 
-  if (partDateFormat.substr(0, 1) == 0) {
-    correctDateFormat = partDateFormat.substr(1, 1);
-  } else {
-    correctDateFormat = partDateFormat;
-  }
-  return correctDateFormat;
+  return lastWeekDayInMonth;
 }
-
-async function anotherName(selectedMonth) {
-  for (let days of selectedMonth) {
-    let date = await getCorrectDateFormat(days);
-    await testCreate(date); //ÄNDRAD FRÅN CREATE**************************************
-  }
-}
-
-// const type = document.createElement("p"); // Create a <li> node
-// var textnode = document.createTextNode(secondCut);
-// //const fullDate = document.createTextNode(days.datum); // Create a text node
-// type.append(textnode); // Append the text to <li>
-// document.getElementById("myList").append(type); // Append <li> to <ul> with id="myList"
-
-//  const firstDayOfMonth = data.dagar.find((day) => day.veckodag[0]);
-//  const firstDayOfMonth2 = data.dagar[0].veckodag;
-
-// Massa skit bara...
-//getDateNumber()
-// ***********************************************************************************************
-
-// let secondCut = "";
-// for (const days of allDays) {
-//   const fullDate = days.datum;
-//   // console.log(fullDate);
-//   const dateFirstCut = fullDate.substr(fullDate.length - 2, 2);
-//   // console.log(dateFirstCut);
-
-//   if (dateFirstCut.substr(0, 1) == 0) {
-//     secondCut = dateFirstCut.substr(1, 1);
-//     //console.log("tjoho " + secondCut);
-
-//     //metod för att trycka in data i p
-//   } else {
-//     secondCut = dateFirstCut;
-//   }
-// }
-// return secondCut;
