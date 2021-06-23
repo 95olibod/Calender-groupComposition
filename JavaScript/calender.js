@@ -1,6 +1,7 @@
 function initCalender() {
   setCurrentMonthAndYear();
   renderCalender();
+  //renderCurrentDate();
 }
 
 function setCurrentMonthAndYear() {
@@ -9,7 +10,6 @@ function setCurrentMonthAndYear() {
   state.currentYear = new Date().getFullYear();
 }
 
-
 async function renderCalender() {
   renderTitle(state.currentMonth, state.currentYear);
   let selectedMonthData = await getSelectedMonthData(
@@ -17,8 +17,7 @@ async function renderCalender() {
     state.currentMonth
   );
   let firstDayOfweek = getDayOfWeekForFirstOfMonth(selectedMonthData);
-  // let numberOfDaysInMonth = await getNumberOfDaysInSelectedMonth(selectedMonthData);
-  // let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
+  
   let container = document.querySelector(".m-calender-container");
   container.innerHTML = "";
 
@@ -51,49 +50,53 @@ function createDayBox(day) {
 function selectDate(day) {
   state.selectedDate = new Date(day.datum);
   renderCurrentDate(day);
-  
+
   renderTodos();
 }
 
 function renderCurrentDate(day) {
-  //console.log(day["veckodag"]);
-
   const asideWeekday = document.getElementById("aside-weekday");
-  //console.log("asideWeekday = " + asideWeekday);
-  
-  asideWeekday.innerText = day["veckodag"];
-  const asideDate = document.getElementById("aside-date");
+  const monthByName = getMonthText(day);
+  const date = getDayText(day);
+  const correctCurrentDateFormat =
+    day["veckodag"] + " " + date + " " + monthByName;
 
-  const dayText = getDayText(day);
-  asideDate.innerText = day["datum"];
-  
+  console.log("correctCurrentDateFormat = " + correctCurrentDateFormat);
+
+  asideWeekday.innerText = correctCurrentDateFormat;
+  const asideDate = document.getElementById("aside-date");
 }
 
 function getDayText(day) {
-  const fullDayName = day["datum"];
-//console.log("day2 = " + day["datum"]);
-  const substringMonth = day["datum"].substr(6, 1); 
- // console.log("substringMonth = " + substringMonth);
+  let substringDate = day["datum"].substr(8, 2);
+  const date = checkdateLength(substringDate);
+  console.log(date);
 
-  const monthString = parseInt(substringMonth);
-
-  let substringDate = day["datum"].substr(9, 2);
-
-  
-
-  const monthByName = getMonthsByName(monthString - 1);
-  console.log(monthByName)
-  return ;
+  return date;
 }
 
-function checkdateLength(substringDate) {
-  if (substringDate)
+function getMonthText(day) {
+  const substringMonth = day["datum"].substr(6, 1);
+  const monthNumber = parseInt(substringMonth);
+  const monthByName = getMonthsByName(monthNumber - 1);
+  return monthByName;
+}
+
+function checkdateLength(subStringDate) {
+  console.log("subStringDate = " + subStringDate);
+  let correctSubStringDate = subStringDate;
+
+  if (subStringDate.charAt(0) == 0) {
+    correctSubStringDate = subStringDate.substr(1, 1);
+    console.log(correctSubStringDate);
+  }
+  return correctSubStringDate;
 }
 
 function getNumberOfTodos(day) {
   let newTodoList = [];
   const todoList = state.todos;
-  
+
   for (const todo of todoList) {
     if (todo.date.toLocaleDateString() == day.datum) {
       newTodoList.push(todo);
@@ -105,7 +108,7 @@ function getNumberOfTodos(day) {
 }
 
 function getMonthsByName(currentMonthByNumber) {
-   const monthsByName = [
+  const monthsByName = [
     "Januari",
     "Februari",
     "Mars",
@@ -121,24 +124,10 @@ function getMonthsByName(currentMonthByNumber) {
 
   const activeMonthByName = monthsByName[currentMonthByNumber];
   return activeMonthByName;
-
 }
 function renderTitle(currentMonthByNumber, currentYear) {
-  const monthsByName = [
-    "Januari",
-    "Februari",
-    "Mars",
-    "April",
-    "Maj",
-    "Juni",
-    "Juli",
-    "Augusti",
-    "September",
-    "November",
-    "December",
-  ];
-  const activeMonthByName = monthsByName[currentMonthByNumber];
-  createMonthTitle(activeMonthByName, currentYear);
+  const monthsByName = getMonthsByName(currentMonthByNumber);
+  createMonthTitle(monthsByName, currentYear);
 }
 
 function createMonthTitle(activeMonthByName, currentYear) {
