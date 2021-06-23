@@ -42,8 +42,7 @@
 
 /* Mobile-size biggest width*/
 
-@media (max-width: 480px)
-{
+@media (max-width: 1024px) {
   .f-container {
     z-index: 20;
   }
