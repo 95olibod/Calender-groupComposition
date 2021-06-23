@@ -120,6 +120,7 @@ main {
 
 .p-red-day {
   color: red;
+  
 }
 
 .m-week-empty-box {
@@ -133,6 +134,17 @@ main {
 
 .week-day-padding {
   padding-right: 0.5em;
+}
+
+.empty-box{
+background-color: red;
+width: 100%;
+flex-grow: 1;
+border-radius: 1.5em;
+}
+
+.color{
+  background-color: blue;
 }
 
 @media (max-width: 1024px) {
