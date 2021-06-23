@@ -2,7 +2,8 @@ window.addEventListener('load', main);
 
 const state = {
     todos: [],
-    selectedDate: undefined,
+    filteredTodoList: [],
+    selectedDate: null,
     currentMonth: undefined,
     currentYear: undefined
 }
