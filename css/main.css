@@ -122,6 +122,12 @@ main {
   color: red;
   
 }
+.p-red-day-box {
+  color: red;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  font-size: 10px;
+}
 
 .m-week-empty-box {
   width: 1em;
