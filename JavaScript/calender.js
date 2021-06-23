@@ -87,13 +87,11 @@ function createFirstDaysOfCommingMonth(day) {
 function createDayBox(day) {
   const template = document.getElementById("calendar-day-box");
   const box = template.content.firstElementChild.cloneNode(true);
-
   const redDayText = getRedDayText(day);
-
-  
   const redDayBox = box.querySelector(".p-red-day-box");
-  //redDayBox.innerText = redDayText; SES ÖVER. Är null****************************************************
-
+  
+  redDayBox.innerText = redDayText;
+  
   const dayParagraph = box.querySelector(".p-date");
   dayParagraph.innerText = new Date(day.datum).getDate();
   const numberOfTodos = box.querySelector(".todos");
@@ -111,17 +109,18 @@ function createDayBox(day) {
 }
 
 // Kontrollerar om dagen i fråga innehåller propertyn helgdag eller
-function getRedDayText(day) {
-  const test = day.hasOwnProperty("helgdag");
-  const test2 = day.hasOwnProperty("helgdagsafton");
-  if (test == true) {
+function getRedDayText(day) {  
+  const holiday = day.hasOwnProperty("helgdag");
+  const holidayevening = day.hasOwnProperty("helgdagsafton");
+
+  if (holiday == true) {
     const redDayText = day.helgdag;
     return redDayText;
-  } else if (test2 == true) {
+  } else if (holidayevening == true) {
     const redDayText = day.helgdagsafton;
     return redDayText;
   } else {
-    return " ";
+    return "";
   }
 }
 
