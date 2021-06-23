@@ -79,8 +79,12 @@ aside {
 }
 
 @media (max-width: 1024px) {
-    #sidebar-when-desktop {
-        display: none;
+    #main-container {
+        flex-direction: column-reverse;
+    }
+
+    aside {
+            width: 100%;
     }
 }
 
@@ -94,4 +98,5 @@ aside {
     .s-container {
         width: 100vw;
     }
+
 }
