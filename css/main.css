@@ -129,6 +129,13 @@ main {
 .p-todos {
 }
 
+.border{
+border: 2px solid black;
+}
+.none-border{
+border: 0px solid black;
+}
+
 .p-red-day {
   color: red;
   
