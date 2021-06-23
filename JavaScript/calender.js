@@ -1,6 +1,8 @@
 function initCalender() {
   setCurrentMonthAndYear();
   renderCalender();
+  previousMonth();
+  nextMonth();
 }
 
 function setCurrentMonthAndYear() {
@@ -16,8 +18,6 @@ async function renderCalender() {
     state.currentMonth
   );
   let firstDayOfweek = getDayOfWeekForFirstOfMonth(selectedMonthData);
-  // let numberOfDaysInMonth = getNumberOfDaysInSelectedMonth(selectedMonthData);
-  // let previousMonthDays = await previousMonthNumberOfDays(selectedMonthData);
   let container = document.querySelector(".m-calender-container");
   container.innerHTML = "";
 
@@ -25,20 +25,11 @@ async function renderCalender() {
   // bryt ut fler functioner nedan!!
   // ********************************************
 
-  // Skippa de först dagarna
-  //   for (let i = 0; i < firstDayOfweek - 1; i++) {
-  //     const emptyDiv = document.createElement("div");
-  //     container.append(emptyDiv);
-  //     container.append(box);
-  // }
-
-  const numberPrevious = await getNumberOfDaysInPreviousMonth(
-    state.currentYear,
-    state.currentMonth
-  );
-
+  // Skippar första dagarna
+  const numberPrevious = await getNumberOfDaysInPreviousMonth();
+  // 31                2
   for (let i = numberPrevious - (firstDayOfweek - 1); i < numberPrevious; i++) {
-    const emptyDiv = createLastDaysOfPreviousMonthBox(i);
+    const emptyDiv = createEmptyDays(i);
     emptyDiv.className =
       "empty-box flex col ali-center m-todo-margin-r m-todo-margin-b";
     container.append(emptyDiv);
@@ -50,38 +41,71 @@ async function renderCalender() {
     container.append(div);
   }
 
-  // Ritar ut första dagarna i kommande månad
-  const numberNext = await getNumberOfDaysIncommingMonth(
-    state.currentYear,
-    state.currentMonth
-  );
-  const totalDays =
-    numberNext + getNumberOfDaysInSelectedMonth(selectedMonthData);
-  console.log(totalDays);
+  // Skippar sista dagarna
   const lastWeekDay = getLastWeekDayInMonth(selectedMonthData);
   const numbersInNextMonth = 7 - lastWeekDay;
-  console.log(numbersInNextMonth);
   for (let i = 0; i < numbersInNextMonth; i++) {
-    const emptyDiv = createLastDaysOfPreviousMonthBox(
-      i + 1
-    ); /*fel funktion? alt. byt namn*/
+    const emptyDiv = createEmptyDays(i + 1);
     emptyDiv.className =
       "empty-box flex col ali-center m-todo-margin-r m-todo-margin-b";
-
     container.append(emptyDiv);
   }
 }
 
-function createLastDaysOfPreviousMonthBox(day) {
-  const emptyDiv = document.getElementById("calendar-day-box");
-  const box = emptyDiv.content.firstElementChild.cloneNode(true);
-  const emptyDayDate = box.querySelector(".p-date");
-  emptyDayDate.innerText = day;
-  return box;
+function previousMonth() {
+  const button = document.getElementById("left-arrow");
+  button.addEventListener("click", () => getPreviousMonth());
 }
 
-function createFirstDaysOfCommingMonth(day) {
-  // omvänd ovan function-ish
+async function getPreviousMonth() {
+  if (state.currentMonth == 0) {
+    state.currentYear--;
+    state.currentMonth = 11;
+  } else {
+    state.currentMonth--;
+  }
+
+  await fetch(
+    `https://api.dryg.net/dagar/v2.1/${state.currentYear}/${
+      state.currentMonth + 1
+    }`
+  );
+
+  renderCalender();
+}
+
+function nextMonth() {
+  const button = document.getElementById("right-arrow");
+  button.addEventListener("click", () => getNextMonth());
+}
+
+async function getNextMonth() {
+  if (state.currentMonth == 11) {
+    state.currentYear++;
+    state.currentMonth = 0;
+  } else {
+    state.currentMonth++;
+  }
+
+  await fetch(
+    `https://api.dryg.net/dagar/v2.1/${state.currentYear}/${
+      state.currentMonth + 1
+    }`
+  );
+
+  renderCalender();
+}
+
+function createEmptyDays(day) {
+  const emptyDiv = document.getElementById("calendar-day-box");
+  const box = emptyDiv.content.firstElementChild.cloneNode(true);
+  let emptyDayDate = box.querySelector(".p-date");
+  if (day < 15) {
+    emptyDayDate.innerText = day;
+  } else {
+    emptyDayDate.innerText = day + 1;
+  }
+  return box;
 }
 
 function createDayBox(day) {
@@ -154,6 +178,7 @@ function renderTitle(currentMonthByNumber, currentYear) {
     "Juli",
     "Augusti",
     "September",
+    "Oktober",
     "November",
     "December",
   ];
@@ -165,43 +190,6 @@ function createMonthTitle(activeMonthByName, currentYear) {
   console.log(activeMonthByName, currentYear);
   let h1 = (document.querySelector(".m-title").innerText =
     activeMonthByName + " " + currentYear);
-  console.log(h1);
-}
-
-async function changeMonthForwards(monthCount, currentYear, currentMonth) {
-  monthCount++;
-  calculateTimeShift(monthCount, currentYear, currentMonth);
-  return monthCount;
-}
-
-async function changeMonthBackwards(monthCount, currentYear, currentMonth) {
-  monthCount--;
-  calculateTimeShift(monthCount, currentYear, currentMonth);
-}
-
-async function calculateTimeShift(monthCount, currentYear, currentMonth) {
-  const numberOfMonths = calculateMonths(monthCount);
-
-  const numberOfYears = calculateYears(monthCount, numberOfMonths);
-
-  const chosenYear = currentYear - numberOfYears;
-  const chosenMonth = currentMonth - numberOfMonths;
-
-  getSelectedMonthData(chosenYear, chosenMonth);
-}
-
-async function calculateMonths(monthCount) {
-  const numberOfMonths = monthCount % 12;
-  return numberOfMonths;
-}
-
-async function calculateYears(monthCount, numberOfMonths) {
-  if (monthCount < 12) {
-    const numberOfYears = 0;
-  } else {
-    const numberOfYears = (monthCount - numberOfMonths) / 12;
-    return numberOfYears;
-  }
 }
 
 // Hämtar vald månads data
@@ -216,15 +204,6 @@ async function getSelectedMonthData(chosenYear, chosenMonth) {
   return allDays;
 }
 
-// ger oss antal dagar i innevarande månad
-function getNumberOfDaysInSelectedMonth(selectedMonthData) {
-  const lastDateInMonth = selectedMonthData[selectedMonthData.length - 1];
-  const numberOfDaysInMonth = parseInt(
-    lastDateInMonth.datum.substr(lastDateInMonth.datum.length - 2, 2)
-  );
-  return numberOfDaysInMonth;
-}
-
 //ger oss veckodag för månadens första dag
 // indata behövs
 function getDayOfWeekForFirstOfMonth(selectedMonth) {
@@ -233,52 +212,27 @@ function getDayOfWeekForFirstOfMonth(selectedMonth) {
 }
 
 // Ger oss antal dagar i föregående månad
-async function getNumberOfDaysInPreviousMonth(chosenYear, chosenMonth) {
-  //korrigera för årsskifte
+async function getNumberOfDaysInPreviousMonth() {
+  let chosenMonth = state.currentMonth;
+  let chosenYear = state.currentYear;
+  if (state.currentMonth == 0) {
+    chosenYear--;
+    chosenMonth = 11;
+  }
+
   const response = await fetch(
     `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth}`
   );
   const selectedMonth = await response.json();
 
   const lastDateInMonth = selectedMonth.dagar[selectedMonth.dagar.length - 1];
+  console.log("lastdateinmonth " + lastDateInMonth);
 
   const numberOfDaysInPreviousMonth = parseInt(
     lastDateInMonth.datum.substr(lastDateInMonth.datum.length - 2, 2)
   );
-
+  console.log("numberOfPrev" + numberOfDaysInPreviousMonth);
   return numberOfDaysInPreviousMonth;
-}
-
-async function getNumberOfDaysIncommingMonth(chosenYear, chosenMonth) {
-  //korrigera för årsskifte
-  const response = await fetch(
-    `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth + 2}`
-  );
-  const selectedMonth = await response.json();
-
-  //   const numberOfDaysInMonth = selectedMonth.dagar[selectedMonth.dagar.length - 1];
-  //   console.log(numberOfDaysInMonth);
-  const firstDayOfMonth = selectedMonth.dagar[0]["dag i vecka"];
-  console.log(firstDayOfMonth);
-
-  const numberOfDayscommingMonth = parseInt(firstDayOfMonth);
-  console.log(numberOfDayscommingMonth);
-
-  return numberOfDayscommingMonth;
-}
-
-// returnerar inskickat datum till korrekt format
-async function getCorrectDateFormat(date) {
-  const fullDateFormat = date.datum;
-  let correctDateFormat;
-  const partDateFormat = fullDateFormat.substr(fullDateFormat.length - 2, 2);
-
-  if (partDateFormat.substr(0, 1) == 0) {
-    correctDateFormat = partDateFormat.substr(1, 1);
-  } else {
-    correctDateFormat = partDateFormat;
-  }
-  return correctDateFormat;
 }
 
 function getLastWeekDayInMonth(selectedMonthData) {
@@ -287,34 +241,3 @@ function getLastWeekDayInMonth(selectedMonthData) {
 
   return lastWeekDayInMonth;
 }
-
-// const type = document.createElement("p"); // Create a <li> node
-// var textnode = document.createTextNode(secondCut);
-// //const fullDate = document.createTextNode(days.datum); // Create a text node
-// type.append(textnode); // Append the text to <li>
-// document.getElementById("myList").append(type); // Append <li> to <ul> with id="myList"
-
-//  const firstDayOfMonth = data.dagar.find((day) => day.veckodag[0]);
-//  const firstDayOfMonth2 = data.dagar[0].veckodag;
-
-// Massa skit bara...
-//getDateNumber()
-// ***********************************************************************************************
-
-// let secondCut = "";
-// for (const days of allDays) {
-//   const fullDate = days.datum;
-//   // console.log(fullDate);
-//   const dateFirstCut = fullDate.substr(fullDate.length - 2, 2);
-//   // console.log(dateFirstCut);
-
-//   if (dateFirstCut.substr(0, 1) == 0) {
-//     secondCut = dateFirstCut.substr(1, 1);
-//     //console.log("tjoho " + secondCut);
-
-//     //metod för att trycka in data i p
-//   } else {
-//     secondCut = dateFirstCut;
-//   }
-// }
-// return secondCut;
