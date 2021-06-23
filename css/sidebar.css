@@ -75,6 +75,11 @@ aside {
     font-size: 12px;
 }
 
+#date-for-mobile {
+    display: none;
+    margin-top: 2em;
+}
+
 /* generella textitems */
 
 .s-small-btn {
@@ -123,5 +128,17 @@ aside {
     }
     .s-container {
         width: 100%;
+    }
+    aside {
+        width: 100%;
+        height: 100%;
+    }
+
+    #date-for-mobile {
+        display: flex;
+        margin-top: 2em;
+        height: 2em;
+        padding: 0.3em;
+        border-radius: 0.4em;
     }
 }

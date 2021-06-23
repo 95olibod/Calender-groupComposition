@@ -12,6 +12,30 @@ function fetchTodosFromLocalStorage() {
 function renderTodos() {
 
   //Om state.filteredTodos.length = 0: Något i stil med "Finns inga todos på det här datumet"
+  const mobileCalender = document.getElementById("date-for-mobile");
+  console.log(mobileCalender);
+
+  //event för när man klickat? - till Linn
+  mobileCalender.addEventListener("input", (event) => {state.selectedDate = new Date(mobileCalender.value);});
+  
+  // mobileCalender.value = new Date().toLocaleDateString();
+  // if(state.selectedDate){
+  //    state.selectedDate = mobileCalender.value;
+  // }
+  // selectDate(dateee);
+  // getDayText(mobileCalender.value);
+
+
+
+  //   for (const todo of todoList) {
+  //     const todoDateString = todo.date.toLocaleDateString();
+  
+  //     const todoSelectedDateString = mobileCalender.value;
+  
+  //     if (todoDateString == todoSelectedDateString) {
+  //         state.filteredTodoList.push(todo);
+  //     }
+  // }
 
 
   const ul = document.getElementById("todoList");
