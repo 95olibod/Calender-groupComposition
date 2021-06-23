@@ -44,7 +44,7 @@ async function renderCalender() {
   }
 
   // Skippar sista dagarna
-  const lastWeekDay = getLastWeekDayInMonth(selectedMonthData);
+  const lastWeekDay = getLastWeekDayInMonth(selectedMonthData); 
   const numbersInNextMonth = 7 - lastWeekDay;
   for (let i = 0; i < numbersInNextMonth; i++) {
     const emptyDiv = createEmptyDays(i + 1);
@@ -130,12 +130,14 @@ function createDayBox(day) {
 
   const todos = getNumberOfTodos(day);
 
-  if (todos > 0) {
-    numberOfTodos.className = "todo-markup";
+ if (todos > 0) { 
+    numberOfTodos.className = "todo-markup round-badge flex jus-center ali-center";
     numberOfTodos.innerText = todos;
   }
 
+
   box.addEventListener("click", () => selectDate(day, box));
+
   return box;
 }
 
@@ -179,6 +181,7 @@ function renderCurrentDate(day) {
   const correctCurrentDateFormat =
     day["veckodag"] + " " + date + " " + monthByName;
 
+
   asideWeekday.innerText = correctCurrentDateFormat;
   const asideDate = document.getElementById("aside-date");
   showHoliday(day);
@@ -199,6 +202,7 @@ function getMonthText(day) {
 }
 
 function checkdateLength(subStringDate) {
+
   let correctSubStringDate = subStringDate;
 
   if (subStringDate.charAt(0) == 0) {

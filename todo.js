@@ -34,15 +34,13 @@ function renderTodos() {
   
   for (const todo of state.filteredTodoList) {
     const listItem = template.content.cloneNode(true);
-    const removeButton = template.content
-      .getElementById("remove-btn")
-      .cloneNode(true);
+    const removeBtn = listItem.getElementById("remove-btn");
+
     const span = listItem.querySelector("span");
     span.innerText = todo.text;
 
-    removeButton.addEventListener("click", () => removeTodoItem(todo));
+    removeBtn.addEventListener("click", () => removeTodoItem(todo));
 
-    ul.append(removeButton);
     ul.append(listItem);
   }
 }
@@ -87,7 +85,7 @@ function saveFromSubmit(event) {
   state.todos.push(todoItem);
   const todoDateString = todoItem.date.toLocaleDateString();
   const todoSelectedDateString = state.selectedDate.toLocaleDateString();
-  console.log(todoDateString, todoSelectedDateString);
+  
   if (todoDateString == todoSelectedDateString) {
       state.filteredTodoList.push(todoItem);
   }
