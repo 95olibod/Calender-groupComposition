@@ -59,28 +59,20 @@ function createDayBox(day) {
 }
 
 function selectDate(day) {
-  const todoList = state.todos;
-  state.filteredTodoList.length = 0;
-
-  for (const todo of todoList) {
-    if (todo.date == day.datum) {
-      state.filteredTodoList.push(todo);
-    }
-    //console.log(day.datum);
-  }
+  state.selectedDate = day.datum;
+  
   renderTodos();
-  console.log(state.filteredTodoList);
 }
 
 function getNumberOfTodos(day) {
   let newTodoList = [];
-
   const todoList = state.todos;
+  
   for (const todo of todoList) {
     if (todo.date == day.datum) {
       newTodoList.push(todo);
     }
-    // console.log(todo.date + day.datum);
+    console.log(todo.date + day.datum);
   }
 
   //Returnerar antal
