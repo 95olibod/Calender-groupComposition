@@ -9,8 +9,6 @@ function setCurrentMonthAndYear() {
   state.currentYear = new Date().getFullYear();
 }
 
-
-
 async function renderCalender() {
   renderTitle(state.currentMonth, state.currentYear);
   let selectedMonthData = await getSelectedMonthData(
@@ -89,58 +87,54 @@ function createFirstDaysOfCommingMonth(day) {
 function createDayBox(day) {
   const template = document.getElementById("calendar-day-box");
   const box = template.content.firstElementChild.cloneNode(true);
-  
+
   const redDayText = getRedDayText(day);
-  const redDayBox = box.querySelector(".p-red-day-box");
-  redDayBox.innerText = redDayText;  
+
   
+  const redDayBox = box.querySelector(".p-red-day-box");
+  //redDayBox.innerText = redDayText; SES ÖVER. Är null****************************************************
+
   const dayParagraph = box.querySelector(".p-date");
   dayParagraph.innerText = new Date(day.datum).getDate();
   const numberOfTodos = box.querySelector(".todos");
 
   const todos = getNumberOfTodos(day);
   if (todos > 0) {
-    const color = document.querySelector(".m-todo-box"); // VART SKA DETTA LIGGA???????????????????????????
-    color.className = "color";
+    // const color = document.querySelector(".m-todo-box"); // VART SKA DETTA LIGGA???????????????????????????
+    // color.className = "color";
     numberOfTodos.innerText = todos;
   }
-
 
   box.addEventListener("click", () => selectDate(day));
 
   return box;
 }
 
-// Kontrollerar om dagen i fråga innehåller propertyn helgdag eller 
+// Kontrollerar om dagen i fråga innehåller propertyn helgdag eller
 function getRedDayText(day) {
-    const test = day.hasOwnProperty('helgdag');
-    const test2 = day.hasOwnProperty('helgdagsafton');
-    if (test == true) {
-        const redDayText = day.helgdag;
-        return redDayText;
-    }
-    else if (test2 == true) {
-        const redDayText = day.helgdagsafton
-        return redDayText;
-    }
-    else {
-
-        return "";
-    }
-   
-
+  const test = day.hasOwnProperty("helgdag");
+  const test2 = day.hasOwnProperty("helgdagsafton");
+  if (test == true) {
+    const redDayText = day.helgdag;
+    return redDayText;
+  } else if (test2 == true) {
+    const redDayText = day.helgdagsafton;
+    return redDayText;
+  } else {
+    return " ";
+  }
 }
 
 function selectDate(day) {
   state.selectedDate = day.datum;
-  
+
   renderTodos();
 }
 
 function getNumberOfTodos(day) {
   let newTodoList = [];
   const todoList = state.todos;
-  
+
   for (const todo of todoList) {
     if (todo.date == day.datum) {
       newTodoList.push(todo);
