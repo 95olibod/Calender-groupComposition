@@ -97,9 +97,8 @@ function createDayBox(day) {
   const numberOfTodos = box.querySelector(".todos");
 
   const todos = getNumberOfTodos(day);
-  if (todos > 0) {
-    // const color = document.querySelector(".m-todo-box"); // VART SKA DETTA LIGGA???????????????????????????
-    // color.className = "color";
+ if (todos > 0) {    
+    numberOfTodos.className = "color";
     numberOfTodos.innerText = todos;
   }
 
