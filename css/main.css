@@ -27,7 +27,6 @@ main {
   padding-right: 1em;
   padding-top: 1em;
   height: calc(100vh - 3.5em);
-
 }
 
 .m-date-container {
@@ -57,9 +56,9 @@ main {
   /* grid-auto-rows: repeat(6, 1fr); */
   grid-auto-rows: 1fr;
 
-  padding-bottom: 4em;  
-  column-gap: 8px; 
-  max-height: 40em;  
+  padding-bottom: 4em;
+  column-gap: 8px;
+  max-height: 40em;
 }
 
 .m-week-row-box {
@@ -94,8 +93,6 @@ main {
   border-radius: 50%;
 } */
 
-
-
 .m-todo-margin-r {
   margin-right: 0.5em;
 }
@@ -129,16 +126,15 @@ main {
 .p-todos {
 }
 
-.border{
-border: 2px solid black;
+.border {
+  border: 2px solid black;
 }
-.none-border{
-border: 0px solid black;
+.none-border {
+  border: 0px solid black;
 }
 
 .p-red-day {
   color: red;
-  
 }
 .p-red-day-box {
   color: red;
@@ -160,14 +156,14 @@ border: 0px solid black;
   /* padding-right: 0.5em; */
 }
 
-.empty-box{
-background-color:var(--CalMediumGrey);
-width: 100%;
-flex-grow: 1;
-border-radius: 0.8em;
+.empty-box {
+  background-color: var(--CalMediumGrey);
+  width: 100%;
+  flex-grow: 1;
+  border-radius: 0.8em;
 }
 
-.todo-markup{
+.todo-markup {
   background-color: var(--orange);
   font-size: 0.5em;
   /* width: 0.9em;

@@ -1,16 +1,15 @@
 function initTodos() {
   fetchTodosFromLocalStorage();
   addClickEventOnAddButton();
-  addEventListenerForMobileCalendar()
+  addEventListenerForMobileCalendar();
 }
 
 function addEventListenerForMobileCalendar() {
   const mobileCalender = document.getElementById("date-for-mobile");
   mobileCalender.addEventListener("input", (event) => {
-    console.log(mobileCalender.value);
     state.selectedDate = new Date(event.target.value);
     renderTodos();
-    // renderCurrentDate(state.selectedDate);
+    selectDateForMiniCalendar(mobileCalender.value);
   });
 }
 
@@ -89,21 +88,15 @@ function displayTodoForm(todoItem) {
  * @param {Event} event
  */
 function saveFromSubmit(event, todoItem) {
-  console.log("todoitem.text = " + todoItem);
   event.preventDefault();
   const inputText = event.target.querySelector("#todo-text");
   const inputDate = event.target.querySelector("#date");
 
   if (todoItem) {
-    console.log("inne i if");
-
     todoItem.text = inputText.value;
     todoItem.date = new Date(inputDate.value);
-    console.log(todoItem.text);
   }
   else {
-    console.log("inne i else");
-
     const newTodoItem = {
       text: inputText.value,
       date: new Date(inputDate.value),
@@ -124,7 +117,7 @@ function saveTodosListToLocalStorage() {
 }
 
 function dateReviver(key, value) {
-  if (key === 'date') {
+  if (key === "date") {
     return new Date(value);
   }
 
@@ -168,17 +161,12 @@ function unblurBackground() {
 function removeTodoItem(todo) {
   const index = state.todos.indexOf(todo);
   state.todos.splice(index, 1);
-  
-  if (todo.date == state.selectedDate)
-  {
-      const index = state.filteredTodoList.indexOf(todo);
-  state.filteredTodoList.splice(index, 1);
+
+  if (todo.date == state.selectedDate) {
+    const index = state.filteredTodoList.indexOf(todo);
+    state.filteredTodoList.splice(index, 1);
   }
   saveTodosListToLocalStorage();
   renderTodos();
   renderCalender();
 }
-
-// function editTodoItem(todoItem) {
-//   displayTodoForm(todoItem);
-// }
