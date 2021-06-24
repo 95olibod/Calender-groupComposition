@@ -38,7 +38,7 @@ aside {
 
 .s-container {
     overflow: auto;
-    height: 29.8em;
+    height: 45em;
 }
 
 .s-container-tab {
@@ -99,10 +99,10 @@ aside {
     }
     aside {
         width: 100%;
-        height: 40%;
+        height: 50%;
     }
     .s-container {
-        /* height: 22em; */
+        height: 38.8em;
     }
 }
 
@@ -112,10 +112,10 @@ aside {
     }
     aside {
         width: 100%;
-        height: 70%;
+        height: 50%;
     }
     .s-container {
-        height: 22em;
+        height: 28em;
     }
 }
 
@@ -126,9 +126,7 @@ aside {
     .s-container-tab {
         display: none;
     }
-    .s-container {
-        width: 100%;
-    }
+
     aside {
         width: 100%;
         height: 100%;
