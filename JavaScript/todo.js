@@ -66,7 +66,13 @@ function displayTodoForm(todoItem) {
   todoForm.classList.add("flex");
 
   var currentDate = document.querySelector('input[type="date"]');
-  currentDate.value = new Date().toLocaleDateString();
+  var currentText = document.querySelector("#todo-text");
+
+  if(todoItem)
+  {
+    currentDate.value = todoItem.date.toLocaleDateString();
+    currentText.value = todoItem.text;
+  } else currentDate.value = state.selectedDate.toLocaleDateString();
 
   blurBackground();
 
