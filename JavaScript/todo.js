@@ -6,8 +6,6 @@ function initTodos() {
 
 function addEventListenerForMobileCalendar() {
   const mobileCalender = document.getElementById("date-for-mobile");
-  console.log(mobileCalender);
-
   mobileCalender.addEventListener("input", (event) => {
     console.log(mobileCalender.value);
     state.selectedDate = new Date(event.target.value);
@@ -23,39 +21,34 @@ function fetchTodosFromLocalStorage() {
 }
 
 function renderTodos() {
-
-  const mobileCalender = document.getElementById("date-for-mobile");
-  console.log(mobileCalender);
-
-  //event för när man klickat? - till Linn
-  mobileCalender.addEventListener("input", (event) => {state.selectedDate = new Date(mobileCalender.value);});
-  
   const ul = document.getElementById("todoList");
   const template = document.getElementById("todo-item-template");
+  
+  const todoList = state.todos;
+  state.filteredTodoList = [];
+  
   ul.innerHTML = "";
 
-  const todoList = state.todos;
-  state.filteredTodoList.length = 0;
-
-
-  for (const todo of todoList) {
-      const todoDateString = todo.date.toLocaleDateString();
+  for (const todoItem of todoList) {
+      const todoDateString = todoItem.date.toLocaleDateString();
 
       const todoSelectedDateString = state.selectedDate.toLocaleDateString();
 
       if (todoDateString == todoSelectedDateString) {
-          state.filteredTodoList.push(todo);
+          state.filteredTodoList.push(todoItem);
       }
   }
   
-  for (const todo of state.filteredTodoList) {
+  for (const todoItem of state.filteredTodoList) {
     const listItem = template.content.cloneNode(true);
     const removeBtn = listItem.getElementById("remove-btn");
+    const editBtn = listItem.getElementById("edit-btn");
 
     const span = listItem.querySelector("span");
-    span.innerText = todo.text;
+    span.innerText = todoItem.text;
 
-    removeBtn.addEventListener("click", () => removeTodoItem(todo));
+    removeBtn.addEventListener("click", () => removeTodoItem(todoItem));
+    editBtn.addEventListener("click", () => displayTodoForm(todoItem));
 
     ul.append(listItem);
   }
@@ -64,10 +57,10 @@ function renderTodos() {
 function addClickEventOnAddButton() {
   const button = document.getElementById("s-add-btn");
   button.disabled = false;
-  button.addEventListener("click", displayTodoForm);
+  button.addEventListener("click", () => displayTodoForm());
 }
 
-function displayTodoForm() {
+function displayTodoForm(todoItem) {
   const todoForm = document.getElementById("todo-form-div");
   todoForm.classList.remove("dis-none");
   todoForm.classList.add("flex");
@@ -80,30 +73,37 @@ function displayTodoForm() {
   const close = document.getElementById("close-button");
   close.addEventListener("click", closeTodoForm);
 
-  const submit = document.getElementById("todo-form");
-  submit.addEventListener("submit", saveFromSubmit);
+  const form = document.getElementById("todo-form");
+  
+  form.onsubmit = (event) => saveFromSubmit(event, todoItem);
 }
 
 /**
  *
  * @param {Event} event
  */
-function saveFromSubmit(event) {
+function saveFromSubmit(event, todoItem) {
+  console.log("todoitem.text = " + todoItem);
   event.preventDefault();
   const inputText = event.target.querySelector("#todo-text");
-
   const inputDate = event.target.querySelector("#date");
-  const todoItem = {
-    text: inputText.value,
-    date: new Date(inputDate.value),
-  };
 
-  state.todos.push(todoItem);
-  const todoDateString = todoItem.date.toLocaleDateString();
-  const todoSelectedDateString = state.selectedDate.toLocaleDateString();
+  if (todoItem) {
+    console.log("inne i if");
+
+    todoItem.text = inputText.value;
+    todoItem.date = new Date(inputDate.value);
+    console.log(todoItem.text);
+  }
+  else {
+    console.log("inne i else");
+
+    const newTodoItem = {
+      text: inputText.value,
+      date: new Date(inputDate.value),
+    };
   
-  if (todoDateString == todoSelectedDateString) {
-      state.filteredTodoList.push(todoItem);
+    state.todos.push(newTodoItem);
   }
   
   inputText.value = ""; // clear input text field
@@ -172,3 +172,7 @@ function removeTodoItem(todo) {
   renderTodos();
   renderCalender();
 }
+
+// function editTodoItem(todoItem) {
+//   displayTodoForm(todoItem);
+// }
