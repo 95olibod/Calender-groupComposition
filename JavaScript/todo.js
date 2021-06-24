@@ -1,7 +1,7 @@
 function initTodos() {
   fetchTodosFromLocalStorage();
   addClickEventOnAddButton();
-  addEventListenerForMobileCalendar()
+  addEventListenerForMobileCalendar();
 }
 
 function addEventListenerForMobileCalendar() {
@@ -9,10 +9,9 @@ function addEventListenerForMobileCalendar() {
   console.log(mobileCalender);
 
   mobileCalender.addEventListener("input", (event) => {
-    console.log(mobileCalender.value);
     state.selectedDate = new Date(event.target.value);
     renderTodos();
-    // renderCurrentDate(state.selectedDate);
+    selectDateForMiniCalendar(mobileCalender.value);
   });
 }
 
@@ -23,13 +22,14 @@ function fetchTodosFromLocalStorage() {
 }
 
 function renderTodos() {
-
   const mobileCalender = document.getElementById("date-for-mobile");
   console.log(mobileCalender);
 
   //event för när man klickat? - till Linn
-  mobileCalender.addEventListener("input", (event) => {state.selectedDate = new Date(mobileCalender.value);});
-  
+  mobileCalender.addEventListener("input", (event) => {
+    state.selectedDate = new Date(mobileCalender.value);
+  });
+
   const ul = document.getElementById("todoList");
   const template = document.getElementById("todo-item-template");
   ul.innerHTML = "";
@@ -37,17 +37,16 @@ function renderTodos() {
   const todoList = state.todos;
   state.filteredTodoList.length = 0;
 
-
   for (const todo of todoList) {
-      const todoDateString = todo.date.toLocaleDateString();
+    const todoDateString = todo.date.toLocaleDateString();
 
-      const todoSelectedDateString = state.selectedDate.toLocaleDateString();
+    const todoSelectedDateString = state.selectedDate.toLocaleDateString();
 
-      if (todoDateString == todoSelectedDateString) {
-          state.filteredTodoList.push(todo);
-      }
+    if (todoDateString == todoSelectedDateString) {
+      state.filteredTodoList.push(todo);
+    }
   }
-  
+
   for (const todo of state.filteredTodoList) {
     const listItem = template.content.cloneNode(true);
     const removeBtn = listItem.getElementById("remove-btn");
@@ -101,11 +100,11 @@ function saveFromSubmit(event) {
   state.todos.push(todoItem);
   const todoDateString = todoItem.date.toLocaleDateString();
   const todoSelectedDateString = state.selectedDate.toLocaleDateString();
-  
+
   if (todoDateString == todoSelectedDateString) {
-      state.filteredTodoList.push(todoItem);
+    state.filteredTodoList.push(todoItem);
   }
-  
+
   inputText.value = ""; // clear input text field
   closeTodoForm();
   saveTodosListToLocalStorage();
@@ -118,7 +117,7 @@ function saveTodosListToLocalStorage() {
 }
 
 function dateReviver(key, value) {
-  if (key === 'date') {
+  if (key === "date") {
     return new Date(value);
   }
 
@@ -162,11 +161,10 @@ function unblurBackground() {
 function removeTodoItem(todo) {
   const index = state.todos.indexOf(todo);
   state.todos.splice(index, 1);
-  
-  if (todo.date == state.selectedDate)
-  {
-      const index = state.filteredTodoList.indexOf(todo);
-  state.filteredTodoList.splice(index, 1);
+
+  if (todo.date == state.selectedDate) {
+    const index = state.filteredTodoList.indexOf(todo);
+    state.filteredTodoList.splice(index, 1);
   }
   saveTodosListToLocalStorage();
   renderTodos();

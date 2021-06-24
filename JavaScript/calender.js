@@ -173,7 +173,7 @@ async function selectDateForMiniCalendar(selectedDayValue) {
   const asideWeekday = document.getElementById("aside-weekday");
 
   const dayDate = getDay(selectedDayValue);
-  const monthNumber = selectedDayValue.substr(5,2);
+  const monthNumber = selectedDayValue.substr(5, 2);
   const monthName = getMonth(selectedDayValue);
   const year = getYear(selectedDayValue);
   const day = await getDayOfWeek(dayDate, monthNumber, year);
@@ -194,15 +194,15 @@ function getDay(selectedDayValue) {
 }
 function getYear(selectedYearValue) {
   const year = selectedYearValue.substr(0, 4);
-  
+
   return year;
 }
 
-function getMonth(selectedDayValue){
-    const substringMonth = selectedDayValue.substr(6, 1);
-    const monthNumber = parseInt(substringMonth);
-    const monthByName = getMonthsByName(monthNumber - 1);
-    return monthByName;
+function getMonth(selectedDayValue) {
+  const substringMonth = selectedDayValue.substr(6, 1);
+  const monthNumber = parseInt(substringMonth);
+  const monthByName = getMonthsByName(monthNumber - 1);
+  return monthByName;
 }
 
 async function getDayOfWeek(day, month, year) {
