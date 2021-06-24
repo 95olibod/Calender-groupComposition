@@ -165,7 +165,7 @@ main {
 
 .todo-markup {
   background-color: var(--orange);
-  font-size: 0.5em;
+  font-size: 1em;
   /* width: 0.9em;
   height: 1.5em;
   border-radius: 100em; */
@@ -229,6 +229,18 @@ main {
   .m-month-arrow-right {
     font-size: 15px;
     font-weight: 700;
+  }
+}
+
+@media (max-width: 1024px) {
+  .todo-markup {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 768px) {
+  .todo-markup {
+    font-size: 0.6em;
   }
 }
 
