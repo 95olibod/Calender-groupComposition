@@ -1,3 +1,15 @@
+/* ANIMATION */
+
+@keyframes slidein {
+  from {
+    top: 6em;
+  }
+
+  to {
+    top: 2em;
+  }
+}
+
 /* CLASS STYLING (Desktop-size) */
 
 /* Container of footer image blocks */
@@ -20,12 +32,16 @@
 
 .f-front {
   top: 2em;
+  animation-duration: 2s;
+  animation-name: slidein;
 }
 
 /* Yellow image block showing in middle position */
 
 .f-middle {
   top: 2em;
+  animation-duration: 4s;
+  animation-name: slidein;
 }
 
 .copyright {
