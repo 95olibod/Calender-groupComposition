@@ -4,8 +4,10 @@ function initTodos() {
   addEventListenerForMobileCalendar();
 }
 
+//Mini calendar for mobile size (only visible on screens <= 480px)
+
 function addEventListenerForMobileCalendar() {
-  const mobileCalender = document.getElementById("date-for-mobile");
+  const mobileCalender = document.getElementById("calendar-for-mobile");
   mobileCalender.addEventListener("input", (event) => {
     state.selectedDate = new Date(event.target.value);
     renderTodos();
@@ -13,38 +15,31 @@ function addEventListenerForMobileCalendar() {
   });
 }
 
+//Fetches todos saved in local storage
+
 function fetchTodosFromLocalStorage() {
   const todosString = localStorage.getItem("todos");
   state.todos = JSON.parse(todosString || "[]", dateReviver);
   renderTodos();
 }
 
+//Render li elements - todos based on either current date by default or selected date.
+
 function renderTodos() {
   const ul = document.getElementById("todoList");
   const template = document.getElementById("todo-item-template");
-  
-  const todoList = state.todos;
-  state.filteredTodoList = [];
-  
   ul.innerHTML = "";
 
-  for (const todoItem of todoList) {
-      const todoDateString = todoItem.date.toLocaleDateString();
+  state.filteredTodoList = [];
 
-      const todoSelectedDateString = state.selectedDate.toLocaleDateString();
+  filterTodosByDate();
 
-      if (todoDateString == todoSelectedDateString) {
-          state.filteredTodoList.push(todoItem);
-      }
-  }
-  
   for (const todoItem of state.filteredTodoList) {
     const listItem = template.content.cloneNode(true);
     const removeBtn = listItem.getElementById("remove-btn");
     const editBtn = listItem.getElementById("edit-btn");
-
-    const span = listItem.querySelector("span");
-    span.innerText = todoItem.text;
+    const todoItemText = listItem.querySelector("#todo-item-text");
+    todoItemText.innerText = todoItem.text;
 
     removeBtn.addEventListener("click", () => removeTodoItem(todoItem));
     editBtn.addEventListener("click", () => displayTodoForm(todoItem));
@@ -53,36 +48,59 @@ function renderTodos() {
   }
 }
 
+// Filters todos so they match selected date
+
+function filterTodosByDate() {
+  const todoList = state.todos;
+
+  for (const todoItem of todoList) {
+    const todoDateString = todoItem.date.toLocaleDateString();
+    const todoSelectedDateString = state.selectedDate.toLocaleDateString();
+
+    if (todoDateString == todoSelectedDateString) {
+      state.filteredTodoList.push(todoItem);
+    }
+  }
+}
+
+// Trigger click-event when add button is clicked
+
 function addClickEventOnAddButton() {
-  const button = document.getElementById("s-add-btn");
+  const button = document.getElementById("add-btn");
   button.disabled = false;
   button.addEventListener("click", () => displayTodoForm());
 }
 
+// Displays form for adding todos
+
 function displayTodoForm(todoItem) {
-  const todoForm = document.getElementById("todo-form-div");
+  const todoForm = document.getElementById("todo-form-container");
   todoForm.classList.remove("dis-none");
   todoForm.classList.add("flex");
 
-  var currentDate = document.querySelector('input[type="date"]');
-  var currentText = document.querySelector("#todo-text");
-
-  if(todoItem)
-  {
-    currentDate.value = todoItem.date.toLocaleDateString();
-    currentText.value = todoItem.text;
-  } else currentDate.value = state.selectedDate.toLocaleDateString();
-
+  setDefaultValuesOnTodoForm(todoItem);
   blurBackground();
 
-  const close = document.getElementById("close-button");
+  const close = document.getElementById("close-btn");
   close.addEventListener("click", closeTodoForm);
 
   const form = document.getElementById("todo-form");
-  
   form.onsubmit = (event) => saveFromSubmit(event, todoItem);
 }
 
+// Sets default date in calendar and default text in text area when using form
+
+function setDefaultValuesOnTodoForm(todoItem) {
+  var currentDate = document.querySelector('input[type="date"]');
+  var currentText = document.querySelector("#todo-text");
+
+  if (todoItem) {
+    currentDate.value = todoItem.date.toLocaleDateString();
+    currentText.value = todoItem.text;
+  } else currentDate.value = state.selectedDate.toLocaleDateString();
+}
+
+// Saves or edits todos depending on type of submit (edit or save)
 /**
  *
  * @param {Event} event
@@ -90,21 +108,20 @@ function displayTodoForm(todoItem) {
 function saveFromSubmit(event, todoItem) {
   event.preventDefault();
   const inputText = event.target.querySelector("#todo-text");
-  const inputDate = event.target.querySelector("#date");
+  const inputDate = event.target.querySelector("#todo-date");
 
   if (todoItem) {
     todoItem.text = inputText.value;
     todoItem.date = new Date(inputDate.value);
-  }
-  else {
+  } else {
     const newTodoItem = {
       text: inputText.value,
       date: new Date(inputDate.value),
     };
-  
+
     state.todos.push(newTodoItem);
   }
-  
+
   inputText.value = ""; // clear input text field
   closeTodoForm();
   saveTodosListToLocalStorage();
@@ -112,9 +129,13 @@ function saveFromSubmit(event, todoItem) {
   renderCalender();
 }
 
+// Saves todos to localStorage with key and value of state.todos as a string
+
 function saveTodosListToLocalStorage() {
   localStorage.setItem("todos", JSON.stringify(state.todos));
 }
+
+// Parses string to date if key is "date"
 
 function dateReviver(key, value) {
   if (key === "date") {
@@ -124,39 +145,47 @@ function dateReviver(key, value) {
   return value;
 }
 
+// Closes the todo form
+
 function closeTodoForm() {
-  const todoForm = document.getElementById("todo-form-div");
+  const todoForm = document.getElementById("todo-form-container");
   todoForm.classList.remove("flex");
   todoForm.classList.add("dis-none");
   unblurBackground();
 }
 
+// Blur background when form is visible
+
 function blurBackground() {
-  //Get all elements to be blured
-  const body = document.getElementById("main-container");
-  const footer = document.querySelectorAll("footer");
-  const header = document.querySelector("header");
-
-  //Add blurr-class to elements
-
-  body.classList.add("blur");
-  footer[0].classList.add("blur");
-  footer[1].classList.add("blur");
-  header.classList.add("blur");
+  const elementArray = fetchElementsForBlurEffect();
+  for (const element of elementArray) {
+    element.classList.add("blur");
+  }
 }
+
+// Unblur background when form is closed
 
 function unblurBackground() {
-  //Get all elements to be blured
-  const body = document.getElementById("main-container");
-  const footer = document.querySelectorAll("footer");
-  const header = document.querySelector("header");
+  const elementArray = fetchElementsForBlurEffect();
+  console.log(elementArray);
 
-  //Remove blurr-class to elements
-  body.classList.remove("blur");
-  footer[0].classList.remove("blur");
-  footer[1].classList.remove("blur");
-  header.classList.remove("blur");
+  for (const element of elementArray) {
+    element.classList.remove("blur");
+  }
 }
+
+// Fetches the elements to be blurred/unblurred 
+
+function fetchElementsForBlurEffect() {
+  const main = document.getElementById("main-container");
+  const footerBack = document.getElementById("footer-back");
+  const footerFront = document.getElementById("footer-front")
+  const header = document.getElementById("header");
+
+  return [main, footerBack, footerFront, header];
+}
+
+// Removes a todo item 
 
 function removeTodoItem(todo) {
   const index = state.todos.indexOf(todo);

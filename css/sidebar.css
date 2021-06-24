@@ -10,7 +10,7 @@
     margin-top: -0.6em;
 }
 
-#s-add-btn {
+#add-btn {
     color: var(--darkGrey);
     background-color: var(--orange);
     font-size: 25px;
@@ -75,7 +75,7 @@ aside {
     font-size: 12px;
 }
 
-#date-for-mobile {
+#calendar-for-mobile {
     display: none;
     margin-top: 2em;
 }
@@ -134,7 +134,7 @@ aside {
         height: 100%;
     }
 
-    #date-for-mobile {
+    #calendar-for-mobile {
         display: flex;
         margin-top: 2em;
         height: 2em;

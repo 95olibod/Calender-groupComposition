@@ -27,12 +27,12 @@
   </head>
 
   <body class="flex col">
-    <div id="todo-form-div" class="dis-none todo-form-container">
+    <div id="todo-form-container" class="dis-none">
       <form id="todo-form">
         <label for="todo-text">
           <h4 class="add-todo-title">Lägg till todo:</h4>
         </label>
-        <input type="date" id="date" name="date" value="" /><br />
+        <input type="date" id="todo-date" name="todo-date" value="" /><br />
         <textarea
           class="input-text"
           type="text"
@@ -41,11 +41,11 @@
         ></textarea
         ><br />
         <input type="submit" value="Submit" id="submit-button" />
-        <input type="button" value="Close" id="close-button" />
+        <input type="button" value="Close" id="close-btn" />
       </form>
     </div>
 
-    <header class="flex ali-center">
+    <header id="header" class="flex ali-center">
       <h2 class="h-title">FOLK<h2>
       <p class="h-date"></p>
   </header>
@@ -55,8 +55,8 @@
         <div id="aside-content-wrapper" class="flex col ali-center s-container">
 
           <div class="flex col jus-center ali-center">
-            <input type="date" id="date-for-mobile" name="date" value="" />
-            <button id="s-add-btn" class="s-btn-round">+</button>
+            <input type="date" id="calendar-for-mobile" name="date" value="" />
+            <button id="add-btn" class="s-btn-round">+</button>
           </div>
           
           <div id="aside-day-container" class="flex row">
@@ -67,7 +67,7 @@
           <div id="aside-message"></div>
           <template id="todo-item-template">
             <div class="s-todo-item flex">
-              <span class="flex col"></span>
+              <span id="todo-item-text" class="flex col"></span>
               <button id="edit-btn"
                 class="
                   flex
@@ -167,12 +167,12 @@
         </template>
       </main>
     </div>
-    <footer class="f-container">
+    <footer id="footer-back" class="f-container">
       <div>
         <img src="./images/footer/footer-desktop-opac.png" />
       </div>
     </footer>
-    <footer class="f-container z-10">
+    <footer id="footer-front" class="f-container z-10">
       <div class="f-middle absolute">
         <img src="./images/footer/footer-desktop-yellow.png" />
       </div>
