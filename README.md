@@ -1,4 +1,4 @@
 # Calender-groupComposition
-Calender made of Olivia Kristoffer Linn and Filip
+Calendar made of Olivia Kristoffer Linn and Filip
 
-begränsning, vi villinte klicka ur en state.selectedDate då det är en todo app och todos ska visas.
+Avgränsning: När vi klickar ur en dag ska default (den innevarande dagen) synas, och inte alla todos som finns.
