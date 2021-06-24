@@ -168,6 +168,53 @@ function selectDate(day, box) {
   renderTodos();
 }
 
+async function selectDateForMiniCalendar(selectedDayValue) {
+  /*vilken vald dag det är. eventet*/
+  const asideWeekday = document.getElementById("aside-weekday");
+
+  const dayDate = getDay(selectedDayValue);
+  const monthNumber = selectedDayValue.substr(5,2);
+  const monthName = getMonth(selectedDayValue);
+  const year = getYear(selectedDayValue);
+  const day = await getDayOfWeek(dayDate, monthNumber, year);
+
+  const correctCurrentDateFormat =
+    day["veckodag"] + " " + dayDate + " " + monthName;
+
+  asideWeekday.innerText = correctCurrentDateFormat;
+  const asideDate = document.getElementById("aside-date");
+  showHoliday(day);
+}
+
+function getDay(selectedDayValue) {
+  const substringDate = selectedDayValue.substr(8, 2);
+  const date = checkdateLength(substringDate);
+
+  return date;
+}
+function getYear(selectedYearValue) {
+  const year = selectedYearValue.substr(0, 4);
+  
+  return year;
+}
+
+function getMonth(selectedDayValue){
+    const substringMonth = selectedDayValue.substr(6, 1);
+    const monthNumber = parseInt(substringMonth);
+    const monthByName = getMonthsByName(monthNumber - 1);
+    return monthByName;
+}
+
+async function getDayOfWeek(day, month, year) {
+  const response = await fetch(
+    `https://api.dryg.net/dagar/v2.1/${year}/${month}/${day}`
+  );
+  const data = await response.json();
+  const currentDate = data.dagar[0];
+
+  return currentDate;
+}
+
 function showHoliday(day) {
   const holiday = document.getElementById("holiday");
   holidayText = getRedDayText(day);
