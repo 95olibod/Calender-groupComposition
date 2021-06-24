@@ -71,13 +71,14 @@ function addClickEventOnAddButton() {
   button.addEventListener("click", () => displayTodoForm());
 }
 
-// Displays form for adding todos
+// Displays form for adding/editing todos
 
 function displayTodoForm(todoItem) {
   const todoForm = document.getElementById("todo-form-container");
   todoForm.classList.remove("dis-none");
   todoForm.classList.add("flex");
 
+  setTodoFormTitle(todoItem);
   setDefaultValuesOnTodoForm(todoItem);
   blurBackground();
 
@@ -86,6 +87,15 @@ function displayTodoForm(todoItem) {
 
   const form = document.getElementById("todo-form");
   form.onsubmit = (event) => saveFromSubmit(event, todoItem);
+}
+
+// Sets the title of the todo form depending on editing or adding todo
+
+function setTodoFormTitle(todoItem) {
+    const todoTitle = document.querySelector(".todo-form-title");
+    if (todoItem) {
+      todoTitle.innerText = "Ändra todo:";
+    } else todoTitle.innerText = "Lägg till todo:";
 }
 
 // Sets default date in calendar and default text in text area when using form
