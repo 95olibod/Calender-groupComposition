@@ -1,6 +1,19 @@
 function initTodos() {
   fetchTodosFromLocalStorage();
   addClickEventOnAddButton();
+  addEventListenerForMobileCalendar()
+}
+
+function addEventListenerForMobileCalendar() {
+  const mobileCalender = document.getElementById("date-for-mobile");
+  console.log(mobileCalender);
+
+  mobileCalender.addEventListener("input", (event) => {
+    console.log(mobileCalender.value);
+    state.selectedDate = new Date(event.target.value);
+    renderTodos();
+    // renderCurrentDate(state.selectedDate);
+  });
 }
 
 function fetchTodosFromLocalStorage() {
