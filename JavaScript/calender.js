@@ -1,7 +1,7 @@
 function initCalender() {
   setCurrentMonthAndYear();
   renderCalender();
-
+  renderCurrentDate();
   previousMonth();
   nextMonth();
 }
@@ -44,7 +44,7 @@ async function renderCalender() {
   }
 
   // Skippar sista dagarna
-  const lastWeekDay = getLastWeekDayInMonth(selectedMonthData); 
+  const lastWeekDay = getLastWeekDayInMonth(selectedMonthData);
   const numbersInNextMonth = 7 - lastWeekDay;
   for (let i = 0; i < numbersInNextMonth; i++) {
     const emptyDiv = createEmptyDays(i + 1);
@@ -130,11 +130,11 @@ function createDayBox(day) {
 
   const todos = getNumberOfTodos(day);
 
- if (todos > 0) { 
-    numberOfTodos.className = "todo-markup round-badge flex jus-center ali-center";
+  if (todos > 0) {
+    numberOfTodos.className =
+      "todo-markup round-badge flex jus-center ali-center";
     numberOfTodos.innerText = todos;
   }
-
 
   box.addEventListener("click", () => selectDate(day, box));
 
@@ -173,14 +173,33 @@ function showHoliday(day) {
   holidayText = getRedDayText(day);
   holiday.innerText = holidayText;
 }
+//BYTA NAMN renderCurrentDate
+async function renderCurrentDay() {
+  const currentDay = new Date().getDate();
 
-function renderCurrentDate(day) {
+  const response = await fetch(
+    `https://api.dryg.net/dagar/v2.1/${state.currentYear}/${
+      state.currentMonth + 1
+    }/${currentDay}`
+  );
+  const data = await response.json();
+  const currentDate = data.dagar[0];
+
+  return currentDate;
+}
+
+//BYTA NAMN renderSelectedDate
+async function renderCurrentDate(day) {
+  if (typeof day === "undefined") {
+    const currentDay = await renderCurrentDay();
+    day = currentDay;
+  }
+
   const asideWeekday = document.getElementById("aside-weekday");
   const monthByName = getMonthText(day);
   const date = getDayText(day);
   const correctCurrentDateFormat =
     day["veckodag"] + " " + date + " " + monthByName;
-
 
   asideWeekday.innerText = correctCurrentDateFormat;
   const asideDate = document.getElementById("aside-date");
@@ -202,7 +221,6 @@ function getMonthText(day) {
 }
 
 function checkdateLength(subStringDate) {
-
   let correctSubStringDate = subStringDate;
 
   if (subStringDate.charAt(0) == 0) {
