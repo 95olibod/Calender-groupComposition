@@ -54,7 +54,8 @@
 .s-todo-item span {
   flex-wrap: wrap;
   align-self: center;
-  margin: 0.5em;
+  margin-top: 1em;
+  margin-left: 0.5em;
   word-wrap: normal;
   overflow: hidden;
   width: 100%;
