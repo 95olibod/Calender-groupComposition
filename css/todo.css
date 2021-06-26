@@ -16,6 +16,10 @@
   margin: 1em 0;
 }
 
+.todo-date {
+  margin-bottom: 1em;
+}
+
 .input-text {
   min-height: 5em;
   max-height: 8em;
