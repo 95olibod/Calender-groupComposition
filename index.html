@@ -27,7 +27,7 @@
   </head>
 
   <body class="flex col">
-    <div id="todo-form-container" class="dis-none">
+    <div id="todo-form-container" class="dis-none ali-center jus-center z-30 fixed">
       <form id="todo-form">
         <label for="todo-text">
           <h4 class="todo-form-title"></h4>
@@ -51,7 +51,7 @@
       <p class="h-date"></p>
   </header>
   
-    <div id="main-container" class="flex row grow outer-container">
+    <div id="main-container" class="flex row grow">
       <aside id="sidebar-when-desktop" class="flex col z-10">
         <div id="aside-content-wrapper" class="flex col ali-center s-container">
 
@@ -100,7 +100,7 @@
         </div>
       </aside>
       <main class="col grow">
-        <div class="m-date-container flex jus-center ali-center">
+        <div class="flex jus-center ali-center">
           <div class="m-month-arrow-left">
             <i class="fas fa-chevron-left" id="left-arrow"></i>
           </div>
@@ -117,25 +117,25 @@
         </div>
 
         <div class="flex" style="margin-right: 1em;">
-          <div class="m-week-day-box flex grow week-day-padding jus-center">
+          <div class="m-week-day-box flex grow jus-center">
             <p class="p-week-day">Måndag</p>
           </div>
-          <div class="m-week-day-box flex grow week-day-padding jus-center">
+          <div class="m-week-day-box flex grow jus-center">
             <p class="p-week-day">Tisdag</p>
           </div>
-          <div class="m-week-day-box flex grow week-day-padding jus-center">
+          <div class="m-week-day-box flex grow jus-center">
             <p class="p-week-day">Onsdag</p>
           </div>
-          <div class="m-week-day-box flex grow week-day-padding jus-center">
+          <div class="m-week-day-box flex grow jus-center">
             <p class="p-week-day">Torsdag</p>
           </div>
-          <div class="m-week-day-box flex grow week-day-padding jus-center">
+          <div class="m-week-day-box flex grow jus-center">
             <p class="p-week-day">Fredag</p>
           </div>
-          <div class="m-week-day-box flex grow week-day-padding jus-center">
+          <div class="m-week-day-box flex grow jus-center">
             <p class="p-week-day">Lördag</p>
           </div>
-          <div class="m-week-day-box flex grow week-day-padding jus-center">
+          <div class="m-week-day-box flex grow jus-center">
             <p class="p-week-day p-red-day">Söndag</p>
           </div>
         </div>
@@ -151,7 +151,6 @@
               ali-center
               m-todo-margin-r m-todo-margin-b
             "
-            id="testClass"
           >
             <div class="m-day-date-box flex jus-f-start">
               <p class="p-date"></p>
@@ -168,12 +167,12 @@
         </template>
       </main>
     </div>
-    <footer id="footer-back" class="f-container">
+    <footer id="footer-back" class="f-container fixed full-width">
       <div>
         <img src="./images/footer/footer-desktop-opac.png" />
       </div>
     </footer>
-    <footer id="footer-front" class="f-container z-10">
+    <footer id="footer-front" class="f-container fixed full-width z-10">
       <div class="f-middle absolute">
         <img src="./images/footer/footer-desktop-yellow.png" />
       </div>

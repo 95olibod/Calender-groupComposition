@@ -23,13 +23,8 @@ async function renderCalender() {
   let container = document.querySelector(".m-calender-container");
   container.innerHTML = "";
 
-  // ********************************************
-  // bryt ut fler functioner nedan!!
-  // ********************************************
-
-  // Skippar första dagarna
+  // Create empty boxes previous month
   const numberPrevious = await getNumberOfDaysInPreviousMonth();
-  // 31                2
   for (let i = numberPrevious - (firstDayOfweek - 1); i < numberPrevious; i++) {
     const emptyDiv = createEmptyDays(i);
     emptyDiv.className =
@@ -37,14 +32,11 @@ async function renderCalender() {
     container.append(emptyDiv);
   }
 
-  // Ritar alla boxar
-  for (const day of selectedMonthData) {
-    const div = createDayBox(day);
-    container.append(div);
-  }
+  // Create boxes
+  createBoxes(selectedMonthData, container);
 
-  // Skippar sista dagarna
   const lastWeekDay = getLastWeekDayInMonth(selectedMonthData);
+
   const numbersInNextMonth = 7 - lastWeekDay;
   for (let i = 0; i < numbersInNextMonth; i++) {
     const emptyDiv = createEmptyDays(i + 1);
@@ -52,6 +44,24 @@ async function renderCalender() {
       "empty-box flex col ali-center m-todo-margin-r m-todo-margin-b";
     container.append(emptyDiv);
   }
+}
+
+function createBoxes(selectedMonthData, container) {
+  for (const day of selectedMonthData) {
+    const div = createDayBox(day);
+    container.append(div);
+  }
+}
+
+// Get all days of selected month
+async function getSelectedMonthData(chosenYear, chosenMonth) {
+  const response = await fetch(
+    `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth + 1}`
+  );
+  const data = await response.json();
+  const allDays = data.dagar;
+
+  return allDays;
 }
 
 function previousMonth() {
@@ -98,15 +108,18 @@ async function getNextMonth() {
   renderCalender();
 }
 
+//Render box
 function createEmptyDays(day) {
   const emptyDiv = document.getElementById("calendar-day-box");
   const box = emptyDiv.content.firstElementChild.cloneNode(true);
   let emptyDayDate = box.querySelector(".p-date");
+
   if (day < 15) {
     emptyDayDate.innerText = day;
   } else {
     emptyDayDate.innerText = day + 1;
   }
+
   return box;
 }
 
@@ -114,10 +127,6 @@ function createDayBox(day) {
   const template = document.getElementById("calendar-day-box");
   const box = template.content.firstElementChild.cloneNode(true);
   const redDayText = getRedDayText(day);
-
-  // const redDayBox = box.querySelector(".p-red-day-box");
-  // redDayBox.innerText = redDayText;
-
   const dayParagraph = box.querySelector(".p-date");
 
   if (redDayText != "") {
@@ -141,7 +150,7 @@ function createDayBox(day) {
   return box;
 }
 
-// Kontrollerar om dagen i fråga innehåller propertyn helgdag eller
+// Check if day is a holiday
 function getRedDayText(day) {
   const holiday = day.hasOwnProperty("helgdag");
   const holidayevening = day.hasOwnProperty("helgdagsafton");
@@ -159,17 +168,11 @@ function getRedDayText(day) {
 
 function selectDate(day, box) {
   state.selectedDate = new Date(day.datum);
-  const dayParagraph = box.querySelector(".p-date"); //ÖVERFLÖDIG JUST NU: HÖR TILL RAM RUNT VALD DAG
-  //const test = (document.getElementById("testClass").className = "border");
-  // const test = document.getElementById("testClass");
-
-  //dayParagraph.className = "border"; SÄTTER EN RAM RUNT VALD DAG******************************
   renderCurrentDate(day);
   renderTodos();
 }
 
 async function selectDateForMiniCalendar(selectedDayValue) {
-  /*vilken vald dag det är. eventet*/
   const asideWeekday = document.getElementById("aside-weekday");
 
   const dayDate = getDay(selectedDayValue);
@@ -192,6 +195,7 @@ function getDay(selectedDayValue) {
 
   return date;
 }
+
 function getYear(selectedYearValue) {
   const year = selectedYearValue.substr(0, 4);
 
@@ -220,7 +224,7 @@ function showHoliday(day) {
   holidayText = getRedDayText(day);
   holiday.innerText = holidayText;
 }
-//BYTA NAMN renderCurrentDate
+
 async function renderCurrentDay() {
   const currentDay = new Date().getDate();
 
@@ -235,7 +239,6 @@ async function renderCurrentDay() {
   return currentDate;
 }
 
-//BYTA NAMN renderSelectedDate
 async function renderCurrentDate(day) {
   if (typeof day === "undefined") {
     const currentDay = await renderCurrentDay();
@@ -276,6 +279,7 @@ function checkdateLength(subStringDate) {
   return correctSubStringDate;
 }
 
+// Returns number of todos in a new array
 function getNumberOfTodos(day) {
   let newTodoList = [];
   const todoList = state.todos;
@@ -286,7 +290,6 @@ function getNumberOfTodos(day) {
     }
   }
 
-  //Returnerar antal
   return newTodoList.length;
 }
 
@@ -319,29 +322,16 @@ function createMonthTitle(activeMonthByName, currentYear) {
     activeMonthByName + " " + currentYear);
 }
 
-// Hämtar vald månads data
-// se över variabelnamn!!
-async function getSelectedMonthData(chosenYear, chosenMonth) {
-  const response = await fetch(
-    `https://api.dryg.net/dagar/v2.1/${chosenYear}/${chosenMonth + 1}`
-  );
-  const data = await response.json();
-  const allDays = data.dagar;
-
-  return allDays;
-}
-
-//ger oss veckodag för månadens första dag
-// indata behövs
+// Return first day of month
 function getDayOfWeekForFirstOfMonth(selectedMonth) {
   const firstDayOfweek = selectedMonth[0]["dag i vecka"];
   return firstDayOfweek;
 }
 
-// Ger oss antal dagar i föregående månad
 async function getNumberOfDaysInPreviousMonth() {
   let chosenMonth = state.currentMonth;
   let chosenYear = state.currentYear;
+
   if (state.currentMonth == 0) {
     chosenYear--;
     chosenMonth = 11;
