@@ -1,24 +1,4 @@
-.round-badge {
-  background-color: var(--orange);
-  border-radius: 100em;
-  height: 2em;
-  width: 2em;
-  margin-bottom: 1em;
-  position: absolute;
-}
-
-.m-title {
-  font-weight: 700;
-  font-size: 30px;
-  color: var(--black);
-  font-weight: 600;
-}
-
-html,
-body {
-  height: 100%;
-  background-color: var(--vanillaBeige);
-}
+/* Main container */
 
 main {
   display: flex;
@@ -29,8 +9,9 @@ main {
   height: calc(100vh - 3.5em);
 }
 
-.m-date-container {
-  /* Java-Script */
+.m-month-arrow-left {
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .m-current-month {
@@ -40,9 +21,11 @@ main {
   padding-top: 0.5em;
 }
 
-.m-month-arrow-left {
-  font-size: 25px;
-  font-weight: bold;
+.m-title {
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 600;
 }
 
 .m-month-arrow-right {
@@ -50,23 +33,30 @@ main {
   font-weight: bold;
 }
 
+.m-week-day-box {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.p-week {
+  font-weight: 700;
+}
+
+.p-week-day {
+  font-weight: 700;
+}
+
+.p-red-day {
+  color: red;
+}
+
 .m-calender-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  /* grid-auto-rows: repeat(6, 1fr); */
   grid-auto-rows: 1fr;
-
   padding-bottom: 4em;
   column-gap: 8px;
   max-height: 40em;
-}
-
-.m-week-row-box {
-  width: 100%;
-}
-
-.m-week-row-box-height {
-  max-height: 12vh;
 }
 
 .m-day-container {
@@ -76,23 +66,6 @@ main {
   border-radius: 0.8em;
 }
 
-.m-day-date-box {
-  width: 100%;
-  height: 2.5em;
-  padding-left: 0.5em;
-  padding-top: 0.3em;
-}
-
-.m-todo-box {
-  width: 100%;
-}
-
-/* .m-todo-markup {
-  background-color: var(--orange);
-  width: 1em;
-  border-radius: 50%;
-} */
-
 .m-todo-margin-r {
   margin-right: 0.5em;
 }
@@ -101,41 +74,13 @@ main {
   margin-bottom: 0.5em;
 }
 
-.m-week-number-box {
-  width: 12%;
-  height: 100%;
+.m-day-date-box {
+  width: 100%;
+  height: 2.5em;
   padding-left: 0.5em;
-  justify-content: center;
+  padding-top: 0.3em;
 }
 
-.p-month {
-  font-weight: 700;
-}
-
-.p-week-day {
-  font-weight: 700;
-}
-
-.p-date {
-}
-
-.p-week {
-  font-weight: 700;
-}
-
-.p-todos {
-}
-
-.border {
-  border: 2px solid black;
-}
-.none-border {
-  border: 0px solid black;
-}
-
-.p-red-day {
-  color: red;
-}
 .p-red-day-box {
   color: red;
   padding-left: 0.8rem;
@@ -143,17 +88,17 @@ main {
   font-size: 4px;
 }
 
-.m-week-empty-box {
-  width: 1em;
+.m-todo-box {
+  width: 100%;
 }
 
-.m-week-day-box {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-.week-day-padding {
-  /* padding-right: 0.5em; */
+.round-badge {
+  background-color: var(--orange);
+  border-radius: 100em;
+  height: 2em;
+  width: 2em;
+  margin-bottom: 1em;
+  position: absolute;
 }
 
 .empty-box {
@@ -164,44 +109,60 @@ main {
 }
 
 .todo-markup {
-  background-color: var(--orange);
   font-size: 1em;
-  /* width: 0.9em;
-  height: 1.5em;
-  border-radius: 100em; */
 }
 
-@media (max-width: 1024px) {
-  .m-calender-container {
-    padding-bottom: 1em;
-    max-height: 45em;
-  }
+/*Media-queries*/
 
+@media (max-width: 1024px) {
   main {
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.5em;
     height: auto;
   }
+
+  .m-calender-container {
+    padding-bottom: 1em;
+    max-height: 45em;
+  }
+
   .round-badge {
     margin-bottom: 3em;
+  }
+
+  .todo-markup {
+    font-size: 0.9em;
   }
 }
 
 @media (max-width: 768px) {
-  .round-badge {
-    margin-bottom: 4em;
+  .m-month-arrow-left {
+    font-size: 15px;
+    font-weight: 700;
   }
-  .p-week-day {
-    font-weight: 400;
-    font-size: 12px;
-  }
+
   .m-calender-container {
     padding-bottom: 1em;
     max-height: 35em;
   }
 
-  .p-date {
+  .m-title {
+    font-weight: 700;
+    font-size: 20px;
+  }
+  
+  .m-month-arrow-right {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  
+  .p-week {
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .p-week-day {
     font-weight: 400;
     font-size: 12px;
   }
@@ -211,34 +172,15 @@ main {
     font-size: 12px;
   }
 
-  .p-week {
-    font-weight: 700;
+  .p-date {
+    font-weight: 400;
     font-size: 12px;
   }
 
-  .m-title {
-    font-weight: 700;
-    font-size: 20px;
+  .round-badge {
+    margin-bottom: 4em;
   }
 
-  .m-month-arrow-left {
-    font-size: 15px;
-    font-weight: 700;
-  }
-
-  .m-month-arrow-right {
-    font-size: 15px;
-    font-weight: 700;
-  }
-}
-
-@media (max-width: 1024px) {
-  .todo-markup {
-    font-size: 0.9em;
-  }
-}
-
-@media (max-width: 768px) {
   .todo-markup {
     font-size: 0.6em;
   }

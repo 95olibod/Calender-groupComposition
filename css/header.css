@@ -1,4 +1,4 @@
-/*ELEMENT TAG STYLING (Desktop-size)*/
+/*Element tag styling (Desktop-size)*/
 
 header {
   justify-content: space-between;
@@ -7,7 +7,7 @@ header {
   color: var(--white);
 }
 
-/* CLASS STYLING (Desktop-size) */
+/* Class styling (Desktop-size) */
 
 .h-title {
   padding-left: 1em;

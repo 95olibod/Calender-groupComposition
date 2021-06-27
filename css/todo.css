@@ -1,14 +1,12 @@
+/* HTML Form */
+
 #todo-form-container {
-  align-items: center;
-  justify-content: center;
+  align-self: center;
+  justify-self: center;
   height: 15em;
   padding: 1em;
   background-color: var(--vanillaBeige);
-  border: 1px solid #000;
-  position: fixed;
-  align-self: center;
-  justify-self: center;
-  z-index: 30;
+  border: 1px solid var(--black);
   top: calc(50% - 7.5em);
 }
 
@@ -27,19 +25,7 @@
   max-width: 30em;
 }
 
-.todo-form {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  border-radius: 8px;
-  width: 13em;
-  min-height: 2.5em;
-  margin: 0.5em 0;
-  z-index: 30;
-  position: absolute;
-  left: 0;
-  right: 0;
-}
+/* Todo-box */
 
 .s-todo-item {
   justify-content: flex-end;
@@ -62,18 +48,15 @@
   height: 100%;
 }
 
-#remove-btn {
-  align-self: flex-end;
-  /* margin-top: -5em; */
-  
-}
+/* Media-queries */
+
+/* Tablet-size portrait mode*/
 
 @media (max-width: 768px) {
   .todo-form-container {
     height: 14em;
     top: calc(50% - 7em);
   }
-
   .input-text {
     max-height: 6em;
     min-width: 25em;
@@ -81,12 +64,13 @@
   }
 }
 
+/* Biggest mobile-size*/
+
 @media (max-width: 480px) {
   .todo-form-container {
     height: 12em;
     top: calc(50% - 6em);
   }
-
   .input-text {
     min-height: 3em;
     max-height: 3em;

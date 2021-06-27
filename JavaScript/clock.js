@@ -3,6 +3,8 @@ function initClock() {
   displayClock();
 }
 
+// Displays current date and a ticking clock.
+
 function displayClock() {
   const date = new Date().toLocaleDateString();
   const time = new Date().toLocaleTimeString();

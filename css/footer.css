@@ -1,4 +1,4 @@
-/* ANIMATION */
+/* Animation */
 
 @keyframes slidein {
   from {
@@ -10,16 +10,14 @@
   }
 }
 
-/* CLASS STYLING (Desktop-size) */
+/* Class styling (Desktop-size) */
 
 /* Container of footer image blocks */
 
 .f-container {
-  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
   height: 5rem;
 }
 
@@ -54,9 +52,9 @@
   margin: 0.3em;
 }
 
-/*MEDIA QUERIES*/
+/*Media-queries*/
 
-/* Mobile-size biggest width*/
+/* Tablet-size landscape mode*/
 
 @media (max-width: 1024px) {
   .f-container {
