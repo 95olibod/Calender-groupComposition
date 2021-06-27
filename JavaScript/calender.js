@@ -23,33 +23,42 @@ async function renderCalender() {
   let container = document.querySelector(".m-calender-container");
   container.innerHTML = "";
 
-  // Create empty boxes previous month
+  await createEmptyBoxesPreviosMonth(firstDayOfweek, container);
+  createBoxes(selectedMonthData, container);
+  createEmptyBoxesNextMonth(selectedMonthData, container);
+}
+
+// Create boxes
+function createBoxes(selectedMonthData, container) {
+  for (const day of selectedMonthData) {
+    const div = createDayBox(day);
+    container.append(div);
+  }
+}
+
+// Create empty boxes previous month
+async function createEmptyBoxesPreviosMonth(firstDayOfweek, container) {
   const numberPrevious = await getNumberOfDaysInPreviousMonth();
+
   for (let i = numberPrevious - (firstDayOfweek - 1); i < numberPrevious; i++) {
     const emptyDiv = createEmptyDays(i);
     emptyDiv.className =
       "empty-box flex col ali-center m-todo-margin-r m-todo-margin-b";
     container.append(emptyDiv);
   }
+}
 
-  // Create boxes
-  createBoxes(selectedMonthData, container);
-
+// Create empty boxes next month
+function createEmptyBoxesNextMonth(selectedMonthData, container) {
   const lastWeekDay = getLastWeekDayInMonth(selectedMonthData);
 
   const numbersInNextMonth = 7 - lastWeekDay;
+
   for (let i = 0; i < numbersInNextMonth; i++) {
     const emptyDiv = createEmptyDays(i + 1);
     emptyDiv.className =
       "empty-box flex col ali-center m-todo-margin-r m-todo-margin-b";
     container.append(emptyDiv);
-  }
-}
-
-function createBoxes(selectedMonthData, container) {
-  for (const day of selectedMonthData) {
-    const div = createDayBox(day);
-    container.append(div);
   }
 }
 
