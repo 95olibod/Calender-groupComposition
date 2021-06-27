@@ -4,29 +4,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Local CSS-stylesheets -->
     <link rel="stylesheet" href="./css/base.css" />
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/footer.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/sidebar.css" />
     <link rel="stylesheet" href="./css/todo.css" />
-
+    <!-- Favicon -->
     <link rel="icon" href="./images/logo/cal-logo.png" />
-
     <!-- Fontawesome logos imported -->
     <script
       src="https://kit.fontawesome.com/309fc4c8bc.js"
       crossorigin="anonymous"
     ></script>
+    <!-- Local javascript files -->
     <script src="./javaScript/main.js"></script>
     <script src="./javaScript/todo.js"></script>
     <script src="./javaScript/clock.js"></script>
     <script src="./javascript/calender.js"></script>
-
+    <!--  Site title -->
     <title>FOLK Calender</title>
   </head>
-
   <body class="flex col">
+    <!-- Todo-form for adding and editing todos -->
     <div id="todo-form-container" class="dis-none ali-center jus-center z-30 fixed">
       <form id="todo-form">
         <label for="todo-text">
@@ -45,27 +46,26 @@
         <input type="button" value="Stäng" id="close-btn" />
       </form>
     </div>
-
+    <!-- Header -->
     <header id="header" class="flex ali-center">
       <h2 class="h-title">FOLK<h2>
       <p class="h-date"></p>
   </header>
-  
+  <!-- Container for sidebar and calendar -->
     <div id="main-container" class="flex row grow">
+      <!-- Sidebar -->
       <aside id="sidebar-when-desktop" class="flex col z-10">
         <div id="aside-content-wrapper" class="flex col ali-center s-container">
-
           <div class="flex col jus-center ali-center">
             <input type="date" id="calendar-for-mobile" name="date" value="" />
             <button id="add-btn" class="s-btn-round pointer">+</button>
           </div>
-          
           <div id="aside-day-container" class="flex row">
             <p id="aside-weekday"></p>
             <p id="aside-date"></p>
           </div>
           <p id="holiday"><p>
-          <div id="aside-message"></div>
+          <!-- Template for todo-boxes -->
           <template id="todo-item-template">
             <div class="s-todo-item flex">
               <span id="todo-item-text" class="flex col"></span>
@@ -79,7 +79,6 @@
               >
                 <i class="fas fa-pencil-alt"></i>
               </button>
-
               <div>
                 <button
                   id="remove-btn"
@@ -95,27 +94,27 @@
               </div>
             </div>
           </template>
-
+          <!-- Unsorted list for todos -->
           <ul class="listItems flex col" id="todoList"></ul>
         </div>
       </aside>
+      <!-- Calendar -->
       <main class="col grow">
+        <!-- Date navigation -->
         <div class="flex jus-center ali-center">
           <div class="m-month-arrow-left">
             <i class="fas fa-chevron-left" id="left-arrow"></i>
           </div>
-
           <div class="m-current-month">
             <div id="currentMonth">
               <h1 class="m-title"></h1>              
             </div>
           </div>
-
           <div class="m-month-arrow-right">
             <i class="fas fa-chevron-right" id="right-arrow"></i>
           </div>
         </div>
-
+        <!-- Weekday display -->
         <div class="flex" style="margin-right: 1em;">
           <div class="m-week-day-box flex grow jus-center">
             <p class="p-week-day">Måndag</p>
@@ -139,9 +138,9 @@
             <p class="p-week-day p-red-day">Söndag</p>
           </div>
         </div>
-
-        <div class="m-calender-container full-width grow">
-        </div>
+        <!-- Calendar boxes -->
+        <div class="m-calender-container full-width grow"></div>
+        <!-- Template for calendar boxes -->
         <template id="calendar-day-box">
           <div
             class="
@@ -157,10 +156,8 @@
               <p class="p-date"></p>
               <p class="p-red-day-box"></p>
             </div>
-            
             <div class="m-todo-box flex grow jus-center ali-center">
               <div class="flex jus-center ali-center">
-
                 <p class="todos"></p>
               </div>
             </div>
@@ -168,11 +165,13 @@
         </template>
       </main>
     </div>
+    <!-- Footer back -->
     <footer id="footer-back" class="f-container fixed full-width">
       <div>
         <img src="./images/footer/footer-desktop-opac.png" />
       </div>
     </footer>
+    <!-- Footer front -->
     <footer id="footer-front" class="f-container fixed full-width z-10">
       <div class="f-middle absolute">
         <img src="./images/footer/footer-desktop-yellow.png" />
