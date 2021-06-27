@@ -177,8 +177,6 @@ function blurBackground() {
 
 function unblurBackground() {
   const elementArray = fetchElementsForBlurEffect();
-  console.log(elementArray);
-
   for (const element of elementArray) {
     element.classList.remove("blur");
   }
