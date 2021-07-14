@@ -212,7 +212,7 @@ function getYear(selectedYearValue) {
 }
 
 function getMonth(selectedDayValue) {
-  const substringMonth = selectedDayValue.substr(6, 1);
+  const substringMonth = selectedDayValue.substr(6, 1);  
   const monthNumber = parseInt(substringMonth);
   const monthByName = getMonthsByName(monthNumber - 1);
   return monthByName;
@@ -294,7 +294,7 @@ function getNumberOfTodos(day) {
   const todoList = state.todos;
 
   for (const todo of todoList) {
-    if (todo.date.toLocaleDateString() == day.datum) {
+    if (todo.date.toLocaleDateString("sv-SE") == day.datum) {
       newTodoList.push(todo);
     }
   }

@@ -54,8 +54,8 @@ function filterTodosByDate() {
   const todoList = state.todos;
 
   for (const todoItem of todoList) {
-    const todoDateString = todoItem.date.toLocaleDateString();
-    const todoSelectedDateString = state.selectedDate.toLocaleDateString();
+    const todoDateString = todoItem.date.toLocaleDateString("sv-SE");
+    const todoSelectedDateString = state.selectedDate.toLocaleDateString("sv-SE");
 
     if (todoDateString == todoSelectedDateString) {
       state.filteredTodoList.push(todoItem);
@@ -105,9 +105,9 @@ function setDefaultValuesOnTodoForm(todoItem) {
   var currentText = document.querySelector("#todo-text");
 
   if (todoItem) {
-    currentDate.value = todoItem.date.toLocaleDateString();
+    currentDate.value = todoItem.date.toLocaleDateString("sv-SE");
     currentText.value = todoItem.text;
-  } else currentDate.value = state.selectedDate.toLocaleDateString();
+  } else currentDate.value = state.selectedDate.toLocaleDateString("sv-SE");
 }
 
 // Saves or edits todos depending on type of submit (edit or save)
